@@ -1,0 +1,188 @@
+        <h2><%= @exam.name %></h2>
+        <br style="clear: both;">
+        <section class="carousel" aria-label="Gallery">
+            <ol class="carousel__viewport">
+            	<% x = 0 %>
+            	<% @questions.each_with_index do |question, index| %>
+                <li id="carousel__slide<%= index + 1 %>" tabindex="0" class="carousel__slide">
+                    <div class="carousel__snapper">
+                        <% if index > 0 %><a href="#carousel__slide<%= index %>" class="button left">PREVIOUS</a><% end %>
+                        <% if index + 1 < @questions.size %><a href="#carousel__slide<%= index + 2 %>" class="button right">NEXT</a><% end %>
+                        <br style="clear: both;" />
+						<section class="question">
+                            <form>
+                                <fieldset>
+                                    <legend>Question #<%= index + 1 %></legend>
+                                    <p class="question">
+                                    	<% question.q_text = question.q_text.gsub('[', '<').gsub(']', '>') %>
+                                    	<%= question.q_text.html_safe %>
+                                    </p> <%
+                                    options=[]
+                                    correct=[]
+                                    
+									if question.q_answer001_correct
+                                    	correct[x] = question.q_answer001
+                                    end
+                                    if question.q_answer001_active
+                                    	options[x] = question.q_answer001
+                                    	x += 1
+                                    end
+									if question.q_answer002_correct
+                                    	correct[x] = question.q_answer002
+                                    end
+                                    if question.q_answer002_active
+                                    	options[x] = question.q_answer002
+                                    	x += 1
+                                    end
+									if question.q_answer003_correct
+                                    	correct[x] = question.q_answer003
+                                    end
+                                    if question.q_answer003_active
+                                    	options[x] = question.q_answer003
+                                    	x += 1
+                                    end
+									if question.q_answer004_correct
+                                    	correct[x] = question.q_answer004
+                                    end
+                                    if question.q_answer004_active
+                                    	options[x] = question.q_answer004
+                                    	x += 1
+                                    end
+									if question.q_answer005_correct
+                                    	correct[x] = question.q_answer005
+                                    end
+                                    if question.q_answer005_active
+                                    	options[x] = question.q_answer005
+                                    	x += 1
+                                    end
+									if question.q_answer006_correct
+                                    	correct[x] = question.q_answer006
+                                    end
+                                    if question.q_answer006_active
+                                    	options[x] = question.q_answer006
+                                    	x += 1
+                                    end
+									if question.q_answer007_correct
+                                    	correct[x] = question.q_answer007
+                                    end
+                                    if question.q_answer007_active
+                                    	options[x] = question.q_answer007
+                                    	x += 1
+                                    end
+									if question.q_answer008_correct
+                                    	correct[x] = question.q_answer008
+                                    end
+                                    if question.q_answer008_active
+                                    	options[x] = question.q_answer008
+                                    	x += 1
+                                    end
+									if question.q_answer009_correct
+                                    	correct[x] = question.q_answer009
+                                    end
+                                    if question.q_answer009_active
+                                    	options[x] = question.q_answer009
+                                    	x += 1
+                                    end
+									if question.q_answer010_correct
+                                    	correct[x] = question.q_answer010
+                                    end
+                                    if question.q_answer010_active
+                                    	options[x] = question.q_answer010
+                                    	x += 1
+                                    end
+                                    %>
+                                    <ul class="options">
+                                    <% options.each_with_index do |option, index| %>
+                                        <% if option != nil %>
+                                        <li>
+                                            <input type="<%= question.q_type %>" id="00<%= x + index %>" name="question<%= x %>" />
+                                            <% if question.q_type != "text" %>
+                                            <label for="00<%= x + index %>">
+                                            	<span class="text"<% if options[index] == correct[index] %> id="hint_0<%= x + index %>"<% end %>>
+                                            		<%= option %>
+                                            	</span>
+                                            </label>
+                                            <% end %>
+                                        </li>
+                                        <% end %>
+                                    <% end %>
+                                    </ul>
+                                </fieldset>
+                                <a href="#" class="button" onclick="checkQuestion<%= index + 1 %>()">CHECK</a>
+                                <a href="#" class="button right pushright" id="hintbutton_<%= index + 1 %>" onclick="hintQuestion<%= index + 1 %>()">HINT</a>
+                                <span id="Q<%= index + 1 %>_info"></span>
+                            </form>
+                            <script>
+                            <% if question.q_type == "checkbox" || question.q_type == "radio" %>
+                                function checkQuestion<%= index + 1 %>() {
+                                  var Q<%= index + 1 %>_info = document.getElementById("Q<%= index + 1 %>_info");
+
+                                  if (
+	                              <% options.each_with_index do |option, index| %>
+	                                  <% if options[index] == correct[index] %>
+	                                  	<% if option != nil %>
+	                                  	document.getElementById("00<%= x + index %>").checked == true<% if index + 1 < correct.length %> &&<% end %>
+	                                    <% end %>
+	                                  <% end %>
+	                              <% end %>
+	                              ) {
+	                                    Q<%= index + 1 %>_info.innerHTML = "CORRECT!";
+	                                    Q<%= index + 1 %>_info.className = "correct";
+                                  } else {
+	                                    Q<%= index + 1 %>_info.innerHTML = "FALSE!";
+	                                    Q<%= index + 1 %>_info.className = "false";
+                                  }
+                                <% if question.q_type == "checkbox" %>
+                                  if (
+	                              <% options.each_with_index do |option, index| %>
+	                                  <% if options[index] != correct[index] %>
+	                                  	<% if option != nil %>
+	                                  	document.getElementById("00<%= x + index %>").checked == true<% if index + 1 < correct.length %> ||<% end %>
+	                                    <% end %>
+	                                  <% end %>
+	                              <% end %>
+	                              ) {
+	                                    Q<%= index + 1 %>_info.innerHTML = "FALSE!";
+	                                    Q<%= index + 1 %>_info.className = "false";
+	                              }
+                                <% end %>
+                                }
+                                function hintQuestion<%= index + 1 %>() {
+	                              <% options.each_with_index do |option, index| %>
+	                                  <% if options[index] == correct[index] %>
+	                                  	<% if option != nil %>
+	                                  	document.getElementById("hint_0<%= x + index %>").classList.toggle("hint");
+	                                    <% end %>
+	                                  <% end %>
+	                              <% end %>
+                                }
+                             <% else %>
+                             function checkQuestion<%= index + 1 %>() {
+                             	if (document.getElementsByName("question<%= x %>")[0].value == "<%= question.q_answer001 %>"){
+	                                    Q<%= index + 1 %>_info.innerHTML = "CORRECT!";
+	                                    Q<%= index + 1 %>_info.className = "correct";
+                                  } else {
+	                                    Q<%= index + 1 %>_info.innerHTML = "FALSE!";
+	                                    Q<%= index + 1 %>_info.className = "false";
+                                  }
+                             }
+                             function hintQuestion<%= index + 1 %>() {
+                             	document.getElementsByName("question<%= x %>")[0].value = "<%= question.q_answer001 %>"
+                             }
+	                        <% end %>
+                            </script>
+                        </section>
+                    </div>
+                </li>
+            	<% end %>
+            </ol>
+            <aside class="carousel__navigation">
+                <ol class="carousel__navigation-list">
+                	<% @questions.each_with_index do |question, index| %>
+                    <li class="carousel__navigation-item">
+                        <a class="button" href="#carousel__slide<%= index + 1 %>">Q<%= index + 1 %></a>
+                    </li>
+                    <% end %>
+                </ol>
+            </aside>
+        </section>

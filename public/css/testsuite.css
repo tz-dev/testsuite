@@ -1,0 +1,107 @@
+html {
+	font-family: verdana;
+	background: #000;
+}
+
+body {
+	width: 80%;
+	min-height: 950px;
+	margin: 0 auto;
+}
+
+section#head {
+	position: fixed;
+	width: 80%;
+	background: #000;
+}
+
+section#main {
+	float: left;
+	margin: 80px 0 0 0;
+	padding: 80px 0 0 0;
+	width: 100%;
+	background: #ddd;
+}
+
+h1, h2 {
+	text-align: center;
+	color: #fff;
+	padding: 5px 0;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+h1 {
+	font-size:2em;
+	border-bottom: 2px solid #fff;
+}
+
+h2 {
+	font-size:1.5em;
+	border-top: 2px solid #fff;
+}
+
+nav {
+    border-width:1px 0;
+    margin: 10px 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav a {
+	text-decoration: none;
+	margin: 0;
+	padding: 11px;
+	background: #000;
+	color: #fff;
+	position: relative;
+	top: 10px;
+	border: 1px solid #fff;
+}
+
+nav a:hover {
+	background: #666;
+}
+
+div.field {
+	width: 100%;
+	float: left;
+	min-height: 25px;
+}
+
+label {
+	width: 200px;
+	float: left;
+	text-align: right;
+	margin-right: 10px;
+}
+
+input[type="text"] {
+	min-width: 750px;
+}
+
+select {
+	width: 200px;
+}
+
+textarea {
+	min-width: 750px;
+	min-height: 100px;
+}
+
+table {
+	width: 80%;
+	margin: 0 auto;
+	border: 1px solid black;
+	background: #fff;
+}
+
+table td {
+	padding: 5px 2px;
+}
+
+table th {
+	background: #000;
+	color: #fff;
+	padding: 5px;
+}

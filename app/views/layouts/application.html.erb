@@ -3,17 +3,27 @@
   <head>
     <title>Testsuite</title>
     <%= csrf_meta_tags %>
+    <link rel="stylesheet" href="/css/testsuite.css" />
     <%# stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%# javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+    <section id="head">
+    <h1>Testsuite</h1>
+    <nav>
+      <%= link_to 'Home', root_url %>
+      <%= link_to 'Exams', exams_url %>
+      <%= link_to 'Questions', questions_url %>
+      <%= link_to 'User', users_url %>
 	<% if current_user %>
-	  Logged in as <%= current_user.email %>.
 	  <%= link_to "Log Out", logout_path %>
 	<% else %>
-	  <%= link_to "Sign Up", signup_path %> or 
+	  <%= link_to "Sign Up", signup_path %>
 	  <%= link_to "Log In", login_path %>
 	<% end %>
+    </nav>
+    <br style="clear: both;" />
     <%= yield %>
+  </section>
   </body>
 </html>

@@ -10,7 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200630105218) do
+ActiveRecord::Schema.define(version: 20200630111931) do
+
+  create_table "exams", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer "exam"
+    t.string "q_type"
+    t.text "q_text"
+    t.string "q_answer001"
+    t.boolean "q_answer001_active"
+    t.boolean "q_answer001_correct"
+    t.string "q_answer002"
+    t.boolean "q_answer002_active"
+    t.boolean "q_answer002_correct"
+    t.string "q_answer003"
+    t.boolean "q_answer003_active"
+    t.boolean "q_answer003_correct"
+    t.string "q_answer004"
+    t.boolean "q_answer004_active"
+    t.boolean "q_answer004_correct"
+    t.string "q_answer005"
+    t.boolean "q_answer005_active"
+    t.boolean "q_answer005_correct"
+    t.string "q_answer006"
+    t.boolean "q_answer006_active"
+    t.boolean "q_answer006_correct"
+    t.string "q_answer007"
+    t.boolean "q_answer007_active"
+    t.boolean "q_answer007_correct"
+    t.string "q_answer008"
+    t.boolean "q_answer008_active"
+    t.boolean "q_answer008_correct"
+    t.string "q_answer009"
+    t.boolean "q_answer009_active"
+    t.boolean "q_answer009_correct"
+    t.string "q_answer010"
+    t.boolean "q_answer010_active"
+    t.boolean "q_answer010_correct"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"

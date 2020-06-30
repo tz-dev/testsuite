@@ -1,0 +1,187 @@
+<%= form_with(model: question, local: true) do |form| %>
+  <% if question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :exam %>
+    <%= form.number_field :exam, id: :question_exam %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_type %>
+    <select id="question_q_type" name="question[q_type]">
+      <option<% if question.q_type=="checkbox" %> selected<% end %>>checkbox</option>
+      <option<% if question.q_type=="radio" %> selected<% end %>>radio</option>
+      <option<% if question.q_type=="text" %> selected<% end %>>text</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_text %>
+    <%= form.text_area :q_text, id: :question_q_text %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer001 %>
+    <%= form.text_field :q_answer001, id: :question_q_answer001 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer001_active %>
+    <%= form.check_box :q_answer001_active, id: :question_q_answer001_active %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer001_correct %>
+    <%= form.check_box :q_answer001_correct, id: :question_q_answer001_correct %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer002 %>
+    <%= form.text_field :q_answer002, id: :question_q_answer002 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer002_active %>
+    <%= form.check_box :q_answer002_active, id: :question_q_answer002_active %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer002_correct %>
+    <%= form.check_box :q_answer002_correct, id: :question_q_answer002_correct %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer003 %>
+    <%= form.text_field :q_answer003, id: :question_q_answer003 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer003_active %>
+    <%= form.check_box :q_answer003_active, id: :question_q_answer003_active %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer003_correct %>
+    <%= form.check_box :q_answer003_correct, id: :question_q_answer003_correct %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer004 %>
+    <%= form.text_field :q_answer004, id: :question_q_answer004 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer004_active %>
+    <%= form.check_box :q_answer004_active, id: :question_q_answer004_active %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer004_correct %>
+    <%= form.check_box :q_answer004_correct, id: :question_q_answer004_correct %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer005 %>
+    <%= form.text_field :q_answer005, id: :question_q_answer005 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer005_active %>
+    <%= form.check_box :q_answer005_active, id: :question_q_answer005_active %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer005_correct %>
+    <%= form.check_box :q_answer005_correct, id: :question_q_answer005_correct %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer006 %>
+    <%= form.text_field :q_answer006, id: :question_q_answer006 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer006_active %>
+    <%= form.check_box :q_answer006_active, id: :question_q_answer006_active %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer006_correct %>
+    <%= form.check_box :q_answer006_correct, id: :question_q_answer006_correct %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer007 %>
+    <%= form.text_field :q_answer007, id: :question_q_answer007 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer007_active %>
+    <%= form.check_box :q_answer007_active, id: :question_q_answer007_active %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer007_correct %>
+    <%= form.check_box :q_answer007_correct, id: :question_q_answer007_correct %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer008 %>
+    <%= form.text_field :q_answer008, id: :question_q_answer008 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer008_active %>
+    <%= form.check_box :q_answer008_active, id: :question_q_answer008_active %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer008_correct %>
+    <%= form.check_box :q_answer008_correct, id: :question_q_answer008_correct %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer009 %>
+    <%= form.text_field :q_answer009, id: :question_q_answer009 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer009_active %>
+    <%= form.check_box :q_answer009_active, id: :question_q_answer009_active %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer009_correct %>
+    <%= form.check_box :q_answer009_correct, id: :question_q_answer009_correct %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer010 %>
+    <%= form.text_field :q_answer010, id: :question_q_answer010 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer010_active %>
+    <%= form.check_box :q_answer010_active, id: :question_q_answer010_active %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_answer010_correct %>
+    <%= form.check_box :q_answer010_correct, id: :question_q_answer010_correct %>
+  </div>
+
+  <div class="actions">
+    <label>&nbsp;</label>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :questions
+  resources :exams
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'
