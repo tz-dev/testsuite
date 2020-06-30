@@ -10,5 +10,4 @@
   <label>Email:</label>
   <%= @user.email %>
 </div>
-
-<label>&nbsp;</label><%= link_to 'Edit', edit_user_path(@user) %> <%= link_to 'Back', users_path %>
+<label>&nbsp;</label><a href="<%= edit_user_path(@user) %>"><button>Edit User</button></a>
