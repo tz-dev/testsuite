@@ -16,7 +16,7 @@
       <tr>
         <td><%= Exam.find(question.exam).name %></td>
         <td><%= question.q_type %></td>
-        <td><%= question.q_text.truncate(100) %></td>
+        <td><%= strip_tags(question.q_text).truncate(100) %></td>
         <td><%= link_to 'Show', question %></td>
         <td><%= link_to 'Edit', edit_question_path(question) %></td>
         <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>

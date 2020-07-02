@@ -11,6 +11,7 @@ class ExamsController < ApplicationController
   # GET /exams/1.json
   def show
     @questions = Question.where(exam: @exam.id).all
+    @questions = @questions.drop(@questions.count - @exam.questions)
     if @exam.shuffle_questions
       @questions = @questions.shuffle
     end
@@ -24,6 +25,7 @@ class ExamsController < ApplicationController
 
   # GET /exams/1/edit
   def edit
+    @questions = Question.where(exam: @exam.id).all.count
   end
 
   # POST /exams
@@ -74,6 +76,6 @@ class ExamsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def exam_params
-      params.require(:exam).permit(:name, :description, :shuffle_answers, :shuffle_questions)
+      params.require(:exam).permit(:name, :description, :questions, :shuffle_answers, :shuffle_questions)
     end
 end

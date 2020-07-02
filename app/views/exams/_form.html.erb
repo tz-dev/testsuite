@@ -21,6 +21,13 @@
     <%= form.text_area :description, id: :exam_description %>
   </div>
 
+<% if @questions %>
+  <div class="field">
+    <%= form.label :questions %>
+    <%= form.number_field :questions, in: 1..@questions, id: :exam_questions %>
+  </div>
+<% end %>
+
   <div class="actions">
     <label for="shuffle_questions">Shuffle Questions</label>
     <%= form.check_box :shuffle_questions, id: :shuffle_questions %>

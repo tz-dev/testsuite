@@ -18,9 +18,9 @@
       <tr>
         <td><%= exam.name %></td>
         <td><%= exam.description %></td>
-        <td><%= Question.where(:exam => exam.id).size %></td>
-        <td><%= exam.shuffle_questions %></td>
-        <td><%= exam.shuffle_answers %></td>
+        <td align="center"><%= exam.questions %> / <%= Question.where(:exam => exam.id).size %></td>
+        <td align="center"><%= exam.shuffle_questions %></td>
+        <td align="center"><%= exam.shuffle_answers %></td>
         <td><%= link_to 'Show', exam, target: :_blank %></td>
         <td><%= link_to 'Edit', edit_exam_path(exam) %></td>
         <td><%= link_to 'Destroy', exam, method: :delete, data: { confirm: 'Are you sure?' } %></td>
