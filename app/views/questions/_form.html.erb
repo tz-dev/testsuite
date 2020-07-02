@@ -10,13 +10,11 @@
     </div>
   <% end %>
 
-<section class="f_left">  <div class="field">
-    <%= form.label :exam %>
-    <%= select("question", "exam", Exam.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }) %>
-  </div>
-
+<section class="f_left">
   <div class="field">
-    <label>Type</label>
+    <strong>Exam</strong>
+    <%= select("question", "exam", Exam.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <strong>Type</strong>
     <select id="question_q_type" name="question[q_type]">
       <option<% if question.q_type=="checkbox" %> selected<% end %>>checkbox</option>
       <option<% if question.q_type=="radio" %> selected<% end %>>radio</option>
@@ -25,12 +23,11 @@
   </div>
 
   <div class="field">
-    <label>Text</label>
-    <%= form.text_area :q_text, id: :question_q_text %>
+    <%= form.text_area :q_text, id: :question_q_text, :class => "tinymce" %>
   </div>
 </section>
 <section class="f_right">
-  <iframe src="<%= new_picture_path %>?exam_id=<%= question.exam %>" width="100%"></iframe>
+  <iframe class="uploader" src="<%= new_picture_path %>?exam_id=<%= question.exam %>" width="100%"></iframe>
 </section>
 
 <hr style="clear: both;" />

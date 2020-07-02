@@ -111,7 +111,7 @@ select {
 
 textarea {
 	min-width: 525px;
-	min-height: 180px;
+	min-height: 220px;
 	font-family: verdana;
 	cursor: text;
 }

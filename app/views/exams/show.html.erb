@@ -13,10 +13,10 @@
                             <form>
                                 <fieldset>
                                     <legend>Question #<%= index + 1 %></legend>
-                                    <p class="question">
+                                    <span class="q_text">
                                     	<% question.q_text = question.q_text.gsub('[', '<').gsub(']', '>') %>
                                     	<%= question.q_text.html_safe %>
-                                    </p> <%
+                                    </span> <%
                                     options=[]
                                     correct=[]
                                     options.clear
