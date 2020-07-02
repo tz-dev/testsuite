@@ -1,0 +1,26 @@
+<%= form_with(model: picture, local: true) do |form| %>
+  <% if picture.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
+      <ul>
+      <% picture.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field" style="display: none;">
+    <%= form.label :exam %>
+    <%= form.text_field :exam, id: :picture_exam, value: params[:exam_id] %>
+    <%# select("picture", "exam", Exam.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }) %>
+  </div>
+  <div class="field images">
+    <% Picture.all.each do |picture| %>
+    <img src="<%= picture.image %>" desc="<%= picture.image %>" width="200" />
+    <% end %>
+  </div>
+  <br style="clear: both;" />
+  <div class="field">
+    <%= form.file_field :image, id: :picture_image %><%= form.submit 'Upload' %>
+  </div>
+<% end %>

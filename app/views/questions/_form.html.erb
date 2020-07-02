@@ -10,7 +10,7 @@
     </div>
   <% end %>
 
-  <div class="field">
+<section class="f_left">  <div class="field">
     <%= form.label :exam %>
     <%= select("question", "exam", Exam.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }) %>
   </div>
@@ -28,10 +28,14 @@
     <label>Text</label>
     <%= form.text_area :q_text, id: :question_q_text %>
   </div>
+</section>
+<section class="f_right">
+  <iframe src="<%= new_picture_path %>?exam_id=<%= question.exam %>" width="100%"></iframe>
+</section>
 
-  <hr style="clear: both;" />
+<hr style="clear: both;" />
 
-<section id="f_left">
+<section class="f_left">
   <div class="field">
     <label>Answer 1</label>
     <%= form.text_field :q_answer001, id: :question_q_answer001 %>
@@ -68,7 +72,7 @@
     correct <%= form.check_box :q_answer005_correct, id: :question_q_answer005_correct %>
   </div>
 </section>
-<section id="f_left">
+<section class="f_right">
   <div class="field">
     <label>Answer 6</label>
     <%= form.text_field :q_answer006, id: :question_q_answer006 %>
@@ -105,6 +109,7 @@
     correct <%= form.check_box :q_answer010_correct, id: :question_q_answer010_correct %>
   </div>
 </section>
+<br style="clear: both;" />
   <div class="actions">
   <hr style="clear: both;" />
     <label>&nbsp;</label>

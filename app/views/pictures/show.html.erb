@@ -1,0 +1,13 @@
+<h2>Show Picture</h2>
+</section>
+<section id="main">
+<p>
+  <strong>Image:</strong>
+  <%= @picture.image %>
+</p>
+
+<p>
+  <strong>Exam:</strong>
+  <%= @picture.exam %>
+</p>
+<label>&nbsp;</label><a href="<%= edit_picture_path(@picture) %>"><button>Edit</button></a>

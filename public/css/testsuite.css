@@ -23,7 +23,7 @@ section#main {
 	background: #ddd;
 }
 
-section#f_left, section#f_right {
+section.f_left, section.f_right {
 	width: 49.5%;
 	float: left;
 }
@@ -111,7 +111,7 @@ select {
 
 textarea {
 	min-width: 525px;
-	min-height: 100px;
+	min-height: 180px;
 	font-family: verdana;
 	cursor: text;
 }
@@ -151,4 +151,10 @@ a button, input[type="submit"] {
 
 input[type="submit"] {
 	margin-bottom: 5px;
+}
+
+iframe {
+	border: none;
+	width: 100%;
+	height: 275px;
 }

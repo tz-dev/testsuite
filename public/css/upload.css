@@ -1,0 +1,48 @@
+html {
+	font-family: verdana;
+}
+
+label {
+	width: 200px;
+	float: left;
+	text-align: right;
+	margin-right: 10px;
+	font-weight: bold;
+}
+
+input, textarea, select {
+	border: 2px solid #666;
+	font-size: 1em;
+	cursor: pointer;
+}
+
+input {
+	margin-bottom: 5px;
+	margin-left: 15px;
+}
+
+a button, input[type="submit"] {
+	width: 155px;
+	height: 29px;
+	font-size: 1em;
+	border: 2px solid #666;
+	cursor: pointer;
+}
+
+.images {
+	height: 200px;
+	max-height: 200px;
+	width: 725px;
+	max-width: 725px;
+	overflow-y: scroll;
+}
+section#main {
+	border-left: 2px solid #333;
+	padding-left: 10px
+	margin-left: 10px
+}
+
+img {
+	margin: 0 0 10px 15px;
+	float: left;
+}
