@@ -21,6 +21,9 @@
                                     correct=[]
                                     options.clear
                                     correct.clear
+                                    if @exam.shuffle_answers
+                                        options = options.shuffle
+                                    end
                                     
 									if question.q_answer001_correct
                                     	correct[x] = question.q_answer001
@@ -91,9 +94,6 @@
                                     if question.q_answer010_active
                                     	options[x] = question.q_answer010
                                     	x += 1
-                                    end
-                                    if @exam.shuffle_answers
-                                        options = options.shuffle
                                     end
                                     %>
                                     <ul class="options">
