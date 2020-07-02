@@ -39,6 +39,16 @@
   </div>
 
   <div class="actions">
+    <label for="shuffle_answers">Hints</label>
+    <%= form.check_box :hints, id: :exam_hints %>
+  </div>
+
+  <div class="actions">
+    <label for="shuffle_answers">Checks</label>
+    <%= form.check_box :checks, id: :exam_checks %>
+  </div>
+
+  <div class="actions">
     <label>&nbsp;</label>
     <%= form.submit %>
   </div>

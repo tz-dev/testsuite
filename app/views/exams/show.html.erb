@@ -113,8 +113,8 @@
                                     <% end %>
                                     </ul>
                                 </fieldset>
-                                <a href="#" class="button" onclick="checkQuestion<%= index + 1 %>()">CHECK</a>
-                                <a href="#" class="button right pushright" id="hintbutton_<%= index + 1 %>" onclick="hintQuestion<%= index + 1 %>()">HINT</a>
+                                <% if @exam.checks %><a href="#" class="button" onclick="checkQuestion<%= index + 1 %>()">CHECK</a><% end %>
+                                <% if @exam.hints %><a href="#" class="button right pushright" id="hintbutton_<%= index + 1 %>" onclick="hintQuestion<%= index + 1 %>()">HINT</a><% end %>
                                 <span id="Q<%= index + 1 %>_info"></span>
                             </form>
                             <script>
