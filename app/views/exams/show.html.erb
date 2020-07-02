@@ -19,6 +19,8 @@
                                     </p> <%
                                     options=[]
                                     correct=[]
+                                    options.clear
+                                    correct.clear
                                     
 									if question.q_answer001_correct
                                     	correct[x] = question.q_answer001
@@ -133,12 +135,13 @@
 	                                    Q<%= index + 1 %>_info.className = "false";
                                   }
                                 <% if question.q_type == "checkbox" %>
-                                  if (
+                                <% newindex = 0 %>
+                                <% incorrect = options.compact.count - correct.compact.count %>
+                                  if ( 
 	                              <% options.each_with_index do |option, index| %>
 	                                  <% if options[index] != correct[index] %>
-	                                  	<% if option != nil %>
-	                                  	document.getElementById("00<%= x + index %>").checked == true<% if index + 1 < correct.length %> ||<% end %>
-	                                    <% end %>
+                                        <% newindex += 1 %>
+	                                  	document.getElementById("00<%= x + index %>").checked == true<% if newindex < incorrect %> ||<% end %>
 	                                  <% end %>
 	                              <% end %>
 	                              ) {
