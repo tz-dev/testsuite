@@ -11,6 +11,9 @@ class ExamsController < ApplicationController
   # GET /exams/1.json
   def show
     @questions = Question.where(exam: @exam.id).all
+    if @exam.shuffle_questions
+      @questions = @questions.shuffle
+    end
     render :layout => 'exam'
   end
 
@@ -44,7 +47,7 @@ class ExamsController < ApplicationController
   def update
     respond_to do |format|
       if @exam.update(exam_params)
-        format.html { redirect_to @exam, notice: 'Exam was successfully updated.' }
+        format.html { redirect_to exams_path, notice: 'Exam was successfully updated.' }
         format.json { render :show, status: :ok, location: @exam }
       else
         format.html { render :edit }
@@ -71,6 +74,6 @@ class ExamsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def exam_params
-      params.require(:exam).permit(:name, :description)
+      params.require(:exam).permit(:name, :description, :shuffle_answers, :shuffle_questions)
     end
 end

@@ -92,6 +92,9 @@
                                     	options[x] = question.q_answer010
                                     	x += 1
                                     end
+                                    if @exam.shuffle_answers
+                                        options = options.shuffle
+                                    end
                                     %>
                                     <ul class="options">
                                     <% options.each_with_index do |option, index| %>

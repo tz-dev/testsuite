@@ -22,6 +22,16 @@
   </div>
 
   <div class="actions">
+    <label for="shuffle_questions">Shuffle Questions</label>
+    <%= form.check_box :shuffle_questions, id: :shuffle_questions %>
+  </div>
+
+  <div class="actions">
+    <label for="shuffle_questions">Shuffle Answers</label>
+    <%= form.check_box :shuffle_answers, id: :shuffle_answers %>
+  </div>
+
+  <div class="actions">
     <label>&nbsp;</label>
     <%= form.submit %>
   </div>
