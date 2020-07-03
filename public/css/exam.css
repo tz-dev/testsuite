@@ -148,7 +148,7 @@ ol, li {
   right: 0;
   bottom: 0;
   left: 0;
-  text-align: center;
+  text-align: left;
   margin-bottom: 10px;
 }
 
@@ -159,12 +159,8 @@ ol, li {
 
 .carousel__navigation-button {
   display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
   background-color: #333;
   background-clip: content-box;
-  border: 0.25rem solid transparent;
-  border-radius: 50%;
   font-size: 0;
   transition: transform 0s;
 }
@@ -393,7 +389,9 @@ a, a:hover {
 table#overview {
   width: 350px;
   background: #ccc;
-  border: 2px solid #000;
+  border: 3px solid #000;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 table#overview tr {
@@ -438,9 +436,85 @@ table a:hover {
 }
 
 div#time_container {
-  position: fixed;
-  top: 10px;
-  left: 20px;
+  float: right;
+  margin-top: 20px;
+}
+
+div#time_container h5 {
+  margin: 0;
+  padding: 10px;
+  font-size: 1em;
+}
+
+div#time_container fieldset {
+  border: 3px solid #111;
+  border-radius: 10px;
+  background: #ccc;
+  padding: 0px;
+  font-weight: bold;
+}
+
+div#time_container fieldset legend {
+  border: 3px solid #111;
+  border-radius: 10px;
+  background: #aaa;
+  text-align: center;
+  padding: 3px;
+  margin: 0 auto;
+  margin-bottom: 0px;
+}
+
+#q_nav {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 80%;
+  height: 90px;
+  overflow-y: scroll;
+  float: left;
+  border: 3px solid #000;
+  border-radius: 10px;
+  background: #999;
+}
+
+#q_nav li {
+  padding-top: 5px;
+  margin-bottom: 15px;
+}
+
+a.nav_button {
+  background-color: #ccc;
+  padding: 5px;
+  border: 3px solid #000;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+a.nav_button:hover {
+  background-color: #6f6;
+}
+
+#q_nav {
+  scrollbar-color: #999 #ccc; /* thumb and track color */
+  scrollbar-width: 20px;
+}
+
+#q_nav::-webkit-scrollbar {
+  width: 20px;
+}
+
+#q_nav::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+#q_nav::-webkit-scrollbar-thumb {
+  background: #666;
+  border: 2px solid #000;
+}
+
+aside {
+  border-top: 3px solid #000;
+  padding-top: 20px;
+  width: 98.6%;
 }
 
 /* ************************************************** */

@@ -27,7 +27,6 @@
                             <br style="clear: both;" />
                             <a id="toggle" class="center pushdown margindown begin" href="#carousel__slide1">Begin Exam</a>
                             <br style="clear: both;" />
-                            <div id="time_container" class="invisible"><h5><time>00:00:00</time></h5></div>
                             <br style="clear: both;" />
                         </section>
                     </div>
@@ -42,7 +41,7 @@
 						<section class="question">
                             <form>
                                 <fieldset>
-                                    <legend>Question #<%= index + 1 %></legend>
+                                    <legend>Question <%= index + 1 %> / <%= @exam.questions %></legend>
                                     <span class="q_text">
                                     	<% question.q_text = question.q_text.gsub('[', '<').gsub(']', '>') %>
                                     	<%= question.q_text.html_safe %>
@@ -243,14 +242,22 @@
                     </div>
                 </li>
             </ol>
-            <aside id="q_nav" class="carousel__navigation invisible">
-                <ol class="carousel__navigation-list">
-                	<% @questions.each_with_index do |question, index| %>
-                    <li class="carousel__navigation-item">
-                        <a class="button" href="#carousel__slide<%= index + 1 %>">Q<%= index + 1 %></a>
-                    </li>
-                    <% end %>
-                </ol>
+            <aside class="carousel__navigation invisible">
+                <div id="q_nav">
+                    <ol class="carousel__navigation-list">
+                    	<% @questions.each_with_index do |question, index| %>
+                        <li class="carousel__navigation-item">
+                            <a class="nav_button" href="#carousel__slide<%= index + 1 %>">Q<%= index + 1 %></a>
+                        </li>
+                        <% end %>
+                    </ol>
+                </div>  
+                <div id="time_container" class="invisible">
+                <fieldset>
+                    <legend>Timer</legend>
+                    <h5><time>00:00:00</time></h5>
+                </fieldset>
+                </div>
             </aside>
         </section>
         <script>
@@ -284,6 +291,7 @@
                 percent = 0;
                 <% @questions.each_with_index do |question, index| %>
                 checkQuestion<%= index + 1 %>();
+                hintQuestion<%= index + 1 %>();
                 var cell<%= index + 1 %> = document.getElementsByClassName("result<%= index + 1 %>")[0];
                 cell<%= index + 1 %>.innerHTML = Q<%= index + 1 %>_result;
                 if (Q<%= index + 1 %>_result == "correct") {correct+=1}
