@@ -27,7 +27,7 @@
                             <br style="clear: both;" />
                             <a id="toggle" class="center pushdown margindown begin" href="#carousel__slide1">Begin Exam</a>
                             <br style="clear: both;" />
-                            <div id="time_container" style="visibility: hidden;"><h5><time>00:00:00</time></h5></div>
+                            <div id="time_container" class="invisible"><h5><time>00:00:00</time></h5></div>
                             <br style="clear: both;" />
                         </section>
                     </div>
@@ -243,7 +243,7 @@
                     </div>
                 </li>
             </ol>
-            <aside class="carousel__navigation invisible">
+            <aside id="q_nav" class="carousel__navigation invisible">
                 <ol class="carousel__navigation-list">
                 	<% @questions.each_with_index do |question, index| %>
                     <li class="carousel__navigation-item">
@@ -295,6 +295,8 @@
 
                 var nav = document.getElementsByClassName("carousel__navigation")[0];
                 nav.classList.toggle("invisible");
+                var time_container = document.getElementById("time_container");
+                time_container.classList.toggle("invisible");
             }
         </script>
         <script>
@@ -329,6 +331,10 @@
             }
             /* Clear button */
             clear.onclick = function() {
+                time_container = document.getElementById('time_container');
+                q_nav = document.getElementById('q_nav');
+                time_container.classList.remove("invisible");
+                q_nav.classList.remove("invisible");
                 h5.textContent = "00:00:00";
                 seconds = 0; minutes = 0; hours = 0;
             }

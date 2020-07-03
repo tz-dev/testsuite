@@ -436,4 +436,11 @@ tr.even {
 table a:hover {
   text-decoration: underline;
 }
+
+div#time_container {
+  position: fixed;
+  top: 10px;
+  left: 20px;
+}
+
 /* ************************************************** */
