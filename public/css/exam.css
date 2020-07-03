@@ -231,7 +231,7 @@ ul.options li {
 
 ul.options li input {
   margin-right: 10px !important;
-  margin-top: 18px !important;
+  margin-top: 15px !important;
   float: left;
 }
 
@@ -277,6 +277,7 @@ span.text {
   float: left;
   width: 90%;
   font-size: 1.35em !important;
+  line-height: 1.9em;
 }
 
 span.hint {

@@ -29,24 +29,33 @@
 <% end %>
 
   <div class="actions">
-    <label for="shuffle_questions">Shuffle Questions</label>
-    <%= form.check_box :shuffle_questions, id: :shuffle_questions %>
+    <label>&nbsp;</label>
+    <table border="0" cellpadding="0" cellspacing="0" style="background: none; border: none; float: left; width: 400px !important; ">
+      <tr>
+        <td width="100">
+          <%= form.check_box :shuffle_questions, id: :shuffle_questions %>
+          <label class="small" for="shuffle_questions">Shuffle Questions</label>
+        </td>
+        <td width="100">
+          <%= form.check_box :shuffle_answers, id: :shuffle_answers %>
+          <label class="small" for="shuffle_answers">Shuffle Answers</label>
+        </td>
+      </tr>
+      <tr>
+        <td width="100">
+          <%= form.check_box :hints, id: :exam_hints %>
+          <label class="small" for="exam_hints">Hints</label>
+        </td>
+        <td width="100">
+          <%= form.check_box :checks, id: :exam_checks %>
+          <label class="small" for="exam_checks">Checks</label>
+        </td>
+      </tr>
+    </table>
   </div>
 
-  <div class="actions">
-    <label for="shuffle_answers">Shuffle Answers</label>
-    <%= form.check_box :shuffle_answers, id: :shuffle_answers %>
-  </div>
-
-  <div class="actions">
-    <label for="shuffle_answers">Hints</label>
-    <%= form.check_box :hints, id: :exam_hints %>
-  </div>
-
-  <div class="actions">
-    <label for="shuffle_answers">Checks</label>
-    <%= form.check_box :checks, id: :exam_checks %>
-  </div>
+  <br style="clear: both;" />
+  <br style="clear: both;" />
 
   <div class="actions">
     <label>&nbsp;</label>

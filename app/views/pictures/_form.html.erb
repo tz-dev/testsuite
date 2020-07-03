@@ -16,7 +16,7 @@
   </div>
   <div class="field images">
     <% Picture.all.each do |picture| %>
-    <img src="<%= picture.image %>" desc="<%= picture.image %>" width="200" />
+    <img src="<%= picture.image %>" alt="<%= picture.image.to_s.split('/').last %>" title="<%= picture.image.to_s.split('/').last %>" width="200" />
     <% end %>
   </div>
   <br style="clear: both;" />
