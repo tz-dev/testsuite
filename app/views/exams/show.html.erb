@@ -2,6 +2,35 @@
         <br style="clear: both;">
         <section class="carousel" aria-label="Gallery">
             <ol class="carousel__viewport">
+                <li id="carousel__slide0" tabindex="0" class="carousel__slide">
+                    <div class="carousel__snapper">
+                        <section class="question">
+                            <h3 class="h3"><%= @exam.description %></h3>
+                            <table align="center" id="overview">
+                                <tr>
+                                    <td><strong>Questions</strong></td><td align="center"><%= @exam.questions %> / <%= Question.where(:exam => @exam.id).size %></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Shuffle Questions</strong></td><td align="center"><%= @exam.shuffle_questions %></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Shuffle Answers</strong></td><td align="center"><%= @exam.shuffle_answers %></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Hints</strong></td><td align="center"><%= @exam.hints %></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Checks</strong></td><td align="center"><%= @exam.checks %></td>
+                                </tr>
+                            </table>
+                            <br style="clear: both;" />
+                            <br style="clear: both;" />
+                            <a id="toggle" class="center pushdown margindown begin" href="#carousel__slide1">Begin Exam</a>
+                            <br style="clear: both;" />
+                            <br style="clear: both;" />
+                        </section>
+                    </div>
+                </li>
             	<% x = 0 %>
             	<% @questions.each_with_index do |question, index| %>
                 <li id="carousel__slide<%= index + 1 %>" tabindex="0" class="carousel__slide">
@@ -114,8 +143,9 @@
                                     </ul>
                                 </fieldset>
                                 <% if @exam.checks %><a href="#" class="button" onclick="checkQuestion<%= index + 1 %>()">CHECK</a><% end %>
-                                <% if @exam.hints %><a href="#" class="button right pushright" id="hintbutton_<%= index + 1 %>" onclick="hintQuestion<%= index + 1 %>()">HINT</a><% end %>
                                 <span id="Q<%= index + 1 %>_info"></span>
+                                <% if @exam.hints %><a href="#" class="button right pushright" id="hintbutton_<%= index + 1 %>" onclick="hintQuestion<%= index + 1 %>()">HINT</a><% end %>
+                                <% if index + 1 == @questions.size %><a class="center pushdown margindown finish" onclick="finish_exam();" href="#carousel__slide1000">FINISH</a><% end %>
                             </form>
                             <script>
                             <% if question.q_type == "checkbox" || question.q_type == "radio" %>
@@ -133,9 +163,11 @@
 	                              ) {
 	                                    Q<%= index + 1 %>_info.innerHTML = "CORRECT!";
 	                                    Q<%= index + 1 %>_info.className = "correct";
+                                        Q<%= index + 1 %>_result = "correct"
                                   } else {
 	                                    Q<%= index + 1 %>_info.innerHTML = "FALSE!";
 	                                    Q<%= index + 1 %>_info.className = "false";
+                                        Q<%= index + 1 %>_result = "false"
                                   }
                                 <% if question.q_type == "checkbox" %>
                                 <% newindex = 0 %>
@@ -150,6 +182,7 @@
 	                              ) {
 	                                    Q<%= index + 1 %>_info.innerHTML = "FALSE!";
 	                                    Q<%= index + 1 %>_info.className = "false";
+                                        Q<%= index + 1 %>_result = "false"
 	                              }
                                 <% end %>
                                 }
@@ -167,9 +200,11 @@
                              	if (document.getElementsByName("question<%= x %>")[0].value == "<%= question.q_answer001 %>"){
 	                                    Q<%= index + 1 %>_info.innerHTML = "CORRECT!";
 	                                    Q<%= index + 1 %>_info.className = "correct";
+                                        Q<%= index + 1 %>_result = "correct"
                                   } else {
 	                                    Q<%= index + 1 %>_info.innerHTML = "FALSE!";
 	                                    Q<%= index + 1 %>_info.className = "false";
+                                        Q<%= index + 1 %>_result = "false"
                                   }
                              }
                              function hintQuestion<%= index + 1 %>() {
@@ -181,8 +216,33 @@
                     </div>
                 </li>
             	<% end %>
+                <li id="carousel__slide1000" tabindex="0" class="carousel__slide">
+                    <div class="carousel__snapper">
+                        <section class="question">
+                            <h3 class="h3">Result: <span id="percent"></span>%</h3>
+                            <table align="center">
+                                <tr>
+                                    <th align="center">#</th>
+                                    <th align="center">Question</th>
+                                    <th>Result</th>
+                                </tr>
+                                <% @questions.each_with_index do |question, index| %>
+                                <tr class="<%= cycle('even', 'odd') -%>">
+                                    <td align="center">
+                                        <strong>#<%= index + 1 %></strong>
+                                    </td>
+                                    <td align="left">
+                                        <a href="#carousel__slide<%= index + 1 %>"><%= strip_tags(question.q_text.html_safe.truncate(70)) %></a>
+                                    </td>
+                                    <td class="result<%= index + 1 %>"></td>
+                                </tr>
+                                <% end %>
+                            </table>
+                        </section>
+                    </div>
+                </li>
             </ol>
-            <aside class="carousel__navigation">
+            <aside class="carousel__navigation invisible">
                 <ol class="carousel__navigation-list">
                 	<% @questions.each_with_index do |question, index| %>
                     <li class="carousel__navigation-item">
@@ -192,3 +252,48 @@
                 </ol>
             </aside>
         </section>
+        <script>
+
+            if (document.fullscreenEnabled) {
+                var btn = document.getElementById("toggle");
+                var nav = document.getElementsByClassName("invisible")[0];
+                btn.addEventListener("click", function (event) {
+                    nav.classList.toggle("invisible");
+                    if (!document.fullscreenElement) {
+                        document.documentElement.requestFullscreen();
+                    } else {
+                        document.exitFullscreen();
+                    }
+                }, false);
+                document.addEventListener("fullscreenchange", function (event) {
+                    console.log(event);
+                    if (!document.fullscreenElement) {
+                        btn.innerText = "Activate fullscreen";
+                    } else {
+                        btn.innerText = "Exit fullscreen";
+                    }
+                });
+                document.addEventListener("fullscreenerror", function (event) {
+                    console.log(event);
+                });
+            }
+
+            function finish_exam() {
+                correct = 0;
+                incorrect = 0;
+                percent = 0;
+                <% @questions.each_with_index do |question, index| %>
+                checkQuestion<%= index + 1 %>();
+                var cell<%= index + 1 %> = document.getElementsByClassName("result<%= index + 1 %>")[0];
+                cell<%= index + 1 %>.innerHTML = Q<%= index + 1 %>_result;
+                if (Q<%= index + 1 %>_result == "correct") {correct+=1}
+                if (Q<%= index + 1 %>_result == "false") {incorrect+=1}
+                <% end %>
+                percent = ((correct / (correct + incorrect)) * 100).toFixed(2);
+                var result = document.getElementById("percent");
+                result.innerHTML = percent;
+
+                var nav = document.getElementsByClassName("carousel__navigation")[0];
+                nav.classList.toggle("invisible");
+            }
+        </script>
