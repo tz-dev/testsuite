@@ -27,6 +27,7 @@
                             <br style="clear: both;" />
                             <a id="toggle" class="center pushdown margindown begin" href="#carousel__slide1">Begin Exam</a>
                             <br style="clear: both;" />
+                            <div id="time_container" style="visibility: hidden;"><h5><time>00:00:00</time></h5></div>
                             <br style="clear: both;" />
                         </section>
                     </div>
@@ -145,7 +146,7 @@
                                 <% if @exam.checks %><a href="#" class="button" onclick="checkQuestion<%= index + 1 %>()">CHECK</a><% end %>
                                 <span id="Q<%= index + 1 %>_info"></span>
                                 <% if @exam.hints %><a href="#" class="button right pushright" id="hintbutton_<%= index + 1 %>" onclick="hintQuestion<%= index + 1 %>()">HINT</a><% end %>
-                                <% if index + 1 == @questions.size %><a class="center pushdown margindown finish" onclick="finish_exam();" href="#carousel__slide1000">FINISH</a><% end %>
+                                <% if index + 1 == @questions.size %><a class="center pushdown margindown finish" onclick="finish_exam();stopTimer()" href="#carousel__slide1000">FINISH</a><% end %>
                             </form>
                             <script>
                             <% if question.q_type == "checkbox" || question.q_type == "radio" %>
@@ -219,7 +220,7 @@
                 <li id="carousel__slide1000" tabindex="0" class="carousel__slide">
                     <div class="carousel__snapper">
                         <section class="question">
-                            <h3 class="h3">Result: <span id="percent"></span>%</h3>
+                            <h3 class="h3">Result: <span id="percent"></span>% in <span id="resulttime"></span></h3>
                             <table align="center">
                                 <tr>
                                     <th align="center">#</th>
@@ -253,7 +254,6 @@
             </aside>
         </section>
         <script>
-
             if (document.fullscreenEnabled) {
                 var btn = document.getElementById("toggle");
                 var nav = document.getElementsByClassName("invisible")[0];
@@ -295,5 +295,41 @@
 
                 var nav = document.getElementsByClassName("carousel__navigation")[0];
                 nav.classList.toggle("invisible");
+            }
+        </script>
+        <script>
+            var h5 = document.getElementsByTagName('h5')[0],
+                stop = document.getElementById('stop'),
+                clear = document.getElementById('toggle'),
+                seconds = 0, minutes = 0, hours = 0,
+                t;
+            function add() {
+                seconds++;
+                if (seconds >= 60) {
+                    seconds = 0;
+                    minutes++;
+                    if (minutes >= 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                }
+                h5.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+                timer();
+            }
+            function timer() {
+                t = setTimeout(add, 1000);
+            }
+            timer();
+            /* Start button */
+            /* Stop button */
+            function stopTimer() {
+                clearTimeout(t);
+                resulttime = document.getElementById('resulttime');
+                resulttime.innerHTML = h5.textContent;
+            }
+            /* Clear button */
+            clear.onclick = function() {
+                h5.textContent = "00:00:00";
+                seconds = 0; minutes = 0; hours = 0;
             }
         </script>

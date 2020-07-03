@@ -407,7 +407,7 @@ table#overview tr {
 }
 
 .invisible {
-  display: none;
+  visibility: hidden;
 }
 
 table {
