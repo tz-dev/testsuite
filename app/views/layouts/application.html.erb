@@ -11,14 +11,14 @@
     <section id="head">
     <h1>Testsuite</h1>
     <nav>
+    <% if current_user %>
       <%= link_to 'Home', root_url %>
       <%= link_to 'Exams', exams_url %>
       <%= link_to 'Questions', questions_url %>
       <%= link_to 'Users', users_url %>
       <%= link_to 'Images', pictures_url %>
-	<% if current_user %>
-	  <%= link_to "Log Out", logout_path %>
-	<% else %>
+    <% end %>
+	<% if !current_user %>
 	  <%= link_to "Sign Up", signup_path %>
 	  <%= link_to "Log In", login_path %>
 	<% end %>
@@ -26,5 +26,10 @@
     <br style="clear: both;" />
     <%= yield %>
   </section>
+  <footer>
+    <% if current_user %>
+    Logged in as <%= link_to current_user.name, current_user %>. | <%= link_to 'Log out', logout_path %>
+    <% end %>
+  </footer>
   </body>
 </html>

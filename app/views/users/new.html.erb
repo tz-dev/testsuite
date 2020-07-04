@@ -2,4 +2,6 @@
 </section>
 <section id="main">
 <%= render 'form', user: @user %>
+<% if current_user %>
 <label>&nbsp;</label><a href="<%= users_path %>"><button>Back</button></a>
+<% end %>
