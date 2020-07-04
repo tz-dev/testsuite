@@ -224,7 +224,7 @@
                 <li id="carousel__slide1000" tabindex="0" class="carousel__slide">
                     <div class="carousel__snapper">
                         <section class="question">
-                            <h3 class="h3">Result: <span id="percent"></span>%<% if @exam.timer %> in <span id="resulttime"></span><% end %></h3>
+                            <h3 class="h3">Result: <span id="percent">0</span>%<% if @exam.timer %> in <span id="resulttime"></span><% end %></h3>
                             <table align="center">
                                 <tr>
                                     <th align="center">#</th>
@@ -247,7 +247,7 @@
                     </div>
                 </li>
             </ol>
-            <aside class="carousel__navigation invisible"<% if !@exam.navigation %> style="border-top: none"<% end %>>
+            <aside class="carousel__navigation invisible">
                 <% if @exam.navigation %>
                 <div id="q_nav">
                     <ol class="carousel__navigation-list">
@@ -258,7 +258,6 @@
                         <% end %>
                     </ol>
                 </div>
-                <a class="button" style="margin-left: 36px; margin-top: 34px; padding-top: 17px; padding-bottom: 16px" href="#carousel__slide1000" onclick="finish_exam();<% if @exam.timer %>stopTimer()<% end %>">FINISH</a>
                 <% end %>
                 <% if @exam.timer %>
                 <div id="time_container" class="invisible">
@@ -268,6 +267,7 @@
                 </fieldset>
                 </div>
                 <% end %>
+                <a class="button" id="showresults" href="#carousel__slide1000" onclick="finish_exam();document.getElementsByClassName('carousel__navigation')[0].classList.toggle('invisible');<% if @exam.timer %>stopTimer()<% end %>">RESULTS</a>
             </aside>
         </section>
         <script>
@@ -294,11 +294,6 @@
                 }, false);
                 document.addEventListener("fullscreenchange", function (event) {
                     console.log(event);
-                    if (!document.fullscreenElement) {
-                        btn.innerText = "Activate fullscreen";
-                    } else {
-                        btn.innerText = "Exit fullscreen";
-                    }
                 });
                 document.addEventListener("fullscreenerror", function (event) {
                     console.log(event);

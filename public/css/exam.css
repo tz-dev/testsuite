@@ -438,6 +438,10 @@ table a:hover {
 div#time_container {
   float: right;
   margin-top: 20px;
+  margin-right: 3px;
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
 }
 
 div#time_container h5 {
@@ -467,7 +471,7 @@ div#time_container fieldset legend {
 #q_nav {
   padding: 10px;
   margin-bottom: 10px;
-  width: 80%;
+  width: 990px;
   height: 90px;
   overflow-y: scroll;
   float: left;
@@ -511,6 +515,12 @@ a.nav_button:hover, a.active {
   border: 2px solid #000;
 }
 
+#showresults {
+  float: right;
+  padding: 17px 8px 16px 8px;
+  margin: 34px 5px 0 5px;
+}
+
 aside {
   border: 3px solid #000;
   border-radius: 10px;
@@ -518,9 +528,10 @@ aside {
   border-top-left-radius: 0px;
   padding-top: 10px;
   padding-left: 10px;
-  padding-right: 10px;
+  padding-right: 2px;
   width: 98.6%;
   background: #555;
+  min-height: 114px;
 }
 
 form {
