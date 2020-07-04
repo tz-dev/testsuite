@@ -3,6 +3,14 @@ html {
 	background: #000;
 }
 
+* {
+	cursor: default;
+}
+
+a, a img, label, textarea {
+	cursor: pointer;
+}
+
 body {
 	width: 80%;
 	min-height: 950px;
@@ -105,6 +113,14 @@ input[type="text"] {
 	min-width: 525px;
 }
 
+input:focus, select:focus, textarea:focus, button:hover, input:hover, input[type="submit"]:hover {
+  border-color: #090;
+}
+
+#main a:hover, #main a button:hover {
+	text-decoration: none !important;
+}
+
 select {
 	width: 200px;
 }
@@ -113,7 +129,6 @@ textarea {
 	min-width: 525px;
 	min-height: 220px;
 	font-family: verdana;
-	cursor: text;
 }
 
 table {
@@ -148,6 +163,7 @@ a button, input[type="submit"] {
 	border: 2px solid #666;
 	cursor: pointer;
 	margin-bottom: 10px;
+	padding: 1px 0;
 }
 
 input[type="submit"] {
