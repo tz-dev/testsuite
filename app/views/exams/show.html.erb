@@ -305,6 +305,8 @@
                 });
             }
 
+            finished = "false";
+
             function finish_exam() {
                 correct = 0;
                 incorrect = 0;
@@ -312,10 +314,10 @@
                 icon_correct = '<img src="../img/icon_correct.png" height="30" />';
                 icon_incorrect = '<img src="../img/icon_incorrect.png" height="30" />';
                 icon = '';
+
                 <% @questions.each_with_index do |question, index| %>
                 checkQuestion<%= index + 1 %>();
                 hintQuestion<%= index + 1 %>();
-                
 
                 var cell<%= index + 1 %> = document.getElementsByClassName("result<%= index + 1 %>")[0];
 
@@ -325,9 +327,16 @@
                 cell<%= index + 1 %>.innerHTML = icon;
 
                 <% end %>
-                percent = ((correct / (correct + incorrect)) * 100).toFixed(2);
-                var result = document.getElementById("percent");
-                result.innerHTML = percent;
+                if (finished == "false") {
+                    percent = ((correct / (correct + incorrect)) * 100).toFixed(2);
+                    finished = "true";
+                }
+
+                if (finished == "true" && percent != 0) {
+                    var result = document.getElementById("percent");
+                    result.innerHTML = percent;
+                }
+
                 <% if @exam.navigation %>
                 var nav = document.getElementsByClassName("carousel__navigation")[0];
                 nav.classList.toggle("invisible");
