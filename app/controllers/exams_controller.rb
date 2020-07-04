@@ -5,6 +5,7 @@ class ExamsController < ApplicationController
   # GET /exams.json
   def index
     if current_user
+      @nav = "exams"
       @exams = Exam.all
     else redirect_to root_url
     end
@@ -24,6 +25,7 @@ class ExamsController < ApplicationController
   # GET /exams/new
   def new
     if current_user
+      @nav = "exams"
       @exam = Exam.new
     else redirect_to root_url
     end
@@ -32,6 +34,7 @@ class ExamsController < ApplicationController
   # GET /exams/1/edit
   def edit
     if current_user
+      @nav = "exams"
       @questions = Question.where(exam: @exam.id).all.count
     else redirect_to root_url
     end
@@ -41,6 +44,7 @@ class ExamsController < ApplicationController
   # POST /exams.json
   def create
     if current_user
+      @nav = "exams"
       @exam = Exam.new(exam_params)
 
       respond_to do |format|

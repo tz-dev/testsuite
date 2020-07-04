@@ -11,12 +11,12 @@
     <section id="head">
     <h1>Testsuite</h1>
     <nav>
-      <%= link_to 'Home', root_url %>
+      <% if @nav == "home" %><%= link_to 'Home', root_url, class: "active" %><% else %><%= link_to 'Home', root_url %><% end %>
     <% if current_user %>
-      <%= link_to 'Exams', exams_url %>
-      <%= link_to 'Questions', questions_url %>
-      <%= link_to 'Users', users_url %>
-      <%= link_to 'Images', pictures_url %>
+      <% if @nav == "exams" %><%= link_to 'Exams', exams_url, class: "active" %><% else %><%= link_to 'Exams', exams_url %><% end %>
+      <% if @nav == "questions" %><%= link_to 'Questions', questions_url, class: "active" %><% else %><%= link_to 'Questions', questions_url %><% end %>
+      <% if @nav == "users" %><%= link_to 'Users', users_url, class: "active" %><% else %><%= link_to 'Users', users_url %><% end %>
+      <% if @nav == "pictures" %><%= link_to 'Images', pictures_url, class: "active" %><% else %><%= link_to 'Images', pictures_url %><% end %>
     <% end %>
 	<% if !current_user %>
 	  <%= link_to "Sign Up", signup_path %>

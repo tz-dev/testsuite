@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     if current_user
+      @nav = "users"
       @users = User.all
     else
       redirect_to root_url
@@ -15,6 +16,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     if current_user
+      @nav = "users"
     else
       redirect_to root_url
     end
@@ -23,11 +25,13 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
       @user = User.new
+      @nav = "users"
   end
 
   # GET /users/1/edit
   def edit
     if current_user
+      @nav = "users"
     else
       redirect_to root_url
     end

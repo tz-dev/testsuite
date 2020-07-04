@@ -5,6 +5,7 @@ class PicturesController < ApplicationController
   # GET /pictures.json
   def index
     if current_user
+      @nav = "pictures"
       @pictures = Picture.all
     else
       redirect_to root_url
@@ -35,7 +36,6 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     if current_user
-      
       @picture = Picture.new(picture_params)
       respond_to do |format|
         if @picture.save

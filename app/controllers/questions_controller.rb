@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
   # GET /questions.json
   def index
     if current_user
+      @nav = "questions"
       @questions = Question.all
     else
       redirect_to root_url
@@ -15,6 +16,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1.json
   def show
     if current_user
+      @nav = "questions"
     else
       redirect_to root_url
     end
@@ -23,6 +25,7 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     if current_user
+      @nav = "questions"
       @question = Question.new
     else
       redirect_to root_url
@@ -32,6 +35,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1/edit
   def edit
     if current_user
+      @nav = "questions"
     else
       redirect_to root_url
     end

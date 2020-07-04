@@ -267,7 +267,7 @@
                 </fieldset>
                 </div>
                 <% end %>
-                <a class="button" id="showresults" href="#carousel__slide1000" onclick="finish_exam();document.getElementsByClassName('carousel__navigation')[0].classList.toggle('invisible');<% if @exam.timer %>stopTimer()<% end %>">RESULTS</a>
+                <a class="button" id="showresults" href="#carousel__slide1000" onclick="finish_exam();<% if !(@exam.navigation && @exam.timer) %>document.getElementsByClassName('carousel__navigation')[0].classList.toggle('invisible');<% end %><% if @exam.timer %>stopTimer()<% end %>">RESULTS</a>
             </aside>
         </section>
         <script>

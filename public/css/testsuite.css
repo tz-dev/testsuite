@@ -84,8 +84,12 @@ nav a {
 	border: 1px solid #fff;
 }
 
-nav a:hover {
+nav a:hover, nav a.active {
 	background: #666;
+}
+
+nav a:hover {
+	border-color: #6f6;
 }
 
 div.field, div.error_explanation {
