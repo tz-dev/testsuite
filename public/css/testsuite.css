@@ -151,7 +151,7 @@ a button, input[type="submit"] {
 }
 
 input[type="submit"] {
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 }
 
 iframe {
@@ -264,8 +264,8 @@ tr.even {
 
 footer {
 	border-top: 2px solid #fff;
-	width: 100%;
-	display: block;
+	width: 99.9%;
+	min-height: 35px;
 	float: left;
 	color: #fff;
 	padding: 15px 0;

@@ -30,9 +30,9 @@
           <td align="center"><% if exam.checks %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
           <td align="center"><% if exam.timer %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
           <td align="center"><% if exam.navigation %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
-          <td><a target="_blank" href="/exams/<%= exam.id %>"><img src="../img/icon_show.png" height="30" /></a></td>
-          <td><a href="/exams/<%= exam.id %>/edit"><img src="../img/icon_edit.png" height="30" /></a></td>
-          <td><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/exams/<%= exam.id %>"><img src="../img/icon_error.png" height="30" /></a></td>
+          <td><a target="_blank" href="/exams/<%= exam.id %>"><img src="../img/icon_show.png" height="30" title="Show" /></a></td>
+          <td><a href="/exams/<%= exam.id %>/edit"><img src="../img/icon_edit.png" height="30" title="Edit" /></a></td>
+          <td><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/exams/<%= exam.id %>" title="Delete"><img src="../img/icon_error.png" height="30" /></a></td>
         </tr>
       <% end %>
     </tbody>
