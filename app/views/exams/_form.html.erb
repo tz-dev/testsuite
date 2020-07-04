@@ -21,7 +21,7 @@
     <%= form.text_area :description, id: :exam_description %>
   </div>
 
-<% if @questions %>
+<% if @questions != 0 %>
   <div class="field">
     <%= form.label :questions %>
     <%= form.number_field :questions, in: 1..@questions, id: :exam_questions %>
