@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple testsuite where tests can be created.
 
-Things you may want to cover:
+Features:
 
-* Ruby version
+* Simple Login
+* Shuffle Questions
+* Shuffle Answers
+* Optional Timer
+* Optional Navigation
+* Results Page
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+https://tz-dev.github.io/testsuite/

@@ -4,7 +4,10 @@ class ExamsController < ApplicationController
   # GET /exams
   # GET /exams.json
   def index
-    @exams = Exam.all
+    if current_user
+      @exams = Exam.all
+    else redirect_to root_url
+    end
   end
 
   # GET /exams/1
@@ -20,51 +23,66 @@ class ExamsController < ApplicationController
 
   # GET /exams/new
   def new
-    @exam = Exam.new
+    if current_user
+      @exam = Exam.new
+    else redirect_to root_url
+    end
   end
 
   # GET /exams/1/edit
   def edit
-    @questions = Question.where(exam: @exam.id).all.count
+    if current_user
+      @questions = Question.where(exam: @exam.id).all.count
+    else redirect_to root_url
+    end
   end
 
   # POST /exams
   # POST /exams.json
   def create
-    @exam = Exam.new(exam_params)
+    if current_user
+      @exam = Exam.new(exam_params)
 
-    respond_to do |format|
-      if @exam.save
-        format.html { redirect_to exams_path, notice: 'Exam was successfully created.' }
-        format.json { render :show, status: :created, location: @exam }
-      else
-        format.html { render :new }
-        format.json { render json: @exam.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @exam.save
+          format.html { redirect_to exams_path, notice: 'Exam was successfully created.' }
+          format.json { render :show, status: :created, location: @exam }
+        else
+          format.html { render :new }
+          format.json { render json: @exam.errors, status: :unprocessable_entity }
+        end
       end
+    else redirect_to root_url
     end
   end
 
   # PATCH/PUT /exams/1
   # PATCH/PUT /exams/1.json
   def update
-    respond_to do |format|
-      if @exam.update(exam_params)
-        format.html { redirect_to exams_path, notice: 'Exam was successfully updated.' }
-        format.json { render :show, status: :ok, location: @exam }
-      else
-        format.html { render :edit }
-        format.json { render json: @exam.errors, status: :unprocessable_entity }
+    if current_user
+      respond_to do |format|
+        if @exam.update(exam_params)
+          format.html { redirect_to exams_path, notice: 'Exam was successfully updated.' }
+          format.json { render :show, status: :ok, location: @exam }
+        else
+          format.html { render :edit }
+          format.json { render json: @exam.errors, status: :unprocessable_entity }
+        end
       end
+    else redirect_to root_url
     end
   end
 
   # DELETE /exams/1
   # DELETE /exams/1.json
   def destroy
-    @exam.destroy
-    respond_to do |format|
-      format.html { redirect_to exams_url, notice: 'Exam was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user
+      @exam.destroy
+      respond_to do |format|
+        format.html { redirect_to exams_url, notice: 'Exam was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else redirect_to root_url
     end
   end
 
