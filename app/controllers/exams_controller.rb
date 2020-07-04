@@ -27,6 +27,7 @@ class ExamsController < ApplicationController
     if current_user
       @nav = "exams"
       @exam = Exam.new
+      @questions = Question.where(exam: @exam.id).all.count
     else redirect_to root_url
     end
   end
