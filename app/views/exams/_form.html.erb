@@ -30,7 +30,7 @@
 
   <div class="actions">
     <label>&nbsp;</label>
-    <table border="0" cellpadding="0" cellspacing="0" style="background: none; border: none; float: left; width: 400px !important; ">
+    <table border="0" cellpadding="0" cellspacing="0" style="background: none; border: none; float: left; width: 500px !important; ">
       <tr>
         <td width="100">
           <%= form.check_box :shuffle_questions, id: :shuffle_questions %>
@@ -49,6 +49,16 @@
         <td width="100">
           <%= form.check_box :checks, id: :exam_checks %>
           <label class="small" for="exam_checks">Checks</label>
+        </td>
+      </tr>
+      <tr>
+        <td width="100">
+          <%= form.check_box :timer, id: :exam_timer %>
+          <label class="small" for="exam_timer">Timer</label>
+        </td>
+        <td width="100">
+          <%= form.check_box :navigation, id: :exam_navigation %>
+          <label class="small" for="exam_navigation">Navigation</label>
         </td>
       </tr>
     </table>

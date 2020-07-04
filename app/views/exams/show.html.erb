@@ -22,8 +22,13 @@
                                 <tr>
                                     <td><strong>Checks</strong></td><td align="center"><%= @exam.checks %></td>
                                 </tr>
+                                <tr>
+                                    <td><strong>Timer</strong></td><td align="center"><%= @exam.timer %></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Navigation</strong></td><td align="center"><%= @exam.navigation %></td>
+                                </tr>
                             </table>
-                            <br style="clear: both;" />
                             <br style="clear: both;" />
                             <a id="toggle" class="center pushdown margindown begin" href="#carousel__slide1">Begin Exam</a>
                             <br style="clear: both;" />
@@ -145,7 +150,7 @@
                                 <% if @exam.checks %><a href="#" class="button" onclick="checkQuestion<%= index + 1 %>()">CHECK</a><% end %>
                                 <span id="Q<%= index + 1 %>_info"></span>
                                 <% if @exam.hints %><a href="#" class="button right pushright" id="hintbutton_<%= index + 1 %>" onclick="hintQuestion<%= index + 1 %>()">HINT</a><% end %>
-                                <% if index + 1 == @questions.size %><a class="center pushdown margindown finish" onclick="finish_exam();stopTimer()" href="#carousel__slide1000">FINISH</a><% end %>
+                                <% if index + 1 == @questions.size %><a class="center pushdown margindown finish" onclick="finish_exam();<% if @exam.timer %>stopTimer()<% end %>" href="#carousel__slide1000">FINISH</a><% end %>
                             </form>
                             <script>
                             <% if question.q_type == "checkbox" || question.q_type == "radio" %>
@@ -219,7 +224,7 @@
                 <li id="carousel__slide1000" tabindex="0" class="carousel__slide">
                     <div class="carousel__snapper">
                         <section class="question">
-                            <h3 class="h3">Result: <span id="percent"></span>% in <span id="resulttime"></span></h3>
+                            <h3 class="h3">Result: <span id="percent"></span>%<% if @exam.timer %> in <span id="resulttime"></span><% end %></h3>
                             <table align="center">
                                 <tr>
                                     <th align="center">#</th>
@@ -242,7 +247,8 @@
                     </div>
                 </li>
             </ol>
-            <aside class="carousel__navigation invisible">
+            <aside class="carousel__navigation invisible"<% if !@exam.navigation %> style="border-top: none"<% end %>>
+                <% if @exam.navigation %>
                 <div id="q_nav">
                     <ol class="carousel__navigation-list">
                     	<% @questions.each_with_index do |question, index| %>
@@ -251,13 +257,17 @@
                         </li>
                         <% end %>
                     </ol>
-                </div>  
+                </div>
+                <a class="button" style="margin-left: 36px; margin-top: 34px; padding-top: 17px; padding-bottom: 16px" href="#carousel__slide1000" onclick="finish_exam();<% if @exam.timer %>stopTimer()<% end %>">FINISH</a>
+                <% end %>
+                <% if @exam.timer %>
                 <div id="time_container" class="invisible">
                 <fieldset>
                     <legend>Timer</legend>
                     <h5><time>00:00:00</time></h5>
                 </fieldset>
                 </div>
+                <% end %>
             </aside>
         </section>
         <script>
@@ -300,13 +310,17 @@
                 percent = ((correct / (correct + incorrect)) * 100).toFixed(2);
                 var result = document.getElementById("percent");
                 result.innerHTML = percent;
-
+                <% if @exam.navigation %>
                 var nav = document.getElementsByClassName("carousel__navigation")[0];
                 nav.classList.toggle("invisible");
+                <% end %>
+                <% if @exam.timer %>
                 var time_container = document.getElementById("time_container");
                 time_container.classList.toggle("invisible");
+                <% end %>
             }
         </script>
+        <% if @exam.timer %>
         <script>
             var h5 = document.getElementsByTagName('h5')[0],
                 stop = document.getElementById('stop'),
@@ -347,3 +361,4 @@
                 seconds = 0; minutes = 0; hours = 0;
             }
         </script>
+        <% end %>
