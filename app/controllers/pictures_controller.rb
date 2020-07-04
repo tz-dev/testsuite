@@ -15,6 +15,7 @@ class PicturesController < ApplicationController
   # GET /pictures/1.json
   def show
     if current_user
+      render :layout => 'upload'
     else
       redirect_to root_url
     end
@@ -24,7 +25,7 @@ class PicturesController < ApplicationController
   def new
     if current_user
       @picture = Picture.new
-      render :layout => 'upload'    
+      render :layout => 'upload'
     else
       redirect_to root_url
     end
@@ -34,15 +35,14 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     if current_user
+      
       @picture = Picture.new(picture_params)
-
       respond_to do |format|
         if @picture.save
           format.html { redirect_to new_picture_path, notice: 'Picture was successfully created.' }
           format.json { render :show, status: :created, location: @picture }
         else
-          format.html { render :new }
-          format.json { render json: @picture.errors, status: :unprocessable_entity }
+          format.html { redirect_to new_picture_path }
         end
       end
     else
@@ -54,6 +54,7 @@ class PicturesController < ApplicationController
   # PATCH/PUT /pictures/1.json
   def update
     if current_user
+      render :layout => 'upload'
       respond_to do |format|
         if @picture.update(picture_params)
           format.html { redirect_to new_picture_path, notice: 'Picture was successfully updated.' }

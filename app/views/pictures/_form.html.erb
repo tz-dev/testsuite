@@ -1,14 +1,4 @@
 <%= form_with(model: picture, local: true) do |form| %>
-  <% if picture.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
-      <ul>
-      <% picture.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
   <div class="field" style="display: none;">
     <%= form.label :exam %>
     <%= form.text_field :exam, id: :picture_exam, value: params[:exam_id] %>
