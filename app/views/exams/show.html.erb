@@ -324,7 +324,9 @@
                 if (Q<%= index + 1 %>_result == "correct") {correct+=1; icon = icon_correct}
                 if (Q<%= index + 1 %>_result == "false") {incorrect+=1; icon = icon_incorrect}
 
-                cell<%= index + 1 %>.innerHTML = icon;
+                if (finished == "false") {
+                    cell<%= index + 1 %>.innerHTML = icon;
+                }
 
                 <% end %>
                 if (finished == "false") {
