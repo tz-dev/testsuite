@@ -8,25 +8,25 @@
                             <h3 class="h3"><%= @exam.description %></h3>
                             <table align="center" id="overview">
                                 <tr>
-                                    <td><strong>Questions</strong></td><td align="center"><%= @exam.questions %> / <%= Question.where(:exam => @exam.id).size %></td>
+                                    <td><strong>Questions</strong></td><td align="center"><strong><%= @exam.questions %> / <%= Question.where(:exam => @exam.id).size %></strong></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Shuffle Questions</strong></td><td align="center"><%= @exam.shuffle_questions %></td>
+                                    <td><strong>Shuffle Questions</strong></td><td align="center"><% if @exam.shuffle_questions %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Shuffle Answers</strong></td><td align="center"><%= @exam.shuffle_answers %></td>
+                                    <td><strong>Shuffle Answers</strong></td><td align="center"><% if @exam.shuffle_answers %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Hints</strong></td><td align="center"><%= @exam.hints %></td>
+                                    <td><strong>Hints</strong></td><td align="center"><% if @exam.hints %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Checks</strong></td><td align="center"><%= @exam.checks %></td>
+                                    <td><strong>Checks</strong></td><td align="center"><% if @exam.checks %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Timer</strong></td><td align="center"><%= @exam.timer %></td>
+                                    <td><strong>Timer</strong></td><td align="center"><% if @exam.timer %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Navigation</strong></td><td align="center"><%= @exam.navigation %></td>
+                                    <td><strong>Navigation</strong></td><td align="center"><% if @exam.navigation %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
                                 </tr>
                             </table>
                             <br style="clear: both;" />
@@ -40,8 +40,8 @@
             	<% @questions.each_with_index do |question, index| %>
                 <li id="carousel__slide<%= index + 1 %>" tabindex="0" class="carousel__slide">
                     <div class="carousel__snapper">
-                        <% if index > 0 %><a href="#carousel__slide<%= index %>" class="button left">PREVIOUS</a><% end %>
-                        <% if index + 1 < @questions.size %><a href="#carousel__slide<%= index + 2 %>" class="button right">NEXT</a><% end %>
+                        <% if index > 0 %><a onclick="toggleActive('navbutton_<%= index %>')" href="#carousel__slide<%= index %>" class="button left">PREVIOUS</a><% end %>
+                        <% if index + 1 < @questions.size %><a onclick="toggleActive('navbutton_<%= index + 2 %>')" href="#carousel__slide<%= index + 2 %>" class="button right">NEXT</a><% end %>
                         <br style="clear: both;" />
 						<section class="question">
                             <form>
@@ -232,14 +232,14 @@
                                     <th>Result</th>
                                 </tr>
                                 <% @questions.each_with_index do |question, index| %>
-                                <tr class="<%= cycle('even', 'odd') -%>">
+                                <tr class="<%= cycle('even', 'odd') -%>" valign="center">
                                     <td align="center">
                                         <strong>#<%= index + 1 %></strong>
                                     </td>
                                     <td align="left">
-                                        <a href="#carousel__slide<%= index + 1 %>"><%= strip_tags(question.q_text.html_safe.truncate(70)) %></a>
+                                        <a onclick="document.getElementsByClassName('carousel__navigation')[0].classList.toggle('invisible');" href="#carousel__slide<%= index + 1 %>"><%= strip_tags(question.q_text.html_safe.truncate(70)) %></a>
                                     </td>
-                                    <td class="result<%= index + 1 %>"></td>
+                                    <td class="result<%= index + 1 %>" align="center"></td>
                                 </tr>
                                 <% end %>
                             </table>
@@ -253,7 +253,7 @@
                     <ol class="carousel__navigation-list">
                     	<% @questions.each_with_index do |question, index| %>
                         <li class="carousel__navigation-item">
-                            <a class="nav_button" href="#carousel__slide<%= index + 1 %>">Q<%= index + 1 %></a>
+                            <a onclick="toggleActive('navbutton_<%= index + 1 %>')" id="navbutton_<%= index + 1 %>" class="nav_button<% if index == 0 %> active<% end %>" href="#carousel__slide<%= index + 1 %>">Q<%= index + 1 %></a>
                         </li>
                         <% end %>
                     </ol>
@@ -270,6 +270,16 @@
                 <% end %>
             </aside>
         </section>
+        <script>
+            function toggleActive(toggle_id) {
+                var nav_buttons = document.getElementsByClassName("nav_button");
+                for (var i = 0; i < nav_buttons.length; i++) {
+                    nav_buttons[i].classList.remove("active");
+                }
+                var toggle_active = document.getElementById(toggle_id);
+                toggle_active.classList.toggle("active");
+            }
+        </script>
         <script>
             if (document.fullscreenEnabled) {
                 var btn = document.getElementById("toggle");
@@ -299,13 +309,21 @@
                 correct = 0;
                 incorrect = 0;
                 percent = 0;
+                icon_correct = '<img src="../img/icon_correct.png" height="30" />';
+                icon_incorrect = '<img src="../img/icon_incorrect.png" height="30" />';
+                icon = '';
                 <% @questions.each_with_index do |question, index| %>
                 checkQuestion<%= index + 1 %>();
                 hintQuestion<%= index + 1 %>();
+                
+
                 var cell<%= index + 1 %> = document.getElementsByClassName("result<%= index + 1 %>")[0];
-                cell<%= index + 1 %>.innerHTML = Q<%= index + 1 %>_result;
-                if (Q<%= index + 1 %>_result == "correct") {correct+=1}
-                if (Q<%= index + 1 %>_result == "false") {incorrect+=1}
+
+                if (Q<%= index + 1 %>_result == "correct") {correct+=1; icon = icon_correct}
+                if (Q<%= index + 1 %>_result == "false") {incorrect+=1; icon = icon_incorrect}
+
+                cell<%= index + 1 %>.innerHTML = icon;
+
                 <% end %>
                 percent = ((correct / (correct + incorrect)) * 100).toFixed(2);
                 var result = document.getElementById("percent");
