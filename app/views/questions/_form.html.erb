@@ -1,12 +1,13 @@
 <%= form_with(model: question, local: true) do |form| %>
   <% if question.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
-      <ul>
-      <% question.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+      <font color="#c00">
+        <strong><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</strong><br />
+        <% question.errors.full_messages.each do |message| %>
+          <%= message %><br />
+        <% end %>
+      </font>
+      <br style="clear: both;">
     </div>
   <% end %>
 
