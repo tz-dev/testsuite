@@ -1,6 +1,7 @@
 <h2>Users</h2>
 </section>
 <section id="main">
+  <a class="center" href="<%= new_user_path %>"><button>New User</button></a>
   <table>
     <thead>
       <tr>
@@ -12,7 +13,7 @@
 
     <tbody>
       <% @users.each do |user| %>
-        <tr>
+        <tr class="<%= cycle('even', 'odd') -%>">
           <td><%= user.name %></td>
           <td><%= user.email %></td>
         <td align="center"><a href="/users/<%= user.id %>"><img src="../img/icon_show.png" height="30" /></a></td>
@@ -22,7 +23,4 @@
       <% end %>
     </tbody>
   </table>
-
-  <br>
-
   <a class="center" href="<%= new_user_path %>"><button>New User</button></a>

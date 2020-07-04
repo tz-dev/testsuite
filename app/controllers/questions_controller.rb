@@ -30,7 +30,7 @@ class QuestionsController < ApplicationController
   end
 
   # GET /questions/1/edit
-  def new
+  def edit
     if current_user
     else
       redirect_to root_url

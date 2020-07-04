@@ -14,7 +14,7 @@
 
   <tbody>
     <% @pictures.each do |picture| %>
-      <tr>
+      <tr class="<%= cycle('even', 'odd') -%>">
         <td><%= link_to picture.image.to_s.split('/').last.split('.').first, picture.image.to_s, target: :_blank %></td>
         <td width="75"><%= picture.image.to_s.split('.').last %></td>
         <td><%= Exam.where(id: picture.exam).first.name %></td>

@@ -1,6 +1,7 @@
 <h2>Questions</h2>
 </section>
 <section id="main">
+<a class="center" href="<%= new_question_path %>"><button>New Question</button></a>
 <table>
   <thead>
     <tr>
@@ -13,7 +14,7 @@
 
   <tbody>
     <% @questions.each do |question| %>
-      <tr>
+      <tr class="<%= cycle('even', 'odd') -%>">
         <td><%= Exam.find(question.exam).name %></td>
         <td><%= question.q_type %></td>
         <td><%= strip_tags(question.q_text).truncate(100) %></td>
@@ -24,7 +25,4 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
 <a class="center" href="<%= new_question_path %>"><button>New Question</button></a>
