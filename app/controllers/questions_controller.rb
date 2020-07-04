@@ -5,8 +5,8 @@ class QuestionsController < ApplicationController
   # GET /questions.json
   def index
     if current_user
+      @questions = Question.all.sort_by { |question| question.exam }
       @nav = "questions"
-      @questions = Question.all
     else
       redirect_to root_url
     end

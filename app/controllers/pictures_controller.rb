@@ -6,7 +6,7 @@ class PicturesController < ApplicationController
   def index
     if current_user
       @nav = "pictures"
-      @pictures = Picture.all
+      @pictures = Picture.all.sort_by { |picture| picture.exam }
     else
       redirect_to root_url
     end

@@ -6,7 +6,7 @@ class ExamsController < ApplicationController
   def index
     if current_user
       @nav = "exams"
-      @exams = Exam.all
+      @exams = Exam.all.sort_by { |exam| exam.name }
     else redirect_to root_url
     end
   end

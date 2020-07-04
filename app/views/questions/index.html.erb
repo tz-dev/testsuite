@@ -5,13 +5,12 @@
 <table>
   <thead>
     <tr>
-      <th>Exam</th>
-      <th>Type</th>
-      <th>Text</th>
+      <th><a href="<%= questions_path %>?sort='exam'">Exam</a></th>
+      <th><a href="<%= questions_path %>?sort='type'">Type</a></th>
+      <th><a href="<%= questions_path %>?sort='text'">Text</a></th>
       <th colspan="3" width="1%"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @questions.each do |question| %>
       <tr class="<%= cycle('even', 'odd') -%>">

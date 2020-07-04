@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def index
     if current_user
       @nav = "users"
-      @users = User.all
+      @users = User.all.all.sort_by { |user| user.name }
     else
       redirect_to root_url
     end
