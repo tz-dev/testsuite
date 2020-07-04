@@ -11,7 +11,7 @@
     <section id="head">
     <h1>Testsuite</h1>
     <nav>
-      <% if @nav == "home" %><%= link_to 'Home', root_url, class: "active" %><% else %><%= link_to 'Home', root_url %><% end %>
+      <% if @nav == "home" %><%= link_to 'Home', '#', class: "active" %><% else %><%= link_to 'Home', root_url %><% end %>
     <% if current_user %>
       <% if @nav == "exams" %><%= link_to 'Exams', exams_url, class: "active" %><% else %><%= link_to 'Exams', exams_url %><% end %>
       <% if @nav == "questions" %><%= link_to 'Questions', questions_url, class: "active" %><% else %><%= link_to 'Questions', questions_url %><% end %>

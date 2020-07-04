@@ -5,9 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Image</th>
-      <th>Type</th>
-      <th>Exam</th>
+      <th width="50%">Image</th>
+      <th width="16%">Type</th>
+      <th width="33%">Exam</th>
       <th width="30"></th>
     </tr>
   </thead>
@@ -16,7 +16,7 @@
     <% @pictures.each do |picture| %>
       <tr class="<%= cycle('even', 'odd') -%>">
         <td><%= link_to picture.image.to_s.split('/').last.split('.').first, picture.image.to_s, target: :_blank %></td>
-        <td width="75"><%= picture.image.to_s.split('.').last %></td>
+        <td align="center" width="75"><%= picture.image.to_s.split('.').last %></td>
         <td><%= Exam.where(id: picture.exam).first.name %></td>
         <td align="center"><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/pictures/<%= picture.id %>"><img src="../img/icon_error.png" height="30" title="Delete" /></a></td>
       </tr>
