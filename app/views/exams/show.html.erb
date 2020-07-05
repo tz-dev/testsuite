@@ -150,7 +150,7 @@
                                 <% if @exam.checks %><a href="#" class="button" onclick="checkQuestion<%= index + 1 %>()"><img style="float:left;" height="30" src="../img/icon_check.png" title="check" /><span class="buttontext">CHECK</span></a><% end %>
                                 <span id="Q<%= index + 1 %>_info"></span>
                                 <% if @exam.hints %><a href="#" class="button right pushright" id="hintbutton_<%= index + 1 %>" onclick="hintQuestion<%= index + 1 %>()"><span class="buttontext">HINT</span><img id="hint_icon<%= index + 1 %>" style="float:right;" height="30" src="../img/icon_hint_inactive.png" title="hint" /></a><% end %>
-                                <% if index + 1 == @questions.size %><a class="center pushdown margindown finish" onclick="<% if !(@exam.navigation && @exam.timer) %>document.getElementsByClassName('carousel__navigation')[0].classList.toggle('invisible');<% end %>finish_exam();<% if @exam.timer %>stopTimer()<% end %>" href="#carousel__slide1000">FINISH</a><% end %>
+                                <% if index + 1 == @questions.size %><a id="finish_button" class="center pushdown margindown finish" onclick="<% if !(@exam.navigation && @exam.timer) %>document.getElementsByClassName('carousel__navigation')[0].classList.toggle('invisible');<% end %><% if @exam.timer %>stopTimer();<% end %>finish_exam();" href="#carousel__slide1000">FINISH</a><% end %>
                                     <br style="clear: both;" />
                             </form>
                             <script>
@@ -342,6 +342,7 @@
                 var nav = document.getElementsByClassName("carousel__navigation")[0];
                 nav.classList.toggle("invisible");
                 <% end %>
+                document.getElementById("finish_button").classList.add("invisible");;
             }
         </script>
         <% if @exam.timer %>
