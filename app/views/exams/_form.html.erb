@@ -24,7 +24,11 @@
 <% if @questions != 0 %>
   <div class="field">
     <%= form.label :questions %>
+    <% if @questions != nil %>
     <%= form.number_field :questions, in: 1..@questions, id: :exam_questions %>
+    <% else %>
+    <%= form.text_field :questions, id: :exam_questions %>
+    <% end %>
   </div>
 <% end %>
 
