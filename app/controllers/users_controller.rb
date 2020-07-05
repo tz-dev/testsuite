@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     else
       redirect_to root_url
     end
+    @results = Result.all.where(user_id: current_user.id)
   end
 
   # GET /users/new

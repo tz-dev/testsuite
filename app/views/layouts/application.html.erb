@@ -16,6 +16,7 @@
       <% if @nav == "exams" %><%= link_to 'Exams', exams_url, class: "active" %><% else %><%= link_to 'Exams', exams_url %><% end %>
       <% if @nav == "questions" %><%= link_to 'Questions', questions_url, class: "active" %><% else %><%= link_to 'Questions', questions_url %><% end %>
       <% if @nav == "users" %><%= link_to 'Users', users_url, class: "active" %><% else %><%= link_to 'Users', users_url %><% end %>
+      <% if @nav == "results" %><%= link_to 'Results', results_url, class: "active" %><% else %><%= link_to 'Results', results_url %><% end %>
       <% if @nav == "pictures" %><%= link_to 'Images', pictures_url, class: "active" %><% else %><%= link_to 'Images', pictures_url %><% end %>
     <% end %>
 	<% if !current_user %>

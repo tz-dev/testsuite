@@ -1,19 +1,22 @@
 class ResultsController < ApplicationController
-  before_action :set_result, only: [:show, :edit, :update, :destroy]
+  before_action :set_result, only: [:show, :update, :destroy]
 
   # GET /results
   # GET /results.json
   def index
+        @nav = "results"
     @results = Result.all
   end
 
   # GET /results/1
   # GET /results/1.json
   def show
+    @nav = "results"
   end
 
   # GET /results/new
   def new
+    @nav = "results"
     if params != nil
       @result = Result.new
       @result.user_id   = params[:user_id]
@@ -25,10 +28,6 @@ class ResultsController < ApplicationController
       @result.save!
       redirect_to current_user
     end
-  end
-
-  # GET /results/1/edit
-  def edit
   end
 
   # POST /results

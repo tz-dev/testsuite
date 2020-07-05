@@ -14,7 +14,7 @@
 <section class="f_left">
   <div class="field">
     <strong>Exam</strong>
-    <%= select("question", "exam", Exam.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= select("question", "exam", Exam.all.collect {|p| [ p.name, p.id ] }, {}, :onChange=>"reloadIframe()") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <strong>Type</strong>
     <select id="question_q_type" name="question[q_type]">
       <option<% if question.q_type=="checkbox" %> selected<% end %>>checkbox</option>
@@ -28,7 +28,12 @@
   </div>
 </section>
 <section class="f_right">
-  <iframe class="uploader" src="<%= new_picture_path %>?exam_id=<%= question.exam %>" width="100%"></iframe>
+  <% if question.exam == nil %>
+    <% exam_id = Exam.first.id %>
+  <% else %>
+    <% exam_id = question.exam %>
+  <% end %>
+  <iframe id="uploader" class="uploader" src="<%= new_picture_path %>?exam_id=<%= exam_id %>" width="100%"></iframe>
 </section>
 
 <hr style="clear: both;" />
@@ -114,3 +119,9 @@
     <%= form.submit %>
   </div>
 <% end %>
+<script>
+  function reloadIframe() {
+    var new_id = document.getElementById('question_exam').value;
+    document.getElementById('uploader').src = "<%= new_picture_path %>?exam_id=" + new_id;
+  }
+</script>

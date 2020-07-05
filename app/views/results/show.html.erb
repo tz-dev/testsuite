@@ -1,34 +1,34 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>User:</strong>
+<h2>Show Result #<%= @result.id %></h2>
+</section>
+<section id="main">
+<div class="field">
+  <label>User:</label>
   <%= @result.user_id %>
-</p>
+</div>
 
-<p>
-  <strong>Exam:</strong>
+<div class="field">
+  <label>Exam:</label>
   <%= @result.exam_id %>
-</p>
+</div>
 
-<p>
-  <strong>Settings:</strong>
+<div class="field">
+  <label>Settings:</label>
   <%= @result.settings %>
-</p>
+</div>
 
-<p>
-  <strong>Questions:</strong>
+<div class="field">
+  <label>Questions:</label>
   <%= @result.questions %>
-</p>
+</div>
 
-<p>
-  <strong>Time:</strong>
+<div class="field">
+  <label>Time:</label>
   <%= @result.time %>
-</p>
+</div>
 
-<p>
-  <strong>Result:</strong>
+<div class="field">
+  <label>Result:</label>
   <%= @result.result %>
-</p>
+</div>
 
-<%= link_to 'Edit', edit_result_path(@result) %> |
-<%= link_to 'Back', results_path %>
+<a class="center" href="<%= results_path %>"><button>Back</button></a>
