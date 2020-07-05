@@ -16,6 +16,7 @@ class PicturesController < ApplicationController
   # GET /pictures/1.json
   def show
     if current_user
+      @nav = "pictures"
     else
       redirect_to root_url
     end
