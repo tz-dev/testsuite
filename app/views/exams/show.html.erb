@@ -341,10 +341,6 @@
                 var nav = document.getElementsByClassName("carousel__navigation")[0];
                 nav.classList.toggle("invisible");
                 <% end %>
-                <% if @exam.timer %>
-                var time_container = document.getElementById("time_container");
-                time_container.classList.toggle("invisible");
-                <% end %>
             }
         </script>
         <% if @exam.timer %>

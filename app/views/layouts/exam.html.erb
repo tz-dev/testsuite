@@ -5,9 +5,16 @@
         <link rel="stylesheet" href="/css/exam.css" />
     </head>
     <body>
-    	<script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
     	<section id="wrapper">
         <%= yield %>
 	    </section>
+        <script>
+            document.addEventListener('contextmenu', event => event.preventDefault());
+            window.addEventListener("keydown", function(e) {
+                if([9, 17, 18, 27, 33, 34, 35, 36, 37, 38, 39, 40, 46, 91, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123].indexOf(e.keyCode) > -1) {
+                    e.preventDefault();
+                }
+            }, false);
+        </script>
     </body>
 </html>
