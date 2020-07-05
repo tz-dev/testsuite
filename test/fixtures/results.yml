@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  exam_id: 1
+  settings: MyString
+  questions: 1
+  time: MyString
+  result: MyString
+
+two:
+  user_id: 1
+  exam_id: 1
+  settings: MyString
+  questions: 1
+  time: MyString
+  result: MyString

@@ -247,6 +247,7 @@
                                 </tr>
                                 <% end %>
                             </table>
+                            <a class="button" id="save_result" href="#">SAVE RESULT</a>
                         </section>
                     </div>
                 </li>
@@ -342,7 +343,15 @@
                 var nav = document.getElementsByClassName("carousel__navigation")[0];
                 nav.classList.toggle("invisible");
                 <% end %>
-                document.getElementById("finish_button").classList.add("invisible");;
+                document.getElementById("finish_button").classList.add("invisible");
+                var user_id = <%= current_user.id %>;
+                var exam_id = <%= @exam.id %>;
+                var exam_settings = '<% if @exam.shuffle_questions %>Q<% end %><% if @exam.shuffle_questions %>A<% end %><% if @exam.shuffle_questions %>H<% end %><% if @exam.shuffle_questions %>C<% end %><% if @exam.shuffle_questions %>T<% end %><% if @exam.shuffle_questions %>N<% end %>';
+                var exam_questions = <%= @questions.count %>;
+                var exam_result = percent;
+                var result_path = '<%= new_result_path %>' + '?user_id=' + user_id + '&exam_id=' + exam_id + '&exam_settings=' + exam_settings + '&exam_questions=' + exam_questions + '&exam_result=' + exam_result + '&exam_time=' + exam_time;
+                var result_link = document.getElementById('save_result');
+                result_link.href = result_path;
             }
         </script>
         <% if @exam.timer %>
@@ -363,6 +372,7 @@
                     }
                 }
                 h5.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+                exam_time = h5.textContent;
                 timer();
             }
             function timer() {
