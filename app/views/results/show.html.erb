@@ -3,17 +3,12 @@
 <section id="main">
 <div class="field">
   <label>User:</label>
-  <%= @result.user_id %>
+  <%= User.find(@result.user_id).name %>
 </div>
 
 <div class="field">
   <label>Exam:</label>
-  <%= @result.exam_id %>
-</div>
-
-<div class="field">
-  <label>Settings:</label>
-  <%= @result.settings %>
+  <%= Exam.find(@result.exam_id).name %>
 </div>
 
 <div class="field">
@@ -28,7 +23,19 @@
 
 <div class="field">
   <label>Result:</label>
-  <%= @result.result %>
+  <%= @result.result %>%
+</div>
+
+<div class="field">
+  <label>Settings:</label>
+  <ul style="margin: 0; padding:0 0 0 20px; display: block; float: left;">
+    <% if @result.settings.include?('Q') %><li>Shuffle Questions</li><% end %>
+    <% if @result.settings.include?('A') %><li>Shuffle Answers</li><% end %>
+    <% if @result.settings.include?('H') %><li>Hint Button</li><% end %>
+    <% if @result.settings.include?('C') %><li>Check Button</li><% end %>
+    <% if @result.settings.include?('T') %><li>Timer</li><% end %>
+    <% if @result.settings.include?('N') %><li>Navigation</li><% end %>
+  </ul>
 </div>
 
 <a class="center" href="<%= results_path %>"><button>Back</button></a>

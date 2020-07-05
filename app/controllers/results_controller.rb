@@ -26,7 +26,7 @@ class ResultsController < ApplicationController
       @result.result    = params[:exam_result]
       @result.time      = params[:exam_time]
       @result.save!
-      redirect_to current_user
+      redirect_to root_url
     end
   end
 

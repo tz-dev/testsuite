@@ -8,7 +8,7 @@
       <th width="50%">Image</th>
       <th width="16%">Type</th>
       <th width="33%">Exam</th>
-      <th width="30"></th>
+      <th width="1%" colspan="3"></th>
     </tr>
   </thead>
 
@@ -18,6 +18,8 @@
         <td><%= link_to picture.image.to_s.split('/').last.split('.').first, picture.image.to_s, target: :_blank %></td>
         <td align="center" width="75"><%= picture.image.to_s.split('.').last %></td>
         <td><%= Exam.where(id: picture.exam).first.name %></td>
+        <td align="center"><a href="/pictures/<%= picture.id %>"><img src="../img/icon_show.png" height="30" title="Show" /></a></td>
+        <td align="center"><a href="/pictures/<%= picture.id %>/edit"><img src="../img/icon_edit.png" height="30" title="Edit" /></a></td>
         <td align="center"><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/pictures/<%= picture.id %>"><img src="../img/icon_error.png" height="30" title="Delete" /></a></td>
       </tr>
     <% end %>

@@ -16,7 +16,6 @@ class PicturesController < ApplicationController
   # GET /pictures/1.json
   def show
     if current_user
-      render :layout => 'upload'
     else
       redirect_to root_url
     end
@@ -27,6 +26,15 @@ class PicturesController < ApplicationController
     if current_user
       @picture = Picture.new
       render :layout => 'upload'
+    else
+      redirect_to root_url
+    end
+  end
+
+  # GET /questions/1/edit
+  def edit
+    if current_user
+      @nav = "pictures"
     else
       redirect_to root_url
     end

@@ -1,17 +1,36 @@
 <%= form_with(model: picture, local: true) do |form| %>
-  <div class="field" style="display: none;">
+  <div class="field"<% if @select_exam != true %> style="display: none;"<% end %>>
     <%= form.label :exam %>
+  <% if @select_exam != true %>
     <%= form.text_field :exam, id: :picture_exam, value: params[:exam_id] %>
-    <%# select("picture", "exam", Exam.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }) %>
+  <% end %>
+  <% if @select_exam == true %>
+    <%= select("picture", "exam", Exam.all.collect {|p| [ p.name, p.id ] }, {}) %>
+  <% end %>
   </div>
+<% if @select_exam == true %>
+  <div class="field">
+    <label>&nbsp;</label>
+    <img src="<%= picture.image %>" />
+  </div>
+<% end %>
+<% if @select_exam != true %>
   <div class="field images">
     <% exam_id = params[:exam_id] %>
     <% Picture.where(exam: exam_id).each do |picture| %>
     <img src="<%= picture.image %>" alt="<%= picture.image.to_s.split('/').last %>" title="<%= picture.image.to_s.split('/').last %>" width="200" />
     <% end %>
   </div>
+<% end %>
   <br style="clear: both;" />
+  <% if @select_exam != true %>
   <div class="field">
     <%= form.file_field :image, id: :picture_image %><%= form.submit 'Upload' %>
   </div>
+  <% else %>
+  <div class="field">
+    <label>&nbsp;</label><%= form.submit 'Update' %><br style="clear: both;" />
+    <label>&nbsp;</label><a href="<%= pictures_path %>"><button>Back</button></a>
+  </div>
+  <% end %>
 <% end %>
