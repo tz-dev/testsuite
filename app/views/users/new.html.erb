@@ -1,4 +1,4 @@
-<h2>New User</h2>
+<h2><% if current_user %>New User<% else %>Sign up<% end %></h2>
 </section>
 <section id="main">
 <%= render 'form', user: @user %>

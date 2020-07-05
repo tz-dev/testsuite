@@ -40,8 +40,8 @@
             	<% @questions.each_with_index do |question, index| %>
                 <li id="carousel__slide<%= index + 1 %>" tabindex="0" class="carousel__slide">
                     <div class="carousel__snapper">
-                        <% if index > 0 %><a onclick="toggleActive('navbutton_<%= index %>')" href="#carousel__slide<%= index %>" class="button left">PREVIOUS</a><% end %>
-                        <% if index + 1 < @questions.size %><a onclick="toggleActive('navbutton_<%= index + 2 %>')" href="#carousel__slide<%= index + 2 %>" class="button right">NEXT</a><% end %>
+                        <% if index > 0 %><a onclick="toggleActive('navbutton_<%= index %>')" href="#carousel__slide<%= index %>" class="button left"><img height="30" style="float:left;" src="../img/icon_left.png" title="previous" /><span class="buttontext">PREVIOUS</span></a><% end %>
+                        <% if index + 1 < @questions.size %><a onclick="toggleActive('navbutton_<%= index + 2 %>')" href="#carousel__slide<%= index + 2 %>" class="button right"><span class="buttontext">NEXT</span><img height="30" style="float:right;" src="../img/icon_right.png" title="next" /></a><% end %>
                         <br style="clear: both;" />
 						<section class="question">
                             <form>
@@ -147,9 +147,9 @@
                                     <% end %>
                                     </ul>
                                 </fieldset>
-                                <% if @exam.checks %><a href="#" class="button" onclick="checkQuestion<%= index + 1 %>()">CHECK</a><% end %>
+                                <% if @exam.checks %><a href="#" class="button" onclick="checkQuestion<%= index + 1 %>()"><img style="float:left;" height="30" src="../img/icon_check.png" title="check" /><span class="buttontext">CHECK</span></a><% end %>
                                 <span id="Q<%= index + 1 %>_info"></span>
-                                <% if @exam.hints %><a href="#" class="button right pushright" id="hintbutton_<%= index + 1 %>" onclick="hintQuestion<%= index + 1 %>()">HINT</a><% end %>
+                                <% if @exam.hints %><a href="#" class="button right pushright" id="hintbutton_<%= index + 1 %>" onclick="hintQuestion<%= index + 1 %>()"><span class="buttontext">HINT</span><img id="hint_icon<%= index + 1 %>" style="float:right;" height="30" src="../img/icon_hint_inactive.png" title="hint" /></a><% end %>
                                 <% if index + 1 == @questions.size %><a class="center pushdown margindown finish" onclick="finish_exam();<% if @exam.timer %>stopTimer()<% end %>" href="#carousel__slide1000">FINISH</a><% end %>
                             </form>
                             <script>
@@ -166,11 +166,11 @@
 	                                  <% end %>
 	                              <% end %>
 	                              ) {
-	                                    Q<%= index + 1 %>_info.innerHTML = "CORRECT!";
+	                                    Q<%= index + 1 %>_info.innerHTML = '<img style="float:left;" height="30" src="../img/icon_correct.png" /><span class="buttontext">CORRECT!</span>';
 	                                    Q<%= index + 1 %>_info.className = "correct";
                                         Q<%= index + 1 %>_result = "correct"
                                   } else {
-	                                    Q<%= index + 1 %>_info.innerHTML = "FALSE!";
+	                                    Q<%= index + 1 %>_info.innerHTML = '<img style="float:left;" height="30" src="../img/icon_incorrect.png" /><span class="buttontext">FALSE!</span>';
 	                                    Q<%= index + 1 %>_info.className = "false";
                                         Q<%= index + 1 %>_result = "false"
                                   }
@@ -185,29 +185,32 @@
 	                                  <% end %>
 	                              <% end %>
 	                              ) {
-	                                    Q<%= index + 1 %>_info.innerHTML = "FALSE!";
+	                                    Q<%= index + 1 %>_info.innerHTML = '<img style="float:left;" height="30" src="../img/icon_incorrect.png" /><span class="buttontext">FALSE!</span>';
 	                                    Q<%= index + 1 %>_info.className = "false";
                                         Q<%= index + 1 %>_result = "false"
 	                              }
                                 <% end %>
                                 }
                                 function hintQuestion<%= index + 1 %>() {
-	                              <% options.each_with_index do |option, index| %>
+                                    var hint_icon = document.getElementById("hint_icon<%= index + 1 %>");
+                                    hint_icon.classList.toggle("is_active");
+                                    if (hint_icon.classList.contains("is_active")) {hint_icon.src='../img/icon_hint_active.png'} else {hint_icon.src='../img/icon_hint_inactive.png'}
+	                                <% options.each_with_index do |option, index| %>
 	                                  <% if options[index] == correct[index] %>
 	                                  	<% if option != nil %>
 	                                  	document.getElementById("hint_0<%= x + index %>").classList.toggle("hint");
 	                                    <% end %>
 	                                  <% end %>
-	                              <% end %>
+	                                <% end %>
                                 }
                              <% else %>
                              function checkQuestion<%= index + 1 %>() {
                              	if (document.getElementsByName("question<%= x %>")[0].value == "<%= question.q_answer001 %>"){
-	                                    Q<%= index + 1 %>_info.innerHTML = "CORRECT!";
+	                                    Q<%= index + 1 %>_info.innerHTML = '<img style="float:left;" height="30" src="../img/icon_correct.png" /><span class="buttontext">CORRECT!</span>';
 	                                    Q<%= index + 1 %>_info.className = "correct";
                                         Q<%= index + 1 %>_result = "correct"
                                   } else {
-	                                    Q<%= index + 1 %>_info.innerHTML = "FALSE!";
+	                                    Q<%= index + 1 %>_info.innerHTML = '<img style="float:left;" height="30" src="../img/icon_incorrect.png" /><span class="buttontext">FALSE!</span>';
 	                                    Q<%= index + 1 %>_info.className = "false";
                                         Q<%= index + 1 %>_result = "false"
                                   }
