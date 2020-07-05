@@ -17,4 +17,68 @@
             }, false);
         </script>
     </body>
+
+<%
+folder       = "files/"
+path         = (folder + @exam.name + ".html").to_s
+content      = '<!DOCTYPE html><html lang="en"><head><title>Testsuite - ' + @exam.name + '</title><link rel="stylesheet" href="exam.css" /></head><body><section id="wrapper">' + yield.gsub('../img/', '') + '</section><script>document.addEventListener("contextmenu", event => event.preventDefault());window.addEventListener("keydown", function(e) {if([9, 17, 18, 27, 33, 34, 35, 36, 37, 38, 39, 40, 46, 91, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123].indexOf(e.keyCode) > -1) {e.preventDefault();}}, false);</script></body></html>'
+
+if @exam.shuffle_questions
+    file_shuffle_questions = "Q"
+else
+    file_shuffle_questions = ""
+end
+
+if @exam.shuffle_answers
+    file_shuffle_answers = "A"
+else
+    file_shuffle_answers = ""
+end
+
+if @exam.hints
+    file_hints = "H"
+else
+    file_hints = ""
+end
+
+if @exam.checks
+    file_checks = "C"
+else
+    file_checks = ""
+end
+
+if @exam.timer
+    file_timer = "T"
+else
+    file_timer = ""
+end
+
+if @exam.navigation
+    file_navigation = "N"
+else
+    file_navigation = ""
+end
+
+zipfile_name = 'public/' + @exam.name.to_s + "_" + @exam.id.to_s + "_" + file_shuffle_questions + file_shuffle_answers + file_hints + file_checks + file_timer + file_navigation + ".zip"
+
+if File.exist?(zipfile_name)
+    File.delete(zipfile_name)
+end
+
+File.open(path, "w+") do |f|
+  f.write(content)
+end
+
+input_filenames = [(@exam.name + '.html').to_s, 'exam.css','icon_check.png','icon_correct.png','icon_error.png','icon_hint_active.png','icon_hint_inactive.png','icon_incorrect.png','icon_left.png',
+'icon_right.png','icon_show.png']
+
+Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
+  input_filenames.each do |filename|
+    # Two arguments:
+    # - The name of the file as it will appear in the archive
+    # - The original file, including the path to find it
+    zipfile.add(filename, File.join(folder, filename))
+  end
+end
+%>
 </html>

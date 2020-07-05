@@ -14,12 +14,15 @@ class ExamsController < ApplicationController
   # GET /exams/1
   # GET /exams/1.json
   def show
+    if current_user
     @questions = Question.where(exam: @exam.id).all
     @questions = @questions.drop(@questions.count - @exam.questions)
     if @exam.shuffle_questions
       @questions = @questions.shuffle
     end
     render :layout => 'exam'
+    else redirect_to root_url
+    end
   end
 
   # GET /exams/new
