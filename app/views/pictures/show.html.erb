@@ -8,6 +8,6 @@
 
 <div class="field">
   <label>Exam:</label>
-  <%= Exam.find(@picture.exam).name %>
+  <% if Exam.find(@picture.exam) != nil %><%= Exam.find(@picture.exam).name %><% else %>none<% end %>
 </div>
 <label>&nbsp;</label><a href="<%= edit_picture_path(@picture) %>"><button>Edit</button></a>
