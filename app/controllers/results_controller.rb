@@ -8,7 +8,7 @@ class ResultsController < ApplicationController
         @nav = "results"
     @results = Result.all
     else
-      redirect_to user_url(current_user)
+      redirect_to root_url
     end
   end
 
@@ -34,7 +34,7 @@ class ResultsController < ApplicationController
       @result.result    = params[:exam_result]
       @result.time      = params[:exam_time]
       @result.save!
-      redirect_to root_url
+      redirect_to user_path(current_user)
     end
   end
 
