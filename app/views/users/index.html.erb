@@ -14,7 +14,7 @@
     <tbody>
       <% @users.each do |user| %>
         <tr class="<%= cycle('even', 'odd') -%>">
-          <td><%= user.name %></td>
+          <td><%= link_to user.name, user %></td>
           <td><%= user.email %></td>
         <td align="center"><a href="/users/<%= user.id %>"><img src="../img/icon_show.png" height="30" title="Show" /></a></td>
         <td align="center"><a href="/users/<%= user.id %>/edit"><img src="../img/icon_edit.png" height="30" title="Edit" /></a></td>

@@ -17,8 +17,8 @@
   <tbody>
     <% @results.each do |result| %>
       <tr class="<%= cycle('even', 'odd') -%>">
-        <td><%= User.find(result.user_id).name %></td>
-        <td><%= Exam.find(result.exam_id).name %></td>
+        <td><%= link_to User.find(result.user_id).name, User.find(result.user_id) %></td>
+        <td><%= link_to Exam.find(result.exam_id).name, Exam.find(result.exam_id) %></td>
         <td align="center"><%= result.settings %></td>
         <td align="center"><%= result.questions %></td>
         <td align="center"><%= result.time %></td>

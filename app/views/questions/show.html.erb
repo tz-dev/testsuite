@@ -11,43 +11,74 @@
         <%
         x = 0
         options=[]
+        correct=[]
         if @question.q_answer001_active
+          if @question.q_answer001_correct
+            correct[x] = @question.q_answer001_correct
+          end          
           options[x] = @question.q_answer001
           x += 1
         end
         if @question.q_answer002_active
+          if @question.q_answer002_correct
+            correct[x] = @question.q_answer002_correct
+          end          
           options[x] = @question.q_answer002
           x += 1
         end
         if @question.q_answer003_active
+          if @question.q_answer003_correct
+            correct[x] = @question.q_answer003_correct
+          end          
           options[x] = @question.q_answer003
           x += 1
         end
         if @question.q_answer004_active
+          if @question.q_answer004_correct
+            correct[x] = @question.q_answer004_correct
+          end          
           options[x] = @question.q_answer004
           x += 1
         end
         if @question.q_answer005_active
+          if @question.q_answer005_correct
+            correct[x] = @question.q_answer005_correct
+          end          
           options[x] = @question.q_answer005
           x += 1
         end
         if @question.q_answer006_active
+          if @question.q_answer006correct
+            correct[x] = @question.q_answer006_correct
+          end          
           options[x] = @question.q_answer006
           x += 1
         end
         if @question.q_answer007_active
+          if @question.q_answer007_correct
+            correct[x] = @question.q_answer007_correct
+          end          
           options[x] = @question.q_answer007
           x += 1
         end
         if @question.q_answer008_active
+          if @question.q_answer008_correct
+            correct[x] = @question.q_answer008_correct
+          end
           options[x] = @question.q_answer008
           x += 1
         end
         if @question.q_answer009_active
+          if @question.q_answer009_correct
+            correct[x] = @question.q_answer009_correct
+          end          
           options[x] = @question.q_answer009
           x += 1
         end
         if @question.q_answer010_active
+          if @question.q_answer010_correct
+            correct[x] = @question.q_answer010_correct
+          end          
           options[x] = @question.q_answer010
           x += 1
         end
@@ -58,7 +89,7 @@
             <input type="<%= @question.q_type %>" id="00<%= index %>" name="question1"<% if @question.q_type == "text" %> value="<%= @question.q_answer001 %>"<% end %> />
             <% if @question.q_type != "text" %>
             <label for="00<%= index %>">
-              <span class="text">
+              <span class="text<% if correct[index] %> hint<% end %>">
                 <%= option %>
               </span>
             </label>

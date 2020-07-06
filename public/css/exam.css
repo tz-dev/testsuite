@@ -278,6 +278,7 @@ span.text {
 
 span.hint {
   color: #4c4;
+  text-shadow: 1px 1px #000;
 }
 
 input[type="text"] {

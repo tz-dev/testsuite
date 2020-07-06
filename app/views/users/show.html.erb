@@ -1,5 +1,6 @@
-<h2>Show User</h2>
+<h2>Show User &quot;<%= @user.name %>&quot;</h2>
 </section>
+<% @results = Result.where(user_id: current_user.id).all %>
 <section id="main">
 	<div class="field">
 	  <label>Name:</label>
@@ -11,47 +12,42 @@
 	  <%= @user.email %>
 	</div>
 
+	<div class="field">
+	  <label>Exams:</label>
+	  <%= @results.count %>
+	</div>
+
 	<label>&nbsp;</label><a href="<%= edit_user_path(@user) %>"><button>Edit</button></a>
 	<br style="clear: both;" />
 
-	<% result = @results.last %>
-	<label>&nbsp;</label>
-	<table id="latest_results" align="left">
-		<tr>
-			<th colspan="2">Latest Result</th>
-		</tr>
-		<tr>
-			<td align="right"><strong>Exam:</strong></td><td><%= Exam.find(result.exam_id).name %></td>
-		</tr>
-		<tr>
-			<td align="right"><strong>Description:</strong></td><td><%= Exam.find(result.exam_id).description %></td>
-		</tr>
-		<tr>
-			<td align="right"><strong>Questions:</strong></td><td><%= result.questions %></td>
-		</tr>
-		<tr>
-			<td align="right"><strong>Result:</strong></td><td><%= result.result%>%</td>
-		</tr>
-		<tr>
-			<td align="right"><strong>Time:</strong></td><td><%= result.time %></td>
-		</tr>
-		<tr>
-			<td align="right" valign="top"><strong>Settings:</strong></td>
-			<td>
-				<ul style="margin: 0; padding:0 0 0 20px">
-			<% if result.settings.include?('Q') %><li>Shuffle Questions</li><% end %>
-			<% if result.settings.include?('A') %><li>Shuffle Answers</li><% end %>
-			<% if result.settings.include?('H') %><li>Hint Button</li><% end %>
-			<% if result.settings.include?('C') %><li>Check Button</li><% end %>
-			<% if result.settings.include?('T') %><li>Timer</li><% end %>
-			<% if result.settings.include?('N') %><li>Navigation</li><% end %>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-			<td align="right"><strong>Date:</strong></td><td><%= result.created_at.to_s.split(' ')[0] %></td>
-		</tr>
-		<tr>
-			<td align="right"><strong>Time:</strong></td><td><%= result.created_at.to_s.split(' ')[1] %></td>
-		</tr>
-	</table>
+	<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th width="200">Exam</th>
+      <th>Settings</th>
+      <th>Questions</th>
+      <th>Exam Time</th>
+      <th>Result</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th colspan="2" width="1%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @results.each do |result| %>
+      <tr class="<%= cycle('even', 'odd') -%>">
+        <td><%= Exam.find(result.exam_id).name %></td>
+        <td align="center"><%= result.settings %></td>
+        <td align="center"><%= result.questions %></td>
+        <td align="center"><%= result.time %></td>
+        <td align="center"><%= result.result %>%</td>
+        <td align="center"><%= result.created_at.to_s.split(' ')[0] %></td>
+        <td align="center"><%= result.created_at.to_s.split(' ')[1] %></td>
+        <td align="center"><a href="/results/<%= result.id %>"><img src="../img/icon_show.png" height="30" title="Show" /></a></td>
+        <td align="center"><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/results/<%= result.id %>"><img src="../img/icon_error.png" height="30" title="Delete" /></a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

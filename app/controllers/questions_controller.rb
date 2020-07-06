@@ -27,6 +27,7 @@ class QuestionsController < ApplicationController
     if current_user
       @nav = "questions"
       @question = Question.new
+      @form = true;
     else
       redirect_to root_url
     end
@@ -36,6 +37,7 @@ class QuestionsController < ApplicationController
   def edit
     if current_user
       @nav = "questions"
+      @form = true;
     else
       redirect_to root_url
     end
