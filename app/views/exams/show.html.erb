@@ -246,8 +246,8 @@
                                     <td class="result<%= index + 1 %>" align="center"></td>
                                 </tr>
                                 <% end %>
-                            </table>
-                            <a style="display: block; float: none; width: 250px; text-align: center; margin: 25px auto" class="button" id="save_result" href="#">SAVE RESULT</a>
+                            </table><br />
+                            <a class="button finish" id="save_result" href="#">SAVE RESULT</a><a class="button finish" id="exit" href="<%= exams_path %>">EXIT</a>
                         </section>
                     </div>
                 </li>
@@ -350,8 +350,7 @@
                 var exam_questions = <%= @questions.count %>;
                 var exam_result = percent;
                 var result_path = '<%= new_result_path %>' + '?user_id=' + user_id + '&exam_id=' + exam_id + '&exam_settings=' + exam_settings + '&exam_questions=' + exam_questions + '&exam_result=' + exam_result + '&exam_time=' + exam_time;
-                var result_link = document.getElementById('save_result');
-                result_link.href = result_path;
+                var result_link = document.getElementById("save_result");result_link.href = result_path;
             }
         </script>
         <% if @exam.timer %>

@@ -26,7 +26,7 @@ if File.exist?(path)
     File.delete(path)
 end
 
-content      = '<!DOCTYPE html><html lang="en"><head><title>Testsuite - ' + @exam.name + '</title><link rel="stylesheet" href="exam.css" /></head><body><section id="wrapper">' + yield.gsub('../img/', '').gsub('<a class="button" id="save_result" href="#">SAVE RESULT</a>', '') + '</section><script>document.addEventListener("contextmenu", event => event.preventDefault());window.addEventListener("keydown", function(e) {if([9, 17, 18, 27, 33, 34, 35, 36, 37, 38, 39, 40, 46, 91, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123].indexOf(e.keyCode) > -1) {e.preventDefault();}}, false);</script></body></html>'
+content      = '<!DOCTYPE html><html lang="en"><head><title>Testsuite - ' + @exam.name + '</title><link rel="stylesheet" href="exam.css" /></head><body><section id="wrapper">' + yield.gsub('../img/', '').gsub('../../uploads/picture/image/', '').gsub('<a class="button finish" id="save_result" href="#">SAVE RESULT</a><a class="button finish" id="exit" href="/exams">EXIT</a>', '').gsub('var result_link = document.getElementById("save_result");result_link.href = result_path;', '') + '</section><script>document.addEventListener("contextmenu", event => event.preventDefault());window.addEventListener("keydown", function(e) {if([9, 17, 18, 27, 33, 34, 35, 36, 37, 38, 39, 40, 46, 91, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123].indexOf(e.keyCode) > -1) {e.preventDefault();}}, false);</script></body></html>'
 
 if @exam.shuffle_questions
     file_shuffle_questions = "Q"
@@ -74,12 +74,21 @@ File.open(path, "w+") do |f|
   f.write(content)
 end
 
+pictures = Picture.where(exam: @exam.id)
+  images = []
+pictures.each_with_index do |picture, index|
+    images[index] = picture.image.to_s[1..-1]
+end
+
 input_filenames = [(@exam.name + '.html').to_s, 'exam.css','icon_check.png','icon_correct.png','icon_error.png','icon_hint_active.png','icon_hint_inactive.png','icon_incorrect.png','icon_left.png',
 'icon_right.png','icon_show.png']
 
 Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
   input_filenames.each do |filename|
     zipfile.add(filename, File.join(folder, filename))
+  end
+  images.each do |filename|
+    zipfile.add(filename.split('/').last, (Rails.root.to_s + '/public/' + filename).gsub('/', "\\"))
   end
 end
 %>
