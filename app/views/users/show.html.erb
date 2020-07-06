@@ -6,7 +6,6 @@
 	  <label>Name:</label>
 	  <%= @user.name %>
 	</div>
-
   <div class="field">
     <label>Email:</label>
     <%= @user.email %>
@@ -17,10 +16,20 @@
     <%= @user.role %>
   </div>
 <% end %>
-	<div class="field">
-	  <label>Exams:</label>
-	  <%= @results.where(user_id: @user.id).count %>
-	</div>
+  <div class="field">
+    <label>Exams:</label>
+    <%= @results.where(user_id: @user.id).count %>
+  </div>
+<% if current_user.role == "admin" %>
+  <div class="field">
+    <label>Created:</label>
+    <%= @user.created_at %>
+  </div>
+  <div class="field">
+    <label>Updated:</label>
+    <%= @user.updated_at %>
+  </div>
+<% end %>
 
 	<label>&nbsp;</label><a href="<%= edit_user_path(@user) %>"><button>Edit</button></a>
 	<br style="clear: both;" />

@@ -8,7 +8,7 @@
 
 <div class="field">
   <label>Exam:</label>
-  <% if Exam.find(@picture.exam) != nil %><%= Exam.find(@picture.exam).name %><% else %>none<% end %>
+  <% if Exam.find(@picture.exam) != nil %><span class="hover_underline"><%= link_to Exam.find(@picture.exam).name, Exam.find(@picture.exam) %></span><% else %>none<% end %>
 </div>
 
 <div class="field">
@@ -16,7 +16,7 @@
 <%
 	Question.where(exam: @picture.exam).each_with_index do |question, index|
 		if question.q_text.include?(@picture.image.to_s)
-			%><%= link_to 'Question ' + question.id.to_s, question %>&nbsp;&nbsp;&nbsp;<%
+			%><span class="hover_underline"><%= link_to 'Question ' + question.id.to_s, question %></span>&nbsp;&nbsp;&nbsp;<%
 		end
 	end
 %>
