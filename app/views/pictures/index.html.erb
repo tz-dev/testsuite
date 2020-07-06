@@ -17,7 +17,7 @@
       <tr class="<%= cycle('even', 'odd') -%>">
         <td><%= link_to picture.image.to_s.split('/').last.split('.').first, picture.image.to_s, target: :_blank %></td>
         <td align="center" width="75"><%= picture.image.to_s.split('.').last %></td>
-        <td><% if Exam.find(picture.exam) != nil %><%= link_to Exam.find(picture.exam).name, Exam.find(picture.exam) %><% else %>none<% end %></td>
+        <td><%= Exam.find(picture.exam).name %></td>
         <td align="center"><a href="/pictures/<%= picture.id %>"><img src="../img/icon_show.png" height="30" title="Show" /></a></td>
         <td align="center"><a href="/pictures/<%= picture.id %>/edit"><img src="../img/icon_edit.png" height="30" title="Edit" /></a></td>
         <td align="center"><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/pictures/<%= picture.id %>"><img src="../img/icon_error.png" height="30" title="Delete" /></a></td>
