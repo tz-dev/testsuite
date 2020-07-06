@@ -7,7 +7,7 @@ html {
 	cursor: default;
 }
 
-a, a img, label, textarea {
+a, a img, textarea {
 	cursor: pointer;
 }
 
@@ -335,6 +335,6 @@ table#latest_results {
 	width: 40% !important;
 }
 
-.hover_underline a:hover {
+.hover_underline:hover {
   text-decoration: underline !important;
 }

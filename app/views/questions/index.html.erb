@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th align="center">ID</th>
+      <th>ID</th>
       <th>Exam</th>
       <th>Type</th>
       <th>Text</th>
@@ -15,7 +15,7 @@
   <tbody>
     <% @questions.each do |question| %>
       <tr class="<%= cycle('even', 'odd') -%>">
-        <td><%= question.id %></td>
+        <td align="center"><%= question.id %></td>
         <td><%= link_to Exam.find(question.exam).name, edit_exam_path(Exam.find(question.exam)) %></td>
         <td><%= question.q_type %></td>
         <td><%= link_to strip_tags(question.q_text).truncate(100), question %></td>
