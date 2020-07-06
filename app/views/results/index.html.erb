@@ -8,8 +8,10 @@
       <th width="200">Exam</th>
       <th>Settings</th>
       <th>Questions</th>
-      <th>Time</th>
+      <th>Exam Time</th>
       <th>Result</th>
+      <th>Date</th>
+      <th>Time</th>
       <th colspan="2" width="1%"></th>
     </tr>
   </thead>
@@ -23,6 +25,8 @@
         <td align="center"><%= result.questions %></td>
         <td align="center"><%= result.time %></td>
         <td align="center"><%= result.result %>%</td>
+        <td align="center"><%= result.created_at.to_s.split(' ')[0] %></td>
+        <td align="center"><%= result.created_at.to_s.split(' ')[1] %></td>
         <td align="center"><a href="/results/<%= result.id %>"><img src="../img/icon_show.png" height="30" title="Show" /></a></td>
         <td align="center"><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/results/<%= result.id %>"><img src="../img/icon_error.png" height="30" title="Delete" /></a></td>
       </tr>
