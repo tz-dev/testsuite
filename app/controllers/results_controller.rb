@@ -4,14 +4,22 @@ class ResultsController < ApplicationController
   # GET /results
   # GET /results.json
   def index
+    if current_user
         @nav = "results"
     @results = Result.all
+    else
+      redirect_to root_url
+    end
   end
 
   # GET /results/1
   # GET /results/1.json
   def show
+    if current_user
     @nav = "results"
+    else
+      redirect_to root_url
+    end
   end
 
   # GET /results/new
