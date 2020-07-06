@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    if ((current_user.id == @user.id) || current_user.role == "admin")
+    if (current_user.id == @user.id || current_user.role == "admin")
       @nav = "users"
     else
       redirect_to root_url
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    if ((current_user && current_user.role == "admin") || current_user == @user.id)
+    if current_user
       respond_to do |format|
         if @user.update(user_params)
           format.html { redirect_to @user, notice: 'User was successfully updated.' }

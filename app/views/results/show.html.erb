@@ -1,7 +1,7 @@
 <h2>Show Result of '<%= Exam.find(@result.exam_id).name %>'</h2>
 </section>
 <section id="main">
-<% if current_user.role == "admin" || current_user.id == @result.user_id %>
+<% if current_user.role == "admin" %>
 <div class="field">
   <label>User:</label>
   <%= User.find(@result.user_id).name %>
