@@ -139,6 +139,10 @@ select {
 	width: 200px;
 }
 
+input[type="password"] {
+	width: 195px;
+}
+
 div.tox-editor-container {
 	min-width: 738px !important;
 }
