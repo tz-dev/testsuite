@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    if current_user
+    if current_user && (current_user.id == @user.id || current_user.role == "admin")
       @nav = "users"
     else
       redirect_to root_url
