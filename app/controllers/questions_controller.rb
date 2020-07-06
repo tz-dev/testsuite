@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    if current_user
+    if current_user && current_user.role == "admin"
       @questions = Question.all.sort_by { |question| question.exam }
       @nav = "questions"
     else
@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
-    if current_user
+    if current_user && current_user.role == "admin"
       @nav = "questions"
     else
       redirect_to root_url
@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions/new
   def new
-    if current_user
+    if current_user && current_user.role == "admin"
       @nav = "questions"
       @question = Question.new
       @form = true;
@@ -35,7 +35,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1/edit
   def edit
-    if current_user
+    if current_user && current_user.role == "admin"
       @nav = "questions"
       @form = true;
     else
@@ -46,7 +46,7 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
-    if current_user
+    if current_user && current_user.role == "admin"
       @question = Question.new(question_params)
 
       respond_to do |format|
@@ -66,7 +66,7 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1
   # PATCH/PUT /questions/1.json
   def update
-    if current_user
+    if current_user && current_user.role == "admin"
       respond_to do |format|
         if @question.update(question_params)
           format.html { redirect_to @question, notice: 'Question was successfully updated.' }
@@ -84,7 +84,7 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   # DELETE /questions/1.json
   def destroy
-    if current_user
+    if current_user && current_user.role == "admin"
       @question.destroy
       respond_to do |format|
         format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }

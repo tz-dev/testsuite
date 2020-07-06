@@ -4,7 +4,7 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
-    if current_user
+    if current_user && current_user.role == "admin"
       @nav = "pictures"
       @pictures = Picture.all.sort_by { |picture| picture.exam }
     else
@@ -15,7 +15,7 @@ class PicturesController < ApplicationController
   # GET /pictures/1
   # GET /pictures/1.json
   def show
-    if current_user
+    if current_user && current_user.role == "admin"
       @nav = "pictures"
     else
       redirect_to root_url
@@ -24,7 +24,7 @@ class PicturesController < ApplicationController
 
   # GET /pictures/new
   def new
-    if current_user
+    if current_user && current_user.role == "admin"
       @picture = Picture.new
       render :layout => 'upload'
     else
@@ -34,7 +34,7 @@ class PicturesController < ApplicationController
 
   # GET /questions/1/edit
   def edit
-    if current_user
+    if current_user && current_user.role == "admin"
       @nav = "pictures"
     else
       redirect_to root_url
@@ -44,7 +44,7 @@ class PicturesController < ApplicationController
   # POST /pictures
   # POST /pictures.json
   def create
-    if current_user
+    if current_user && current_user.role == "admin"
       @picture = Picture.new(picture_params)
       respond_to do |format|
         if @picture.save
@@ -62,7 +62,7 @@ class PicturesController < ApplicationController
   # PATCH/PUT /pictures/1
   # PATCH/PUT /pictures/1.json
   def update
-    if current_user
+    if current_user && current_user.role == "admin"
       render :layout => 'upload'
       respond_to do |format|
         if @picture.update(picture_params)
@@ -81,7 +81,7 @@ class PicturesController < ApplicationController
   # DELETE /pictures/1
   # DELETE /pictures/1.json
   def destroy
-    if current_user
+    if current_user && current_user.role == "admin"
       @picture.destroy
       respond_to do |format|
         format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }

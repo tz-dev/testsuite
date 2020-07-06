@@ -8,22 +8,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body<% if @form %> style="width:80% !important"<% end %>>
-    <section id="head"<% if !@form %> style="width:1205px !important"<% end %>>
+    <section id="head"<% if !@form %> style="width:1202px !important"<% end %>>
     <h1>Testsuite</h1>
-    <nav>
-      <% if @nav == "home" %><%= link_to 'Home', '#', class: "active" %><% else %><%= link_to 'Home', root_url %><% end %>
-    <% if current_user %>
-      <% if @nav == "exams" %><%= link_to 'Exams', exams_url, class: "active" %><% else %><%= link_to 'Exams', exams_url %><% end %>
-      <% if @nav == "questions" %><%= link_to 'Questions', questions_url, class: "active" %><% else %><%= link_to 'Questions', questions_url %><% end %>
-      <% if @nav == "users" %><%= link_to 'Users', users_url, class: "active" %><% else %><%= link_to 'Users', users_url %><% end %>
-      <% if @nav == "results" %><%= link_to 'Results', results_url, class: "active" %><% else %><%= link_to 'Results', results_url %><% end %>
-      <% if @nav == "pictures" %><%= link_to 'Images', pictures_url, class: "active" %><% else %><%= link_to 'Images', pictures_url %><% end %>
-    <% end %>
-	<% if !current_user %>
-	  <%= link_to "Sign Up", signup_path %>
-	  <%= link_to "Log In", login_path %>
-	<% end %>
-    </nav>
+    <%= render 'layouts/navigation' %>
     <br style="clear: both;" />
     <%= yield %>
   </section>

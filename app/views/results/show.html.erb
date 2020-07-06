@@ -1,14 +1,20 @@
-<h2>Show Result #<%= @result.id %></h2>
+<h2>Show Result of '<%= Exam.find(@result.exam_id).name %>'</h2>
 </section>
 <section id="main">
+<% if current_user.role == "admin" || current_user.id == @result.user_id %>
 <div class="field">
   <label>User:</label>
   <%= User.find(@result.user_id).name %>
 </div>
-
+<% end %>
 <div class="field">
   <label>Exam:</label>
   <%= Exam.find(@result.exam_id).name %>
+</div>
+
+<div class="field">
+  <label>Result:</label>
+  <%= @result.result %>%
 </div>
 
 <div class="field">
@@ -17,13 +23,18 @@
 </div>
 
 <div class="field">
-  <label>Time:</label>
+  <label>Exam Time:</label>
   <%= @result.time %>
 </div>
 
 <div class="field">
-  <label>Result:</label>
-  <%= @result.result %>%
+  <label>Date:</label>
+  <%= @result.created_at.to_s.split(' ')[0] %>
+</div>
+
+<div class="field">
+  <label>Time:</label>
+  <%= @result.created_at.to_s.split(' ')[1] %>
 </div>
 
 <div class="field">
@@ -37,5 +48,8 @@
     <% if @result.settings.include?('N') %><li>Navigation</li><% end %>
   </ul>
 </div>
-
+<% if current_user.role == "admin" %>
 <a class="center" href="<%= results_path %>"><button>Back</button></a>
+<% else %>
+<a class="center" href="<%= user_path(current_user) %>"><button>Back</button></a>
+<% end %>

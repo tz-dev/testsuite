@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    if current_user
+    if current_user && current_user.role == "admin"
       @nav = "users"
       @users = User.all.all.sort_by { |user| user.name }
     else
@@ -25,13 +25,17 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    if current_user == nil || current_user.role == "admin"
       @user = User.new
       @nav = "users"
+    else
+      redirect_to root_url
+    end
   end
 
   # GET /users/1/edit
   def edit
-    if current_user
+    if ((current_user.id == @user.id) || current_user.role == "admin")
       @nav = "users"
     else
       redirect_to root_url
@@ -57,7 +61,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    if current_user
+    if ((current_user && current_user.role == "admin") || current_user == @user.id)
       respond_to do |format|
         if @user.update(user_params)
           format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -75,7 +79,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    if current_user
+    if current_user && current_user.role == "admin"
       @user.destroy
       respond_to do |format|
         format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
@@ -94,6 +98,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :role, :password_confirmation)
     end
 end

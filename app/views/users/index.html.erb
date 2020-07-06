@@ -5,8 +5,9 @@
   <table>
     <thead>
       <tr>
-        <th width="50%">Name</th>
-        <th width="50%">Email</th>
+        <th width="33%">Name</th>
+        <th width="33%">Email</th>
+        <th width="33%">Role</th>
         <th colspan="3" width="1%"></th>
       </tr>
     </thead>
@@ -16,6 +17,7 @@
         <tr class="<%= cycle('even', 'odd') -%>">
           <td><%= link_to user.name, user %></td>
           <td><%= user.email %></td>
+          <td><%= user.role %></td>
         <td align="center"><a href="/users/<%= user.id %>"><img src="../img/icon_show.png" height="30" title="Show" /></a></td>
         <td align="center"><a href="/users/<%= user.id %>/edit"><img src="../img/icon_edit.png" height="30" title="Edit" /></a></td>
         <td align="center"><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/users/<%= user.id %>"><img src="../img/icon_error.png" height="30" title="Delete" /></a></td>

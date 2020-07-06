@@ -4,18 +4,18 @@ class ResultsController < ApplicationController
   # GET /results
   # GET /results.json
   def index
-    if current_user
+    if current_user && current_user.role == "admin"
         @nav = "results"
     @results = Result.all
     else
-      redirect_to root_url
+      redirect_to user_url(current_user)
     end
   end
 
   # GET /results/1
   # GET /results/1.json
   def show
-    if current_user
+    if current_user.role == "admin" || current_user.id == @result.user_id
     @nav = "results"
     else
       redirect_to root_url
@@ -57,13 +57,15 @@ class ResultsController < ApplicationController
   # PATCH/PUT /results/1
   # PATCH/PUT /results/1.json
   def update
-    respond_to do |format|
-      if @result.update(result_params)
-        format.html { redirect_to @result, notice: 'Result was successfully updated.' }
-        format.json { render :show, status: :ok, location: @result }
-      else
-        format.html { render :edit }
-        format.json { render json: @result.errors, status: :unprocessable_entity }
+    if current_user && current_user.role == "admin"
+      respond_to do |format|
+        if @result.update(result_params)
+          format.html { redirect_to @result, notice: 'Result was successfully updated.' }
+          format.json { render :show, status: :ok, location: @result }
+        else
+          format.html { render :edit }
+          format.json { render json: @result.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -71,10 +73,12 @@ class ResultsController < ApplicationController
   # DELETE /results/1
   # DELETE /results/1.json
   def destroy
-    @result.destroy
-    respond_to do |format|
-      format.html { redirect_to results_url, notice: 'Result was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user && current_user.role == "admin"
+      @result.destroy
+      respond_to do |format|
+        format.html { redirect_to results_url, notice: 'Result was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 

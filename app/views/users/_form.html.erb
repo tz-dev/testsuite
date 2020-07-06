@@ -31,6 +31,16 @@
     <%= form.password_field :password_confirmation, id: :user_password_confirmation %>
   </div>
 
+<% if current_user && current_user.role == "admin" %>
+  <div class="field">
+    <label>Role</label>
+    <select id="user_role" name="user[role]">
+      <option value="student">student</option>
+      <option value="admin"<% if (@user != nil && @user.id == current_user.id) %><% if current_user.role == "admin" %> selected<% end %><% end %>>admin</option>
+    </select>
+  </div>
+<% end %>
+
   <div class="actions">
     <label>&nbsp;</label>
     <%= form.submit %>

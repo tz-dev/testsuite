@@ -27,7 +27,7 @@ class ExamsController < ApplicationController
 
   # GET /exams/new
   def new
-    if current_user
+    if current_user && current_user.role == "admin"
       @nav = "exams"
       @exam = Exam.new
       @questions = Question.where(exam: @exam.id).all.count
@@ -37,7 +37,7 @@ class ExamsController < ApplicationController
 
   # GET /exams/1/edit
   def edit
-    if current_user
+    if current_user && current_user.role == "admin"
       @nav = "exams"
       @questions = Question.where(exam: @exam.id).all.count
     else redirect_to root_url
@@ -47,7 +47,7 @@ class ExamsController < ApplicationController
   # POST /exams
   # POST /exams.json
   def create
-    if current_user
+    if current_user && current_user.role == "admin"
       @nav = "exams"
       @exam = Exam.new(exam_params)
 
@@ -67,7 +67,7 @@ class ExamsController < ApplicationController
   # PATCH/PUT /exams/1
   # PATCH/PUT /exams/1.json
   def update
-    if current_user
+    if current_user && current_user.role == "admin"
       respond_to do |format|
         if @exam.update(exam_params)
           format.html { redirect_to exams_path, notice: 'Exam was successfully updated.' }
@@ -84,7 +84,7 @@ class ExamsController < ApplicationController
   # DELETE /exams/1
   # DELETE /exams/1.json
   def destroy
-    if current_user
+    if current_user && current_user.role == "admin"
       @exam.destroy
       respond_to do |format|
         format.html { redirect_to exams_url, notice: 'Exam was successfully destroyed.' }
