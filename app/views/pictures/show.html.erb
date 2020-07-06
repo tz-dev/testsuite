@@ -2,7 +2,7 @@
 </section>
 <section id="main">
 <div class="field">
-  <label>Image</label>
+  <label>Image:</label>
   <img src="<%= @picture.image %>" />
 </div>
 
@@ -10,4 +10,15 @@
   <label>Exam:</label>
   <% if Exam.find(@picture.exam) != nil %><%= Exam.find(@picture.exam).name %><% else %>none<% end %>
 </div>
+
+<div class="field">
+  <label>Date:</label>
+  <%= @picture.created_at.to_s.split(' ')[0] %>
+</div>
+
+<div class="field">
+  <label>Time:</label>
+  <%= @picture.created_at.to_s.split(' ')[1] %>
+</div>
+
 <label>&nbsp;</label><a href="<%= edit_picture_path(@picture) %>"><button>Edit</button></a>

@@ -12,18 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <label>Name:</label>
     <%= form.text_field :name, id: :exam_name, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
+    <label>Description:</label>
     <%= form.text_area :description, id: :exam_description %>
   </div>
 
 <% if @questions != 0 %>
   <div class="field">
-    <%= form.label :questions %>
+    <label>Questions:</label>
     <% if @questions != nil %>
     <%= form.number_field :questions, in: 1..@questions, id: :exam_questions %>
     <% else %>
@@ -69,12 +69,12 @@
   </div>
 <% if @exam.created_at %>
   <div class="field">
-    <label>Created at</label><%= @exam.created_at %>
+    <label>Created at:</label><%= @exam.created_at %>
   </div>
 <% end %>
 <% if @exam.updated_at %>
   <div class="field">
-    <label>Last Update</label><%= @exam.updated_at %>
+    <label>Last Update:</label><%= @exam.updated_at %>
   </div>
 <% end %>
 

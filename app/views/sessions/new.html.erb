@@ -3,11 +3,11 @@
 <section id="main">
 <%= form_tag sessions_path do |form| %>
   <div class="field">
-    <%= label_tag :email %>
+    <label>Email:</label>
     <input type="text" name="email" id="email" autofocus>
   </div>
   <div class="field">
-    <%= label_tag :password %>
+    <label>Password:</label>
     <%= password_field_tag :password %>
   </div>
   <div class="actions">

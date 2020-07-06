@@ -12,28 +12,28 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <label>Name:</label>
     <%= form.text_field :name, id: :user_name, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= form.label :email %>
+    <label>Email:</label>
     <%= form.text_field :email, id: :user_email %>
   </div>
 
   <div class="field">
-    <%= form.label :password %>
+    <label>Password:</label>
     <%= form.password_field :password, id: :user_password %>
   </div>
 
   <div class="field">
-    <label>Confirm PW</label>
+    <label>Confirm PW:</label>
     <%= form.password_field :password_confirmation, id: :user_password_confirmation %>
   </div>
 
 <% if current_user && current_user.role == "admin" %>
   <div class="field">
-    <label>Role</label>
+    <label>Role:</label>
     <select id="user_role" name="user[role]">
       <option value="student">student</option>
       <option value="admin"<% if (@user != nil && @user.id == current_user.id) %><% if current_user.role == "admin" %> selected<% end %><% end %>>admin</option>
