@@ -12,6 +12,17 @@
 </div>
 
 <div class="field">
+  <label>Used in:</label>
+<%
+	Question.where(exam: @picture.exam).each_with_index do |question, index|
+		if question.q_text.include?(@picture.image.to_s)
+			%><%= link_to 'Question ' + question.id.to_s, question %>&nbsp;&nbsp;&nbsp;<%
+		end
+	end
+%>
+</div>
+
+<div class="field">
   <label>Date:</label>
   <%= @picture.created_at.to_s.split(' ')[0] %>
 </div>
