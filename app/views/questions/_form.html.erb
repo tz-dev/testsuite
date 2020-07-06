@@ -115,6 +115,24 @@
 <br style="clear: both;" />
   <div class="actions">
   <hr style="clear: both;" />
+
+
+<% if @question.created_at %>
+<section class="f_left">
+  <div class="field">
+    <label>Created at</label><%= @question.created_at %>
+  </div>
+</div>
+<% end %>
+<% if @question.updated_at %>
+<section class="f_right">
+  <div class="field">
+    <label>Last Update</label><%= @question.updated_at %>
+  </div>
+</section>
+  <hr style="clear: both;" />
+<% end %>
+
     <label>&nbsp;</label>
     <%= form.submit %>
   </div>

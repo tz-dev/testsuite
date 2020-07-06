@@ -67,8 +67,17 @@
       </tr>
     </table>
   </div>
+<% if @exam.created_at %>
+  <div class="field">
+    <label>Created at</label><%= @exam.created_at %>
+  </div>
+<% end %>
+<% if @exam.updated_at %>
+  <div class="field">
+    <label>Last Update</label><%= @exam.updated_at %>
+  </div>
+<% end %>
 
-  <br style="clear: both;" />
   <br style="clear: both;" />
 
   <div class="actions">
