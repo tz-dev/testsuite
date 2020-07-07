@@ -1,4 +1,4 @@
-<h2>Show Question #<%= @question.id %> (<%= Exam.find(@question.exam).name %>)</h2>
+<h2>Show Question #<%= @question.id %><% if Exam.exists?(@question.exam) %> (<%= Exam.find(@question.exam).name %>)<% end %></h2>
 </section>
 <section id="main">
   <section class="question">
@@ -101,3 +101,4 @@
     </form>
   </section>
 <a class="center" href="<%= edit_question_path(@question) %>"><button>Edit</button></a>
+<a class="center" href="javascript:history.back()"><button>Back</button></a>

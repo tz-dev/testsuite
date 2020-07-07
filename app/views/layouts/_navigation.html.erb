@@ -2,7 +2,9 @@
       <% if @nav == "home" %><%= link_to 'Home', '#', class: "active" %><% else %><%= link_to 'Home', root_url %><% end %>
     <% if current_user %>
       <% if @nav == "exams" %><%= link_to 'Exams', exams_url, class: "active" %><% else %><%= link_to 'Exams', exams_url %><% end %>
+      <% if current_user.role == "admin" %><% if @nav == "results" %><%= link_to 'Results', results_url, class: "active" %><% else %><%= link_to 'Results', results_url %><% end %><% end %>
       <% if current_user.role == "admin" %><% if @nav == "questions" %><%= link_to 'Questions', questions_url, class: "active" %><% else %><%= link_to 'Questions', questions_url %><% end %><% end %>
+      <% if current_user.role == "admin" %><% if @nav == "pictures" %><%= link_to 'Images', pictures_url, class: "active" %><% else %><%= link_to 'Images', pictures_url %><% end %><% end %>
       <% if current_user.role == "admin" %>
         <% if @nav == "users" %>
           <%= link_to 'Users', users_url, class: "active" %>
@@ -16,8 +18,6 @@
           <%= link_to 'User', user_url(current_user) %>
         <% end %>
       <% end %>
-      <% if current_user.role == "admin" %><% if @nav == "results" %><%= link_to 'Results', results_url, class: "active" %><% else %><%= link_to 'Results', results_url %><% end %><% end %>
-      <% if current_user.role == "admin" %><% if @nav == "pictures" %><%= link_to 'Images', pictures_url, class: "active" %><% else %><%= link_to 'Images', pictures_url %><% end %><% end %>
     <% end %>
   	<% if !current_user %>
   	  <%= link_to "Sign Up", signup_path %>

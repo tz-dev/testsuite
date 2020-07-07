@@ -62,10 +62,9 @@ class PicturesController < ApplicationController
   # PATCH/PUT /pictures/1.json
   def update
     if current_user && current_user.role == "admin"
-      render :layout => 'upload'
       respond_to do |format|
         if @picture.update(picture_params)
-          format.html { redirect_to new_picture_path, notice: 'Picture was successfully updated.' }
+          format.html { redirect_to pictures_path, notice: 'Picture was successfully updated.' }
           format.json { render :show, status: :ok, location: @picture }
         else
           format.html { render :edit }

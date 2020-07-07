@@ -9,7 +9,7 @@
 <% end %>
 <div class="field">
   <label>Exam:</label>
-  <%= Exam.find(@result.exam_id).name %>
+  <% if Exam.exists?(@result.exam_id) %><%= Exam.find(@result.exam_id).name %><% end %>
 </div>
 
 <div class="field">

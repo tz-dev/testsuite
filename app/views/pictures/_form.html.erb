@@ -28,9 +28,8 @@
     <%= form.file_field :image, id: :picture_image, :onchange => "toggleButton()" %><span id="upload_button" class="invisible"><%= form.submit 'Upload' %></span>
   </div>
   <% else %>
-  <div class="field">
+  <div class="field" style="margin-bottom: 0px !important">
     <label>&nbsp;</label><%= form.submit 'Update' %><br style="clear: both;" />
-    <label>&nbsp;</label><a href="<%= pictures_path %>"><button>Back</button></a>
   </div>
   <% end %>
 <% end %>

@@ -8,7 +8,7 @@
 
 <div class="field">
   <label>Exam:</label>
-  <% if Exam.where(id: @picture.exam).count > 0 %><span class="hover_underline"><%= link_to Exam.find(@picture.exam).name, Exam.find(@picture.exam) %></span><% else %><i>none</i><% end %>
+  <% if Exam.exists?(@picture.exam) %><span class="hover_underline"><%= link_to Exam.find(@picture.exam).name, Exam.find(@picture.exam) %></span><% else %><i>none</i><% end %>
 </div>
 
 <div class="field">

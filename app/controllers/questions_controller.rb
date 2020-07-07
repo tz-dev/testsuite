@@ -51,7 +51,7 @@ class QuestionsController < ApplicationController
 
       respond_to do |format|
         if @question.save
-          format.html { redirect_to @question, notice: 'Question was successfully created.' }
+          format.html { redirect_to Exam.find(question_params[:exam]), notice: 'Question was successfully created.' }
           format.json { render :show, status: :created, location: @question }
         else
           format.html { render :new }
@@ -69,7 +69,7 @@ class QuestionsController < ApplicationController
     if current_user && current_user.role == "admin"
       respond_to do |format|
         if @question.update(question_params)
-          format.html { redirect_to @question, notice: 'Question was successfully updated.' }
+          format.html { redirect_to Exam.find(@question.exam), notice: 'Question was successfully updated.' }
           format.json { render :show, status: :ok, location: @question }
         else
           format.html { render :edit }
@@ -86,8 +86,13 @@ class QuestionsController < ApplicationController
   def destroy
     if current_user && current_user.role == "admin"
       @question.destroy
+      if params[:exam_id].include?("questions")
+        url = questions_path
+      else
+        url = Exam.find(params[:exam_id])
+      end
       respond_to do |format|
-        format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
+        format.html { redirect_to url, notice: 'Question was successfully destroyed.' }
         format.json { head :no_content }
       end
     else

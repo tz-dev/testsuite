@@ -20,7 +20,7 @@
     <% @results.each do |result| %>
       <tr class="<%= cycle('even', 'odd') -%>">
         <td><%= link_to User.find(result.user_id).name, User.find(result.user_id) %></td>
-        <td><%= link_to Exam.find(result.exam_id).name, edit_exam_path(Exam.find(result.exam_id)) %></td>
+        <td><% if Exam.exists?(result.exam_id) %><%= link_to Exam.find(result.exam_id).name, edit_exam_path(Exam.find(result.exam_id)) %><% end %></td>
         <td align="center"><%= result.settings %></td>
         <td align="center"><%= result.questions %></td>
         <td align="center"><%= result.time %></td>

@@ -35,37 +35,38 @@
 	<br style="clear: both;" />
 
 <% if @results.where(user_id: @user.id).count > 0 %>
+
 	<hr />
 
-<table>
-  <thead>
-    <tr>
-      <th width="200">Exam</th>
-      <th>Settings</th>
-      <th>Questions</th>
-      <th>Exam Time</th>
-      <th>Result</th>
-      <th>Date</th>
-      <th>Time</th>
-      <th colspan="2" width="1%"></th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @results.each do |result| %>
-    <% if result.user_id == @user.id %>
-      <tr class="<%= cycle('even', 'odd') -%>">
-        <td><%= Exam.find(result.exam_id).name %></td>
-        <td align="center"><%= result.settings %></td>
-        <td align="center"><%= result.questions %> / <%= Question.where(exam: Exam.find(result.exam_id).id).count %></td>
-        <td align="center"><%= result.time %></td>
-        <td align="center"><%= result.result %>%</td>
-        <td align="center"><%= result.created_at.to_s.split(' ')[0] %></td>
-        <td align="center"><%= result.created_at.to_s.split(' ')[1] %></td>
-        <td align="center"><a href="/results/<%= result.id %>"><img src="../img/icon_show.png" height="30" title="Show" /></a></td>
-        <td align="center"><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/results/<%= result.id %>"><img src="../img/icon_error.png" height="30" title="Delete" /></a></td>
+  <table>
+    <thead>
+      <tr>
+        <th width="200">Exam</th>
+        <th>Settings</th>
+        <th>Questions</th>
+        <th>Exam Time</th>
+        <th>Result</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th colspan="2" width="1%"></th>
       </tr>
+    </thead>
+    <tbody>
+    <% @results.each do |result| %>
+      <% if result.user_id == @user.id %>
+        <tr class="<%= cycle('even', 'odd') -%>">
+          <td><% if Exam.exists?(result.exam_id) %><%= Exam.find(result.exam_id).name %><% end %></td>
+          <td align="center"><%= result.settings %></td>
+          <td align="center"><%= result.questions %> / <%= Question.where(exam: Exam.find(result.exam_id).id).count %></td>
+          <td align="center"><%= result.time %></td>
+          <td align="center"><%= result.result %>%</td>
+          <td align="center"><%= result.created_at.to_s.split(' ')[0] %></td>
+          <td align="center"><%= result.created_at.to_s.split(' ')[1] %></td>
+          <td align="center"><a href="/results/<%= result.id %>"><img src="../img/icon_show.png" height="30" title="Show" /></a></td>
+          <td align="center"><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/results/<%= result.id %>"><img src="../img/icon_error.png" height="30" title="Delete" /></a></td>
+        </tr>
+      <% end %>
     <% end %>
-  <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 <% end %>

@@ -80,12 +80,16 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     if current_user && current_user.role == "admin"
-      if User.where(role: "admin") > 1
-        @user.destroy
-        respond_to do |format|
-          format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-          format.json { head :no_content }
-        end
+
+      user_results = Result.where(user_id: params[:user_id])
+      user_results.each do |result|
+        result.destroy
+      end
+
+      @user.destroy
+      respond_to do |format|
+        format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+        format.json { head :no_content }
       end
     else
       redirect_to root_url

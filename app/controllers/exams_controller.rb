@@ -1,6 +1,5 @@
 class ExamsController < ApplicationController
   before_action :set_exam, only: [:show, :edit, :update, :destroy]
-
   # GET /exams
   # GET /exams.json
   def index
@@ -15,12 +14,19 @@ class ExamsController < ApplicationController
   # GET /exams/1.json
   def show
     if current_user
+      @nav = "exams"
     @questions = Question.where(exam: @exam.id).all
-    @questions = @questions.drop(@questions.count - @exam.questions)
+    if @questions.count > 1
+      @questions = @questions.drop(@questions.count - @exam.questions)
+    end
     if @exam.shuffle_questions
       @questions = @questions.shuffle
     end
-    render :layout => 'exam'
+    if params[:generate]
+      render :layout => 'exam'
+    else
+      render :layout => 'application'
+    end
     else redirect_to root_url
     end
   end
@@ -53,7 +59,7 @@ class ExamsController < ApplicationController
 
       respond_to do |format|
         if @exam.save
-          format.html { redirect_to exams_path, notice: 'Exam was successfully created.' }
+          format.html { redirect_to @exam, notice: 'Exam was successfully created.' }
           format.json { render :show, status: :created, location: @exam }
         else
           format.html { render :new }
@@ -70,7 +76,7 @@ class ExamsController < ApplicationController
     if current_user && current_user.role == "admin"
       respond_to do |format|
         if @exam.update(exam_params)
-          format.html { redirect_to exams_path, notice: 'Exam was successfully updated.' }
+          format.html { redirect_to @exam, notice: 'Exam was successfully updated.' }
           format.json { render :show, status: :ok, location: @exam }
         else
           format.html { render :edit }

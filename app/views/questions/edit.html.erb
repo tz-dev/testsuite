@@ -2,7 +2,7 @@
 </section>
 <section id="main">
 <%= render 'form', question: @question %>
-<label>&nbsp;</label><a href="<%= questions_path %>"><button>Back</button></a>
+<label>&nbsp;</label><a href="javascript:history.back()"><button>Back</button></a>
 
 <%= tinymce_assets %>
 <%= tinymce %>
