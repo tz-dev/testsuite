@@ -46,3 +46,7 @@ img {
 	margin: 0 0 10px 15px;
 	float: left;
 }
+
+.invisible {
+	display: none;
+}

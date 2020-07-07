@@ -48,8 +48,7 @@ class PicturesController < ApplicationController
       @picture = Picture.new(picture_params)
       respond_to do |format|
         if @picture.save
-          format.html { redirect_to new_picture_path, notice: 'Picture was successfully created.' }
-          format.json { render :show, status: :created, location: @picture }
+          format.html { redirect_to new_picture_path + '?exam_id=' + picture_params[:exam], notice: 'Picture was successfully created.' }
         else
           format.html { redirect_to new_picture_path }
         end
