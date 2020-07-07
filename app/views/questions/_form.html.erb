@@ -1,4 +1,5 @@
 <%= form_with(model: question, local: true) do |form| %>
+<% @nav = "form" %>
   <% if question.errors.any? %>
     <div id="error_explanation">
       <font color="#c00">

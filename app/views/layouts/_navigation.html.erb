@@ -1,26 +1,43 @@
+  <section id="navigation">
     <nav>
-      <% if @nav == "home" %><%= link_to 'Home', '#', class: "active" %><% else %><%= link_to 'Home', root_url %><% end %>
-    <% if current_user %>
-      <% if @nav == "exams" %><%= link_to 'Exams', exams_url, class: "active" %><% else %><%= link_to 'Exams', exams_url %><% end %>
-      <% if current_user.role == "admin" %><% if @nav == "results" %><%= link_to 'Results', results_url, class: "active" %><% else %><%= link_to 'Results', results_url %><% end %><% end %>
-      <% if current_user.role == "admin" %><% if @nav == "questions" %><%= link_to 'Questions', questions_url, class: "active" %><% else %><%= link_to 'Questions', questions_url %><% end %><% end %>
-      <% if current_user.role == "admin" %><% if @nav == "pictures" %><%= link_to 'Images', pictures_url, class: "active" %><% else %><%= link_to 'Images', pictures_url %><% end %><% end %>
-      <% if current_user.role == "admin" %>
-        <% if @nav == "users" %>
-          <%= link_to 'Users', users_url, class: "active" %>
-        <% else %>
-          <%= link_to 'Users', users_url %>
+      <ul>
+        <li>
+          <% if @nav == "home" %><%= link_to 'Home', '#', class: "active" %><% else %><%= link_to 'Home', root_url %><% end %>
+        </li>
+        <% if current_user %>
+          <li><% if @nav == "exams" %><%= link_to 'Exams', exams_url, class: "active" %><% else %><%= link_to 'Exams', exams_url %><% end %>
+            <ul>
+              <li><% if current_user.role == "admin" %><% if @nav == "results" %><%= link_to 'All Results', results_url, class: "active" %><% else %><%= link_to 'All Results', results_url %><% end %><% end %></li>
+              <li><% if current_user.role == "admin" %><% if @nav == "questions" %><%= link_to 'All Questions', questions_url, class: "active" %><% else %><%= link_to 'All Questions', questions_url %><% end %><% end %></li>
+              <li><% if current_user.role == "admin" %><% if @nav == "pictures" %><%= link_to 'All Images', pictures_url, class: "active" %><% else %><%= link_to 'All Images', pictures_url %><% end %><% end %></li>
+            </ul>
+          </li>
+          <% if current_user.role == "admin" %>
+          <li>
+            <% if @nav == "users" %>
+              <%= link_to 'Users', users_url, class: "active" %>
+            <% else %>
+              <%= link_to 'Users', users_url %>
+            <% end %>
+          </li>
+          <% else %>
+          <li>
+            <% if @nav == "users" %>
+            <%= link_to 'User', user_url(current_user), class: "active" %>
+            <% else %>
+              <%= link_to 'User', user_url(current_user) %>
+            <% end %>
+          </li>
+          <% end %>
+          <% if !current_user %>
+          <li>
+              <%= link_to "Sign Up", signup_path %>
+          </li>
+          <li>
+              <%= link_to "Log In", login_path %>
+          </li>
+         <% end %>
+        </ul>
         <% end %>
-      <% else %>
-        <% if @nav == "users" %>
-          <%= link_to 'User', user_url(current_user), class: "active" %>
-        <% else %>
-          <%= link_to 'User', user_url(current_user) %>
-        <% end %>
-      <% end %>
-    <% end %>
-  	<% if !current_user %>
-  	  <%= link_to "Sign Up", signup_path %>
-  	  <%= link_to "Log In", login_path %>
-  	<% end %>
     </nav>
+  </section>

@@ -12,14 +12,14 @@ a, a img, textarea {
 }
 
 body {
-	width: 1200px;
+	width: 1202px;
 	min-height: 950px;
 	margin: 0 auto;
 }
 
 section#head {
 	position: fixed;
-	width: 80%;
+	width: 1203px;
 	background: #000;
 }
 
@@ -64,13 +64,12 @@ h1 {
 h2 {
 	font-size:1.5em;
 	border-top: 2px solid #fff;
+	margin-top: 1px;
 }
 
 nav {
     border-width:1px 0;
-    margin: 10px 0;
     padding: 0;
-    text-align: center;
 }
 
 nav a {
@@ -338,3 +337,67 @@ table#latest_results {
 .hover_underline:hover {
   text-decoration: underline !important;
 }
+
+/* NAV ****************************************** */
+
+nav ul {
+	padding: 0;
+  	margin: 0;
+	list-style: none;
+	position: relative;
+}
+	
+nav ul li {
+	display:inline-block;
+}
+
+nav a {
+	display:block;
+	padding:0 10px;	
+	color:#FFF;
+	line-height: 40px;
+	text-decoration:none;
+}
+
+section#navigation {
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+/* Hide Dropdowns by Default */
+nav ul ul {
+	display: none;
+	position: absolute; 
+	top: 41px; /* the height of the main nav */
+	text-align: center;
+	margin: 3px 0 0 -85px;
+}
+
+nav ul ul li {
+	margin-bottom: 3px;
+}
+
+/* Display Dropdowns on Hover */
+nav ul li:hover > ul {
+	display:inherit;
+}
+	
+/* First Tier Dropdown */
+nav ul ul li {
+	width:166px;
+	float:none;
+	display:list-item;
+	position: relative;
+}
+
+/* Second, Third and more Tiers	*/
+nav ul ul ul li {
+	position: relative;
+	top:-40px; 
+	left:170px;
+}
+	
+/* Change this in order to change the Dropdown symbol */
+li > a:after { content:  ' +'; }
+li > a:only-child:after { content: ''; }
