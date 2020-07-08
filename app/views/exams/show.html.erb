@@ -1,4 +1,4 @@
-<% if current_user.role == "student" || params[:generate] || params[:view] == "test" %>
+<% if current_user.role == "student" || params[:view] == "test" %>
         <h2><%= @exam.name %></h2>
         <br style="clear: both;">
         <section class="carousel" aria-label="Gallery">

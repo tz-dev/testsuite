@@ -81,7 +81,7 @@
           <td><a href="/exams/<%= exam.id %>"><img src="../img/<% if current_user.role == "admin" %>icon_show<% else %>icon_test<% end %>.png" height="25" title="<% if current_user.role == "admin" %>Show Exam<% else %>Take Exam<% end %>" /></a></td>
           <% if current_user.role == "admin" %><td><a href="/exams/<%= exam.id %>/edit"><img src="../img/icon_edit.png" height="30" title="Edit Exam Settings" /></a></td><% end %>
           <% if current_user.role == "admin" %><td><a href="/exams/<%= exam.id %>?view=test"><img src="../img/icon_test.png" height="25" title="Take Exam" /></a></td><% end %>
-          <% if current_user.role == "admin" %><td><a href="/exams/<%= exam.id %>?generate=<%= exam.id %>"><img src="../img/icon_generate.png" height="25" title="Generate File" /></a></td><% end %>
+          <% if current_user.role == "admin" %><td><a href="/exams/<%= exam.id %>?view=test&generate=<%= exam.id %>"><img src="../img/icon_generate.png" height="25" title="Generate File" /></a></td><% end %>
           <td width="30"><% if path != "" %><a href="<%= path %>"><img src="../img/icon_download.png" height="27" title="Download File" /></a><% else %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<% end %></td>
           <% if current_user.role == "admin" %><td><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/exams/<%= exam.id %>" title="Delete Exam"><img src="../img/icon_error.png" height="30" /></a></td><% end %>
         </tr>
