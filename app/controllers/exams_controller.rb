@@ -9,8 +9,14 @@ class ExamsController < ApplicationController
       if params[:sort_by] == "name"
         @exams = Exam.all.sort_by { |exam| exam.name }
       end
+      if params[:sort_by] == "name_rev"
+        @exams = Exam.all.sort_by { |exam| exam.name }.reverse!
+      end
       if params[:sort_by] == "description"
         @exams = Exam.all.sort_by { |exam| exam.description }
+      end
+      if params[:sort_by] == "description_rev"
+        @exams = Exam.all.sort_by { |exam| exam.description }.reverse!
       end
     else redirect_to root_url
     end

@@ -6,7 +6,9 @@ class UsersController < ApplicationController
   def index
     if current_user && current_user.role == "admin"
       @nav = "users"
-      @users = User.all.all.sort_by { |user| user.name }
+      if !params[:sort_by]
+        @users = User.all.sort_by { |user| user.id }
+      end
       if params[:sort_by] == "name"
         @users = User.all.sort_by { |user| user.name }
       end
@@ -15,6 +17,9 @@ class UsersController < ApplicationController
       end
       if params[:sort_by] == "role"
         @users = User.all.sort_by { |user| user.role }
+      end
+      if params[:sort_by] == "date"
+        @users = User.all.sort_by { |user| user.created_at }
       end
     else
       redirect_to root_url

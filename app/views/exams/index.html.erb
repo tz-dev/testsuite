@@ -5,8 +5,9 @@
   <table>
     <thead>
       <tr>
-        <th><a href="?sort_by=name" style="color: #fff">Name</a></th>
-        <th><a href="?sort_by=description" style="color: #fff">Description</a></th>
+        <% if params[:sort_by == "name"] %>_rev<% end %>
+        <th><a href="?sort_by=name<% if params[:sort_by] == "name" %>_rev<% end %>" style="color: #fff">Name</a></th>
+        <th><a href="?sort_by=description<% if params[:sort_by]  == "description" %>_rev<% end %>" style="color: #fff">Description</a></th>
         <th>Questions</th>
         <th>Shuffle Q.</th>
         <th>Shuffle A.</th>

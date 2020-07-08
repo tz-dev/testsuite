@@ -15,11 +15,7 @@
 <section class="f_left">
   <div class="field">
     <strong>Exam:</strong>
-    <% if params[:exam_id] %><%= Exam.find(params[:exam_id]).name.truncate(10) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <div style="display: none"><%= form.text_field :exam, id: :question_exam, value: params[:exam_id] %></div>
-    <% else %>
-    <%= select("question", "exam", Exam.all.collect {|p| [ p.name, p.id ] }, {}, :onChange=>"reloadIframe()") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <% end %>
+    <%= select("question", "exam", Exam.all.collect {|p| [ p.name, p.id ] }, {}, :onChange=>"reloadIframe()") %>
     <strong>Type:</strong>
     <select id="question_q_type" name="question[q_type]" style="margin-right: 25px">
       <option<% if question.q_type=="checkbox" %> selected<% end %>>checkbox</option>
