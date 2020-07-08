@@ -65,31 +65,34 @@ if current_user.role == "admin"
         file_navigation = ""
     end
 
-    zipfile_name = 'public/' + @exam.name.to_s + "_" + @exam.id.to_s + "_" + file_shuffle_questions + file_shuffle_answers + file_hints + file_checks + file_timer + file_navigation + ".zip"
+    if @exam.questions != nil && @exam.questions > 0
 
-    if File.exist?(zipfile_name)
-        File.delete(zipfile_name)
-    end
+        zipfile_name = 'public/' + @exam.name.to_s + "_" + @exam.id.to_s + "_" + file_shuffle_questions + file_shuffle_answers + file_hints + file_checks + file_timer + file_navigation + ".zip"
 
-    File.open(path, "w+") do |f|
-      f.write(content)
-    end
-
-    pictures = Picture.where(exam: @exam.id)
-      images = []
-    pictures.each_with_index do |picture, index|
-        images[index] = picture.image.to_s[1..-1]
-    end
-
-    input_filenames = [(@exam.name + '.html').to_s, 'exam.css','icon_check.png','icon_correct.png','icon_error.png','icon_hint_active.png','icon_hint_inactive.png','icon_incorrect.png','icon_left.png',
-    'icon_right.png','icon_show.png']
-
-    Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
-        input_filenames.each do |filename|
-            zipfile.add(filename, File.join(folder, filename))
+        if File.exist?(zipfile_name)
+            File.delete(zipfile_name)
         end
-        images.each do |filename|
-            zipfile.add(filename.split('/').last, (Rails.root.to_s + '/public/' + filename).gsub('/', "\\"))
+
+        File.open(path, "w+") do |f|
+          f.write(content)
+        end
+
+        pictures = Picture.where(exam: @exam.id)
+          images = []
+        pictures.each_with_index do |picture, index|
+            images[index] = picture.image.to_s[1..-1]
+        end
+
+        input_filenames = [(@exam.name + '.html').to_s, 'exam.css','icon_check.png','icon_correct.png','icon_error.png','icon_hint_active.png','icon_hint_inactive.png','icon_incorrect.png','icon_left.png',
+        'icon_right.png','icon_show.png']
+
+        Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
+            input_filenames.each do |filename|
+                zipfile.add(filename, File.join(folder, filename))
+            end
+            images.each do |filename|
+                zipfile.add(filename.split('/').last, (Rails.root.to_s + '/public/' + filename).gsub('/', "\\"))
+            end
         end
     end
 end

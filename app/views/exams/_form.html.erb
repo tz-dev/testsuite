@@ -22,16 +22,13 @@
     <%= form.text_area :description, id: :exam_description %>
   </div>
 
-<% if @questions != 0 %>
+<% if @questions != nil && @active_questions.count > 0 %>
   <div class="field">
     <label>Questions:</label>
-    <% if @questions != nil %>
-    <%= form.number_field :questions, in: 1..@active_questions.size, id: :exam_questions %>
-    <% else %>
-    <%= form.text_field :questions, id: :exam_questions %>
-    <% end %>
+    <%= form.number_field :questions, in: 1..@active_questions.count, id: :exam_questions %>
   </div>
 <% end %>
+
 
   <div class="actions">
     <label>&nbsp;</label>

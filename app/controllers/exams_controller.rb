@@ -25,7 +25,7 @@ class ExamsController < ApplicationController
       @all_questions    = Question.where(exam: @exam.id)
       @active_questions = @all_questions.where(active: true)
       @active_questions.each_with_index do |question, index|
-        if index < @exam.questions
+        if @exam.questions != nil && index < @exam.questions
           @questions[index] = question
         end
       end
@@ -47,14 +47,6 @@ class ExamsController < ApplicationController
     if current_user && current_user.role == "admin"
       @nav = "exams"
       @exam = Exam.new
-      @questions = []
-      @all_questions    = Question.where(exam: @exam.id)
-      @active_questions = @all_questions.where(active: true)
-      @active_questions.each_with_index do |question, index|
-        if index < @exam.questions
-          @questions[index] = question
-        end
-      end
     else 
       redirect_to root_url
     end
@@ -68,7 +60,7 @@ class ExamsController < ApplicationController
       @all_questions    = Question.where(exam: @exam.id)
       @active_questions = @all_questions.where(active: true)
       @active_questions.each_with_index do |question, index|
-        if index < @exam.questions
+        if @exam.questions != nil && index < @exam.questions
           @questions[index] = question
         end
       end

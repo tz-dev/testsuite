@@ -60,7 +60,7 @@
         @all_questions    = Question.where(exam: exam.id)
         @active_questions = @all_questions.where(active: true)
         @active_questions.each_with_index do |question, index|
-          if index < exam.questions
+          if exam.questions != nil && index < exam.questions
             @questions[index] = question
           end
         end
@@ -71,7 +71,7 @@
         <tr class="<%= cycle('even', 'odd') -%>">
           <td><%= exam.name %></td>
           <td><%= exam.description.truncate(35) %></td>
-          <td align="center"><% if Question.where(:exam => exam.id).size > 0 %><%= @questions.size %><% else %><strong><font color="red">NONE YET!</font></strong><% end %></td>
+          <td align="center"><% if Question.where(:exam => exam.id).count > 0 %><%= Question.where(:exam => exam.id).count %><% else %><strong><font color="red">NONE YET!</font></strong><% end %></td>
           <td align="center"><% if exam.shuffle_questions %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
           <td align="center"><% if exam.shuffle_answers %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
           <td align="center"><% if exam.hints %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>

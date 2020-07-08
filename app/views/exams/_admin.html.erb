@@ -12,10 +12,10 @@
       </div>
       <div class="field">
           <label>Questions:</label>
-          <% if @questions.count > 1 %>
+          <% if @questions.count > 0 || Question.where(:exam => @exam.id).count > 0 %>
               Total: <%= Question.where(:exam => @exam.id).size %> <strong>|</strong> 
-              Active: <%= @active_questions.size %> <strong>|</strong> 
-              In Exam: <%= @exam.questions %>
+              Active: <% if @active_questions.size != 0 %><%= @active_questions.size %><% else %><i>none</i><% end %> <strong>|</strong> 
+              In Exam: <% if @exam.questions.to_s != "" %><%= @exam.questions %><% else %><i>none</i><% end %>
           <% else %>
               <% if @questions.count == 0 %><i>none</i><% else %><%= @questions.count%><% end %>
           <% end %>
@@ -54,20 +54,7 @@
   </fieldset>
     <a class="center" href="<%= edit_exam_path(@exam) %>"><button>Edit Settings</button></a>
     <hr />
-  <% questions = Question.where(exam: @exam.id) %>
   <a class="center" href="<%= new_question_path %>?exam_id=<%= @exam.id %>"><button>New Question</button></a>
-  <% if @questions.count > 0 %>
-  <%
-    if params[:sort_by] == "ID"
-      questions = questions.all.sort_by { |question| question.id }
-    end
-    if params[:sort_by] == "type"
-      questions = questions.all.sort_by { |question| question.q_type }
-    end
-    if params[:sort_by] == "text"
-      questions = questions.all.sort_by { |question| question.q_text }
-    end
-  %>
   <table>
     <thead>
       <tr>
@@ -79,7 +66,7 @@
       </tr>
     </thead>
     <tbody>
-      <% questions.each do |question| %>
+      <% Question.where(:exam => @exam.id).each do |question| %>
         <tr class="<%= cycle('even', 'odd') -%>">
           <td align="center"><%= question.id %></td>
           <td align="center"><% if question.active %><img src="../img/icon_correct.png" height="25" /><% else %><img src="../img/icon_incorrect.png" height="25" /><% end %></td>
@@ -93,5 +80,4 @@
     </tbody>
   </table>
   <a class="center" href="<%= new_question_path %>?exam_id=<%= @exam.id %>"><button>New Question</button></a>
-  <% end %>
 <% end %>
