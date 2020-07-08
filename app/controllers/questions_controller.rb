@@ -12,6 +12,9 @@ class QuestionsController < ApplicationController
       if params[:sort_by] == "exam"
         @questions = Question.all.sort_by { |question| question.exam }
       end
+      if params[:sort_by] == "active"
+        @questions = Question.all.sort_by { |question| question.active }
+      end
       if params[:sort_by] == "type"
         @questions = Question.all.sort_by { |question| question.q_type }
       end
@@ -120,6 +123,6 @@ class QuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def question_params
-      params.require(:question).permit(:exam, :q_type, :q_text, :q_answer001, :q_answer001_active, :q_answer001_correct, :q_answer002, :q_answer002_active, :q_answer002_correct, :q_answer003, :q_answer003_active, :q_answer003_correct, :q_answer004, :q_answer004_active, :q_answer004_correct, :q_answer005, :q_answer005_active, :q_answer005_correct, :q_answer006, :q_answer006_active, :q_answer006_correct, :q_answer007, :q_answer007_active, :q_answer007_correct, :q_answer008, :q_answer008_active, :q_answer008_correct, :q_answer009, :q_answer009_active, :q_answer009_correct, :q_answer010, :q_answer010_active, :q_answer010_correct)
+      params.require(:question).permit(:exam, :q_type, :active, :q_text, :q_answer001, :q_answer001_active, :q_answer001_correct, :q_answer002, :q_answer002_active, :q_answer002_correct, :q_answer003, :q_answer003_active, :q_answer003_correct, :q_answer004, :q_answer004_active, :q_answer004_correct, :q_answer005, :q_answer005_active, :q_answer005_correct, :q_answer006, :q_answer006_active, :q_answer006_correct, :q_answer007, :q_answer007_active, :q_answer007_correct, :q_answer008, :q_answer008_active, :q_answer008_correct, :q_answer009, :q_answer009_active, :q_answer009_correct, :q_answer010, :q_answer010_active, :q_answer010_correct)
     end
 end

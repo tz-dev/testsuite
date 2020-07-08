@@ -14,7 +14,7 @@
         <th>Checks</th>
         <th>Timer</th>
         <th>Navigation</th>
-        <th colspan="<% if current_user.role == "admin" %>5<% else %>2<% end %>" width="1%"></th>
+        <th colspan="<% if current_user.role == "admin" %>6<% else %>2<% end %>" width="5%"></th>
       </tr>
     </thead>
 
@@ -55,21 +55,34 @@
         if File.exist?(zipfile_name)
           path = zipfile_name.gsub('public/', '')
         end
+
+        @questions = []
+        @all_questions    = Question.where(exam: exam.id)
+        @active_questions = @all_questions.where(active: true)
+        @active_questions.each_with_index do |question, index|
+          if index < exam.questions
+            @questions[index] = question
+          end
+        end
+        if exam.shuffle_questions
+          @questions = @questions.shuffle
+        end
       %>
         <tr class="<%= cycle('even', 'odd') -%>">
           <td><%= exam.name %></td>
           <td><%= exam.description.truncate(35) %></td>
-          <td align="center"><% if Question.where(:exam => exam.id).size > 0 %><%= exam.questions %> / <%= Question.where(:exam => exam.id).size %><% else %><strong><font color="red">NONE YET!</font></strong><% end %></td>
+          <td align="center"><% if Question.where(:exam => exam.id).size > 0 %><%= @questions.size %><% else %><strong><font color="red">NONE YET!</font></strong><% end %></td>
           <td align="center"><% if exam.shuffle_questions %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
           <td align="center"><% if exam.shuffle_answers %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
           <td align="center"><% if exam.hints %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
           <td align="center"><% if exam.checks %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
           <td align="center"><% if exam.timer %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
           <td align="center"><% if exam.navigation %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
-          <td><a href="/exams/<%= exam.id %>"><img src="../img/<% if current_user.role == "admin" %>icon_show<% else %>icon_test<% end %>.png" height="30" title="<% if current_user.role == "admin" %>Show<% else %>Take Test<% end %>" /></a></td>
-          <% if current_user.role == "admin" %><td><a href="/exams/<%= exam.id %>/edit"><img src="../img/icon_edit.png" height="30" title="Edit Settings" /></a></td><% end %>
-          <% if current_user.role == "admin" %><td><a href="/exams/<%= exam.id %>?generate=<%= exam.id %>"><img src="../img/icon_test.png" height="30" title="Generate File" /></a></td><% end %>
-          <td width="30"><% if path != "" %><a href="<%= path %>"><img src="../img/icon_save.png" height="30" title="Download File" /></a><% else %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<% end %></td>
+          <td><a href="/exams/<%= exam.id %>"><img src="../img/<% if current_user.role == "admin" %>icon_show<% else %>icon_test<% end %>.png" height="25" title="<% if current_user.role == "admin" %>Show Exam<% else %>Take Exam<% end %>" /></a></td>
+          <% if current_user.role == "admin" %><td><a href="/exams/<%= exam.id %>/edit"><img src="../img/icon_edit.png" height="30" title="Edit Exam Settings" /></a></td><% end %>
+          <% if current_user.role == "admin" %><td><a href="/exams/<%= exam.id %>?view=test"><img src="../img/icon_test.png" height="25" title="Take Exam" /></a></td><% end %>
+          <% if current_user.role == "admin" %><td><a href="/exams/<%= exam.id %>?generate=<%= exam.id %>"><img src="../img/icon_generate.png" height="25" title="Generate File" /></a></td><% end %>
+          <td width="30"><% if path != "" %><a href="<%= path %>"><img src="../img/icon_download.png" height="27" title="Download File" /></a><% else %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<% end %></td>
           <% if current_user.role == "admin" %><td><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/exams/<%= exam.id %>" title="Delete Exam"><img src="../img/icon_error.png" height="30" /></a></td><% end %>
         </tr>
       <% end %>

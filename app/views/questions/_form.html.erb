@@ -21,14 +21,14 @@
     <%= select("question", "exam", Exam.all.collect {|p| [ p.name, p.id ] }, {}, :onChange=>"reloadIframe()") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <% end %>
     <strong>Type:</strong>
-    <select id="question_q_type" name="question[q_type]">
+    <select id="question_q_type" name="question[q_type]" style="margin-right: 25px">
       <option<% if question.q_type=="checkbox" %> selected<% end %>>checkbox</option>
       <option<% if question.q_type=="radio" %> selected<% end %>>radio</option>
       <option<% if question.q_type=="text" %> selected<% end %>>text</option>
     </select>
+    <strong>Active:</strong><%= form.check_box :active, id: :question_active %>
   </div>
-
-  <div class="field" style="z-index: -999999999">
+  <div class="field">
     <%= form.text_area :q_text, id: :question_q_text, :class => "tinymce" %>
   </div>
 </section>

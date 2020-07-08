@@ -1,4 +1,5 @@
 <%= form_with(model: exam, local: true) do |form| %>
+<fieldset>
   <% if exam.errors.any? %>
     <div id="error_explanation">
       <font color="#c00">
@@ -25,7 +26,7 @@
   <div class="field">
     <label>Questions:</label>
     <% if @questions != nil %>
-    <%= form.number_field :questions, in: 1..@questions, id: :exam_questions %>
+    <%= form.number_field :questions, in: 1..@active_questions.size, id: :exam_questions %>
     <% else %>
     <%= form.text_field :questions, id: :exam_questions %>
     <% end %>
@@ -67,19 +68,7 @@
       </tr>
     </table>
   </div>
-<% if @exam.created_at %>
-  <div class="field">
-    <label>Created at:</label><%= @exam.created_at %>
-  </div>
-<% end %>
-<% if @exam.updated_at %>
-  <div class="field">
-    <label>Last Update:</label><%= @exam.updated_at %>
-  </div>
-<% end %>
-
-  <br style="clear: both;" />
-
+</fieldset>
   <div class="actions">
     <label>&nbsp;</label>
     <%= form.submit %>

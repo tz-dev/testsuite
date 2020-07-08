@@ -21,16 +21,24 @@ class ExamsController < ApplicationController
   def show
     if current_user
       @nav = "exams"
-      @questions = Question.where(exam: @exam.id).all
+      @questions = []
+      @all_questions    = Question.where(exam: @exam.id)
+      @active_questions = @all_questions.where(active: true)
+      @active_questions.each_with_index do |question, index|
+        if index < @exam.questions
+          @questions[index] = question
+        end
+      end
       if @exam.shuffle_questions
         @questions = @questions.shuffle
       end
-      if current_user.role != "admin"
+      if current_user.role != "admin" || params[:view] == "test"
         render :layout => 'exam'
       else
         render :layout => 'application'
       end
-    else redirect_to root_url
+    else
+      redirect_to root_url
     end
   end
 
@@ -39,8 +47,16 @@ class ExamsController < ApplicationController
     if current_user && current_user.role == "admin"
       @nav = "exams"
       @exam = Exam.new
-      @questions = Question.where(exam: @exam.id).all.count
-    else redirect_to root_url
+      @questions = []
+      @all_questions    = Question.where(exam: @exam.id)
+      @active_questions = @all_questions.where(active: true)
+      @active_questions.each_with_index do |question, index|
+        if index < @exam.questions
+          @questions[index] = question
+        end
+      end
+    else 
+      redirect_to root_url
     end
   end
 
@@ -48,8 +64,16 @@ class ExamsController < ApplicationController
   def edit
     if current_user && current_user.role == "admin"
       @nav = "exams"
-      @questions = Question.where(exam: @exam.id).all.count
-    else redirect_to root_url
+      @questions = []
+      @all_questions    = Question.where(exam: @exam.id)
+      @active_questions = @all_questions.where(active: true)
+      @active_questions.each_with_index do |question, index|
+        if index < @exam.questions
+          @questions[index] = question
+        end
+      end
+    else 
+      redirect_to root_url
     end
   end
 

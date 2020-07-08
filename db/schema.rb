@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200706154126) do
+ActiveRecord::Schema.define(version: 20200708084802) do
 
   create_table "exams", force: :cascade do |t|
     t.string "name"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20200706154126) do
     t.boolean "q_answer010_correct"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active"
   end
 
   create_table "results", force: :cascade do |t|

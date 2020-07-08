@@ -2,6 +2,7 @@
 </section>
 <% @results = Result.where(user_id: @user.id).all %>
 <section id="main">
+<fieldset>
 	<div class="field">
 	  <label>Name:</label>
 	  <%= @user.name %>
@@ -30,14 +31,15 @@
     <%= @user.updated_at %>
   </div>
 <% end %>
+</fieldset>
 
-	<label>&nbsp;</label><a href="<%= edit_user_path(@user) %>"><button>Edit</button></a>
-	<br style="clear: both;" />
+  <a class="button center" href="<%= edit_user_path(@user) %>"><button>Edit</button></a>
 
 <% if @results.where(user_id: @user.id).count > 0 %>
 
 	<hr />
 
+  <h3>Exam Results</h3>
   <table>
     <thead>
       <tr>
@@ -57,7 +59,7 @@
         <tr class="<%= cycle('even', 'odd') -%>">
           <td><% if Exam.exists?(result.exam_id) %><%= Exam.find(result.exam_id).name %><% end %></td>
           <td align="center"><%= result.settings %></td>
-          <td align="center"><%= result.questions %> / <%= Question.where(exam: Exam.find(result.exam_id).id).count %></td>
+          <td align="center"><%= result.questions %></td>
           <td align="center"><%= result.time %></td>
           <td align="center"><%= result.result %>%</td>
           <td align="center"><%= result.created_at.to_s.split(' ')[0] %></td>

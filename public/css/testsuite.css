@@ -27,7 +27,7 @@ section#head {
 section#main {
 	float: left;
 	margin: 80px 0 25px 0;
-	padding: 80px 10px 0px 10px;
+	padding: 85px 10px 0px 10px;
 	width: 98.45%;
 	background: #ddd;
 }
@@ -37,9 +37,19 @@ section.f_left, section.f_right {
 	float: left;
 }
 
+nav * {z-index: 99999}
+
+fieldset {
+	margin-top: 5px;
+	margin-bottom: 12px;
+	background: #fff;
+	padding-top: 10px;
+	border: 1px solid #000;
+}
+
 hr {
 	margin: 5px 0 15px 0;
-	width: 100%;
+	width: 99.85%;
 	float: left;
 	color: #666;
 }
@@ -55,6 +65,7 @@ h1, h2 {
 h3 {
 	text-align: center;
 	margin-top: 10px;
+	font-size: 1.4em;
 }
 
 h1 {

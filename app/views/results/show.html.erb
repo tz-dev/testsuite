@@ -1,6 +1,7 @@
 <h2>Show Result of '<%= Exam.find(@result.exam_id).name %>'</h2>
 </section>
 <section id="main">
+<table style="margin-top: 3px"><tr><td>
 <% if current_user.role == "admin" %>
 <div class="field">
   <label>User:</label>
@@ -48,6 +49,7 @@
     <% if @result.settings.include?('N') %><li>Navigation</li><% end %>
   </ul>
 </div>
+</td></tr></table>
 <% if current_user.role == "admin" %>
 <a class="center" href="<%= results_path %>"><button>Back</button></a>
 <% else %>

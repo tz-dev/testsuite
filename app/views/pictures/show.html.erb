@@ -1,35 +1,46 @@
 <h2>Show Picture</h2>
 </section>
 <section id="main">
-<div class="field">
-  <label>Image:</label>
-  <img src="<%= @picture.image %>" />
-</div>
+  <fieldset>
+  <div class="field">
+    <label>Image:</label>
+    <img src="<%= @picture.image %>" style="border: 1px solid #000" />
+  </div>
 
-<div class="field">
-  <label>Exam:</label>
-  <% if Exam.exists?(@picture.exam) %><span class="hover_underline"><%= link_to Exam.find(@picture.exam).name, Exam.find(@picture.exam) %></span><% else %><i>none</i><% end %>
-</div>
+  <div class="field">
+    <label>Name:</label>
+    <%= @picture.image.to_s.split('.').first.split('/').last %>
+  </div>
 
-<div class="field">
-  <label>Used in:</label>
-<%
-	Question.where(exam: @picture.exam).each_with_index do |question, index|
-		if question.q_text.include?(@picture.image.to_s)
-			%><span class="hover_underline"><%= link_to 'Question ' + question.id.to_s, question %></span>&nbsp;&nbsp;&nbsp;<%
-		end
-	end
-%>
-</div>
+  <div class="field">
+    <label>Type:</label>
+    <%= @picture.image.to_s.split('.').last %>
+  </div>
 
-<div class="field">
-  <label>Date:</label>
-  <%= @picture.created_at.to_s.split(' ')[0] %>
-</div>
+  <div class="field">
+    <label>Exam:</label>
+    <% if Exam.exists?(@picture.exam) %><span class="hover_underline"><%= link_to Exam.find(@picture.exam).name, Exam.find(@picture.exam) %></span><% else %><i>none</i><% end %>
+  </div>
 
-<div class="field">
-  <label>Time:</label>
-  <%= @picture.created_at.to_s.split(' ')[1] %>
-</div>
+  <div class="field">
+    <label>Used in:</label>
+  <%
+  	Question.where(exam: @picture.exam).each_with_index do |question, index|
+  		if question.q_text.include?(@picture.image.to_s)
+  			%><span class="hover_underline"><%= link_to 'Question ' + question.id.to_s, question %></span>&nbsp;&nbsp;&nbsp;<%
+  		end
+  	end
+  %>
+  </div>
 
-<label>&nbsp;</label><a href="<%= edit_picture_path(@picture) %>"><button>Edit</button></a>
+  <div class="field">
+    <label>Date:</label>
+    <%= @picture.created_at.to_s.split(' ')[0] %>
+  </div>
+
+  <div class="field">
+    <label>Time:</label>
+    <%= @picture.created_at.to_s.split(' ')[1] %>
+  </div>
+</fieldset>
+<a class="button center" href="<%= edit_picture_path(@picture) %>"><button>Edit</button></a>

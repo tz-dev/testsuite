@@ -1,0 +1,97 @@
+<% if params[:view] != "test" %>
+    <h2>Show Exam &quot;<%= @exam.name %>&quot;</h2>
+</section>
+<section id="main">
+<fieldset>
+    <section class="f_left">
+      <div class="field">
+          <label>Name:</label><%= @exam.name %>
+      </div>
+      <div class="field">
+          <label>Description:</label><%= @exam.description %>
+      </div>
+      <div class="field">
+          <label>Questions:</label>
+          <% if @questions.count > 1 %>
+              Total: <%= Question.where(:exam => @exam.id).size %> <strong>|</strong> 
+              Active: <%= @active_questions.size %> <strong>|</strong> 
+              In Exam: <%= @exam.questions %>
+          <% else %>
+              <% if @questions.count == 0 %><i>none</i><% else %><%= @questions.count%><% end %>
+          <% end %>
+      </div>
+  <% if @exam.created_at %>
+    <div class="field">
+      <label>Created at:</label><%= @exam.created_at %>
+    </div>
+  <% end %>
+  <% if @exam.updated_at %>
+    <div class="field">
+      <label>Last Update:</label><%= @exam.updated_at %>
+    </div>
+  <% end %>
+  </section>
+  <section class="f_right">
+      <div class="field">
+          <label>Shuffle Questions:</label><% if @exam.shuffle_questions %><img src="../img/icon_correct.png" height="20" /><% else %><img src="../img/icon_incorrect.png" height="20" /><% end %>
+      </div>
+      <div class="field">
+          <label>Shuffle Answers:</label><% if @exam.shuffle_answers %><img src="../img/icon_correct.png" height="20" /><% else %><img src="../img/icon_incorrect.png" height="20" /><% end %>
+      </div>
+      <div class="field">
+          <label>Hints:</label><% if @exam.hints %><img src="../img/icon_correct.png" height="20" /><% else %><img src="../img/icon_incorrect.png" height="20" /><% end %>
+      </div>
+      <div class="field">
+          <label>Checks:</label><% if @exam.checks %><img src="../img/icon_correct.png" height="20" /><% else %><img src="../img/icon_incorrect.png" height="20" /><% end %>
+      </div>
+      <div class="field">
+          <label>Timer:</label><% if @exam.timer %><img src="../img/icon_correct.png" height="20" /><% else %><img src="../img/icon_incorrect.png" height="20" /><% end %>
+      </div>
+      <div class="field">
+          <label>Navigation:</label><% if @exam.navigation %><img src="../img/icon_correct.png" height="20" /><% else %><img src="../img/icon_incorrect.png" height="20" /><% end %>
+      </div>
+    </section>
+  </fieldset>
+    <a class="center" href="<%= edit_exam_path(@exam) %>"><button>Edit Settings</button></a>
+    <hr />
+<% questions = Question.where(exam: @exam.id) %>
+<a class="center" href="<%= new_question_path %>?exam_id=<%= @exam.id %>"><button>New Question</button></a>
+<% if @questions.count > 0 %>
+<%
+  if params[:sort_by] == "ID"
+    questions = questions.all.sort_by { |question| question.id }
+  end
+  if params[:sort_by] == "type"
+    questions = questions.all.sort_by { |question| question.q_type }
+  end
+  if params[:sort_by] == "text"
+    questions = questions.all.sort_by { |question| question.q_text }
+  end
+%>
+<table>
+  <thead>
+    <tr>
+      <th><a href="?sort_by=ID"   style="color: #fff">ID</a></th>
+      <th>Active</th>
+      <th><a href="?sort_by=type" style="color: #fff">Type</a></th>
+      <th><a href="?sort_by=text" style="color: #fff">Question</a></th>
+      <th colspan="3" width="1%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% questions.each do |question| %>
+      <tr class="<%= cycle('even', 'odd') -%>">
+        <td align="center"><%= question.id %></td>
+        <td align="center"><% if question.active %><img src="../img/icon_correct.png" height="25" /><% else %><img src="../img/icon_incorrect.png" height="25" /><% end %></td>
+        <td><%= question.q_type %></td>
+        <td><%= link_to strip_tags(question.q_text).truncate(100), question %></td>
+        <td align="center"><a href="/questions/<%= question.id %>"><img src="../img/icon_show.png" height="30" title="Show" /></a></td>
+        <td align="center"><a href="/questions/<%= question.id %>/edit"><img src="../img/icon_edit.png" height="30" title="Edit" /></a></td>
+        <td align="center"><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/questions/<%= question.id %>?exam_id=<%= @exam.id %>"><img src="../img/icon_error.png" height="30" title="Delete" /></a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<a class="center" href="<%= new_question_path %>?exam_id=<%= @exam.id %>"><button>New Question</button></a>
+<% end %>
+<% end %>
