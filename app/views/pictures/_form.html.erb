@@ -12,7 +12,7 @@
 <% if @select_exam == true %>
   <div class="field">
     <label>&nbsp;</label>
-    <img src="<%= picture.image %>" />
+    <img src="<%= picture.image %>" style="border: 1px solid #000" />
   </div>
 <% end %>
 <% if @select_exam != true %>
@@ -29,8 +29,8 @@
     <%= form.file_field :image, id: :picture_image, :onchange => "toggleButton()" %><span id="upload_button" class="invisible"><%= form.submit 'Upload' %></span>
   </div>
   <% else %>
-  <div class="field" style="margin-bottom: 0px !important">
-    <label>&nbsp;</label><%= form.submit 'Update' %><br style="clear: both;" />
+  <div class="actions">
+    <a class="center"><%= form.submit %></a>
   </div>
   <% end %>
 <% end %>

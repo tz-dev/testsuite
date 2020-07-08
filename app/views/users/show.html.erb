@@ -2,36 +2,36 @@
 </section>
 <% @results = Result.where(user_id: @user.id).all %>
 <section id="main">
-<fieldset>
-	<div class="field">
-	  <label>Name:</label>
-	  <%= @user.name %>
-	</div>
-  <div class="field">
-    <label>Email:</label>
-    <%= @user.email %>
-  </div>
-<% if current_user.role == "admin" %>
-  <div class="field">
-    <label>Role:</label>
-    <%= @user.role %>
-  </div>
-<% end %>
-  <div class="field">
-    <label>Exams:</label>
-    <%= @results.where(user_id: @user.id).count %>
-  </div>
-<% if current_user.role == "admin" %>
-  <div class="field">
-    <label>Created:</label>
-    <%= @user.created_at %>
-  </div>
-  <div class="field">
-    <label>Updated:</label>
-    <%= @user.updated_at %>
-  </div>
-<% end %>
-</fieldset>
+  <fieldset>
+  	<div class="field">
+  	  <label>Name:</label>
+  	  <%= @user.name %>
+  	</div>
+    <div class="field">
+      <label>Email:</label>
+      <%= @user.email %>
+    </div>
+  <% if current_user.role == "admin" %>
+    <div class="field">
+      <label>Role:</label>
+      <%= @user.role %>
+    </div>
+  <% end %>
+    <div class="field">
+      <label>Exams:</label>
+      <%= @results.where(user_id: @user.id).count %>
+    </div>
+  <% if current_user.role == "admin" %>
+    <div class="field">
+      <label>Created:</label>
+      <%= @user.created_at %>
+    </div>
+    <div class="field">
+      <label>Updated:</label>
+      <%= @user.updated_at %>
+    </div>
+  <% end %>
+  </fieldset>
 
   <a class="button center" href="<%= edit_user_path(@user) %>"><button>Edit</button></a>
 

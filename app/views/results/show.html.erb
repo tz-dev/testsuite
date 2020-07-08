@@ -1,55 +1,55 @@
 <h2>Show Result of '<%= Exam.find(@result.exam_id).name %>'</h2>
 </section>
 <section id="main">
-<table style="margin-top: 3px"><tr><td>
-<% if current_user.role == "admin" %>
-<div class="field">
-  <label>User:</label>
-  <%= User.find(@result.user_id).name %>
-</div>
-<% end %>
-<div class="field">
-  <label>Exam:</label>
-  <% if Exam.exists?(@result.exam_id) %><%= Exam.find(@result.exam_id).name %><% end %>
-</div>
+<fieldset>
+  <% if current_user.role == "admin" %>
+  <div class="field">
+    <label>User:</label>
+    <%= User.find(@result.user_id).name %>
+  </div>
+  <% end %>
+  <div class="field">
+    <label>Exam:</label>
+    <% if Exam.exists?(@result.exam_id) %><%= Exam.find(@result.exam_id).name %><% end %>
+  </div>
 
-<div class="field">
-  <label>Result:</label>
-  <%= @result.result %>%
-</div>
+  <div class="field">
+    <label>Result:</label>
+    <%= @result.result %>%
+  </div>
 
-<div class="field">
-  <label>Questions:</label>
-  <%= @result.questions %>
-</div>
+  <div class="field">
+    <label>Questions:</label>
+    <%= @result.questions %>
+  </div>
 
-<div class="field">
-  <label>Exam Time:</label>
-  <%= @result.time %>
-</div>
+  <div class="field">
+    <label>Exam Time:</label>
+    <%= @result.time %>
+  </div>
 
-<div class="field">
-  <label>Date:</label>
-  <%= @result.created_at.to_s.split(' ')[0] %>
-</div>
+  <div class="field">
+    <label>Date:</label>
+    <%= @result.created_at.to_s.split(' ')[0] %>
+  </div>
 
-<div class="field">
-  <label>Time:</label>
-  <%= @result.created_at.to_s.split(' ')[1] %>
-</div>
+  <div class="field">
+    <label>Time:</label>
+    <%= @result.created_at.to_s.split(' ')[1] %>
+  </div>
 
-<div class="field">
-  <label>Settings:</label>
-  <ul style="margin: 0; padding:0 0 0 20px; display: block; float: left;">
-    <% if @result.settings.include?('Q') %><li>Shuffle Questions</li><% end %>
-    <% if @result.settings.include?('A') %><li>Shuffle Answers</li><% end %>
-    <% if @result.settings.include?('H') %><li>Hint Button</li><% end %>
-    <% if @result.settings.include?('C') %><li>Check Button</li><% end %>
-    <% if @result.settings.include?('T') %><li>Timer</li><% end %>
-    <% if @result.settings.include?('N') %><li>Navigation</li><% end %>
-  </ul>
-</div>
-</td></tr></table>
+  <div class="field">
+    <label>Settings:</label>
+    <ul style="margin: 0; padding:0 0 0 20px; display: block; float: left;">
+      <% if @result.settings.include?('Q') %><li>Shuffle Questions</li><% end %>
+      <% if @result.settings.include?('A') %><li>Shuffle Answers</li><% end %>
+      <% if @result.settings.include?('H') %><li>Hint Button</li><% end %>
+      <% if @result.settings.include?('C') %><li>Check Button</li><% end %>
+      <% if @result.settings.include?('T') %><li>Timer</li><% end %>
+      <% if @result.settings.include?('N') %><li>Navigation</li><% end %>
+    </ul>
+  </div>
+</fieldset>
 <% if current_user.role == "admin" %>
 <a class="center" href="<%= results_path %>"><button>Back</button></a>
 <% else %>
