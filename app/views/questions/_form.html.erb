@@ -15,7 +15,7 @@
 <section class="f_left">
   <div class="field">
     <strong>Exam:</strong>
-    <% if params[:exam_id] %><%= Exam.find(params[:exam_id]).name.truncate(10) %>
+    <% if params[:exam_id] %><%= Exam.find(params[:exam_id]).name.truncate(10) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div style="display: none"><%= form.text_field :exam, id: :question_exam, value: params[:exam_id] %></div>
     <% else %>
     <%= select("question", "exam", Exam.all.collect {|p| [ p.name, p.id ] }, {}, :onChange=>"reloadIframe()") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -26,7 +26,7 @@
       <option<% if question.q_type=="radio" %> selected<% end %>>radio</option>
       <option<% if question.q_type=="text" %> selected<% end %>>text</option>
     </select>
-    <strong>Active:</strong><%= form.check_box :active, id: :question_active %>
+    <%= form.check_box :active, id: :question_active %><label class="small" for="question_active">active</label>
   </div>
   <div class="field">
     <%= form.text_area :q_text, id: :question_q_text, :class => "tinymce" %>

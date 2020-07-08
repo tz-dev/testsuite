@@ -1,5 +1,4 @@
 <%= form_with(model: picture, local: true) do |form| %>
-<fieldset>
   <div class="field"<% if @select_exam != true %> style="display: none;"<% end %>>
     <%= form.label :exam %>
   <% if @select_exam != true %>
@@ -23,7 +22,6 @@
     <% end %>
   </div>
 <% end %>
-</fieldset>
   <% if @select_exam != true %>
   <div class="field">
     <%= form.file_field :image, id: :picture_image, :onchange => "toggleButton()" %><span id="upload_button" class="invisible"><%= form.submit 'Upload' %></span>

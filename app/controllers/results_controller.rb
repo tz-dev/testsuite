@@ -13,6 +13,9 @@ class ResultsController < ApplicationController
       if params[:sort_by] == "exam_id"
         @results = Result.all.sort_by { |result| result.exam_id }
       end
+      if params[:sort_by] == "date"
+        @results = Result.all.sort_by { |result| result.created_at }
+      end
     else
       redirect_to root_url
     end

@@ -78,7 +78,7 @@
           <td align="center"><% if exam.checks %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
           <td align="center"><% if exam.timer %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
           <td align="center"><% if exam.navigation %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
-          <td><a href="/exams/<%= exam.id %>"><img src="../img/<% if current_user.role == "admin" %>icon_show<% else %>icon_test<% end %>.png" height="25" title="<% if current_user.role == "admin" %>Show Exam<% else %>Take Exam<% end %>" /></a></td>
+          <td><a href="/exams/<%= exam.id %>"><img src="../img/<% if current_user.role == "admin" %>icon_show<% else %>icon_test<% end %>.png" height="30" title="<% if current_user.role == "admin" %>Show Exam<% else %>Take Exam<% end %>" /></a></td>
           <% if current_user.role == "admin" %><td><a href="/exams/<%= exam.id %>/edit"><img src="../img/icon_edit.png" height="30" title="Edit Exam Settings" /></a></td><% end %>
           <% if current_user.role == "admin" %><td><a href="/exams/<%= exam.id %>?view=test"><img src="../img/icon_test.png" height="25" title="Take Exam" /></a></td><% end %>
           <% if current_user.role == "admin" %><td><a href="/exams/<%= exam.id %>?view=test&generate=<%= exam.id %>"><img src="../img/icon_generate.png" height="25" title="Generate File" /></a></td><% end %>

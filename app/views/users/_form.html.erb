@@ -42,7 +42,7 @@
   </div>
 <% end %>
 </fieldset>
-  <div class="actions">
+  <div class="actions"<% if !current_user %>style="margin-bottom: 10px !important"<% end %>>
     <a class="center"><%= form.submit %></a>
   </div>
 <% end %>
