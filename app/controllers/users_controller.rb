@@ -7,6 +7,15 @@ class UsersController < ApplicationController
     if current_user && current_user.role == "admin"
       @nav = "users"
       @users = User.all.all.sort_by { |user| user.name }
+      if params[:sort_by] == "name"
+        @users = User.all.sort_by { |user| user.name }
+      end
+      if params[:sort_by] == "email"
+        @users = User.all.sort_by { |user| user.email }
+      end
+      if params[:sort_by] == "role"
+        @users = User.all.sort_by { |user| user.role }
+      end
     else
       redirect_to root_url
     end

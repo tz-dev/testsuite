@@ -433,12 +433,26 @@
 <% questions = Question.where(exam: @exam.id).all %>
 <a class="center" href="<%= new_question_path %>?exam_id=<%= @exam.id %>"><button>New Question</button></a>
 <% if @questions.count > 0 %>
+<%
+  if params[:sort_by] == "ID"
+    questions = questions.all.sort_by { |question| question.id }
+  end
+  if params[:sort_by] == "type"
+    questions = questions.all.sort_by { |question| question.q_type }
+  end
+  if params[:sort_by] == "text"
+    questions = questions.all.sort_by { |question| question.q_text }
+  end
+  if questions.count > 1
+    questions = questions.drop(questions.count - @exam.questions)
+  end
+%>
 <table>
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Type</th>
-      <th>Question</th>
+      <th><a href="?sort_by=ID"   style="color: #fff">ID</a></th>
+      <th><a href="?sort_by=type" style="color: #fff">Type</a></th>
+      <th><a href="?sort_by=text" style="color: #fff">Question</a></th>
       <th colspan="3" width="1%"></th>
     </tr>
   </thead>

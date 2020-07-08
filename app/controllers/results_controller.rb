@@ -7,6 +7,12 @@ class ResultsController < ApplicationController
     if current_user && current_user.role == "admin"
         @nav = "results"
     @results = Result.all
+      if params[:sort_by] == "user_id"
+        @results = Result.all.sort_by { |result| result.user_id }
+      end
+      if params[:sort_by] == "exam_id"
+        @results = Result.all.sort_by { |result| result.exam_id }
+      end
     else
       redirect_to root_url
     end

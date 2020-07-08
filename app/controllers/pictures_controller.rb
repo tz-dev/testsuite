@@ -6,7 +6,13 @@ class PicturesController < ApplicationController
   def index
     if current_user && current_user.role == "admin"
       @nav = "pictures"
-      @pictures = Picture.all.sort_by { |picture| picture.exam }
+      @pictures = Picture.all
+      if params[:sort_by] == "image"
+        @pictures = Picture.all.sort_by { |picture| picture.image }
+      end
+      if params[:sort_by] == "exam"
+        @pictures = Picture.all.sort_by { |picture| picture.exam }
+      end
     else
       redirect_to root_url
     end

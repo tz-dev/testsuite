@@ -5,8 +5,8 @@
   <table>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Description</th>
+        <th><a href="?sort_by=name" style="color: #fff">Name</a></th>
+        <th><a href="?sort_by=description" style="color: #fff">Description</a></th>
         <th>Questions</th>
         <th>Shuffle Q.</th>
         <th>Shuffle A.</th>
@@ -68,7 +68,7 @@
           <td align="center"><% if exam.navigation %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
           <td><a href="/exams/<%= exam.id %>"><img src="../img/<% if current_user.role == "admin" %>icon_show<% else %>icon_test<% end %>.png" height="30" title="<% if current_user.role == "admin" %>Show<% else %>Take Test<% end %>" /></a></td>
           <% if current_user.role == "admin" %><td><a href="/exams/<%= exam.id %>/edit"><img src="../img/icon_edit.png" height="30" title="Edit Settings" /></a></td><% end %>
-          <td><a href="/exams/<%= exam.id %>?generate=<%= exam.id %>"><img src="../img/icon_test.png" height="30" title="Generate File" /></a></td>
+          <% if current_user.role == "admin" %><td><a href="/exams/<%= exam.id %>?generate=<%= exam.id %>"><img src="../img/icon_test.png" height="30" title="Generate File" /></a></td><% end %>
           <td width="30"><% if path != "" %><a href="<%= path %>"><img src="../img/icon_save.png" height="30" title="Download File" /></a><% else %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<% end %></td>
           <% if current_user.role == "admin" %><td><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/exams/<%= exam.id %>" title="Delete Exam"><img src="../img/icon_error.png" height="30" /></a></td><% end %>
         </tr>

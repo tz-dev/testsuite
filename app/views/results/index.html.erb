@@ -4,8 +4,8 @@
 <table>
   <thead>
     <tr>
-      <th width="200">User</th>
-      <th width="200">Exam</th>
+      <th width="200"><a href="?sort_by=user" style="color: #fff">User</a></th>
+      <th width="200"><a href="?sort_by=description" style="color: #fff">Exam</a></th>
       <th>Settings</th>
       <th>Questions</th>
       <th>Exam Time</th>
@@ -15,12 +15,11 @@
       <th colspan="2" width="1%"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @results.each do |result| %>
       <tr class="<%= cycle('even', 'odd') -%>">
         <td><%= link_to User.find(result.user_id).name, User.find(result.user_id) %></td>
-        <td><% if Exam.exists?(result.exam_id) %><%= link_to Exam.find(result.exam_id).name, edit_exam_path(Exam.find(result.exam_id)) %><% end %></td>
+        <td><% if Exam.exists?(result.exam_id) %><%= link_to Exam.find(result.exam_id).name, Exam.find(result.exam_id) %><% end %></td>
         <td align="center"><%= result.settings %></td>
         <td align="center"><%= result.questions %></td>
         <td align="center"><%= result.time %></td>

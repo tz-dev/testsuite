@@ -6,6 +6,18 @@ class QuestionsController < ApplicationController
   def index
     if current_user && current_user.role == "admin"
       @questions = Question.all.sort_by { |question| question.exam }
+      if params[:sort_by] == "ID"
+        @questions = Question.all.sort_by { |question| question.id }
+      end
+      if params[:sort_by] == "exam"
+        @questions = Question.all.sort_by { |question| question.exam }
+      end
+      if params[:sort_by] == "type"
+        @questions = Question.all.sort_by { |question| question.q_type }
+      end
+      if params[:sort_by] == "text"
+        @questions = Question.all.sort_by { |question| question.q_text }
+      end
       @nav = "questions"
     else
       redirect_to root_url

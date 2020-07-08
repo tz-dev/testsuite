@@ -6,6 +6,12 @@ class ExamsController < ApplicationController
     if current_user
       @nav = "exams"
       @exams = Exam.all.sort_by { |exam| exam.name }
+      if params[:sort_by] == "name"
+        @exams = Exam.all.sort_by { |exam| exam.name }
+      end
+      if params[:sort_by] == "description"
+        @exams = Exam.all.sort_by { |exam| exam.description }
+      end
     else redirect_to root_url
     end
   end
@@ -15,18 +21,15 @@ class ExamsController < ApplicationController
   def show
     if current_user
       @nav = "exams"
-    @questions = Question.where(exam: @exam.id).all
-    if @questions.count > 1
-      @questions = @questions.drop(@questions.count - @exam.questions)
-    end
-    if @exam.shuffle_questions
-      @questions = @questions.shuffle
-    end
-    if params[:generate]
-      render :layout => 'exam'
-    else
-      render :layout => 'application'
-    end
+      @questions = Question.where(exam: @exam.id).all
+      if @exam.shuffle_questions
+        @questions = @questions.shuffle
+      end
+      if current_user.role != "admin"
+        render :layout => 'exam'
+      else
+        render :layout => 'application'
+      end
     else redirect_to root_url
     end
   end
