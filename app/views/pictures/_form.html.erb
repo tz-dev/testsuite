@@ -17,8 +17,9 @@
 <% if @select_exam != true %>
   <div class="field images">
     <% exam_id = params[:exam_id] %>
-    <% Picture.where(exam: exam_id).each do |picture| %>
-    <img src="<%= picture.image %>" alt="<%= picture.image.to_s.split('/').last %>" title="<%= picture.image.to_s.split('/').last %>" width="200" />
+    <% Picture.where(exam: exam_id).each_with_index do |picture,index| %>
+    <img src="<%= picture.image %>" alt="<%= picture.image.to_s.split('/').last %>" title="<%= picture.image.to_s.split('/').last %>" width="325" />
+    <% if index > 1 %><br style="clear: both;" /><% index = 0 %><% end %>
     <% end %>
   </div>
 <% end %>

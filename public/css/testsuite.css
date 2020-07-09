@@ -441,7 +441,7 @@ nav ul ul ul li {
  	line-height: 1.4em;
  }
 
-h1, h2, nav a, footer, th, button, label, input[type="submit"]  {
+h1, h2, nav a, footer, th, button, label, input[type="submit"], strong.caps {
 	font-variant: small-caps;
 }
 button, a.button, input[type="submit"] {

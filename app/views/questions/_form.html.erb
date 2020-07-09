@@ -14,13 +14,13 @@
 
 <section class="f_left">
   <div class="field">
-    <strong>Exam:</strong>
+    <strong class="caps">Exam:</strong>
     <%= select("question", "exam", Exam.all.collect {|p| [ p.name, p.id ] }, {}, :onChange=>"reloadIframe()") %>
-    <strong>Type:</strong>
+    <strong class="caps">Type:</strong>
     <select id="question_q_type" name="question[q_type]" style="margin-right: 25px">
-      <option<% if question.q_type=="checkbox" %> selected<% end %>>checkbox</option>
-      <option<% if question.q_type=="radio" %> selected<% end %>>radio</option>
-      <option<% if question.q_type=="text" %> selected<% end %>>text</option>
+      <option<% if question.q_type=="checkbox" %> selected<% end %>>Checkbox</option>
+      <option<% if question.q_type=="radio" %> selected<% end %>>Radio</option>
+      <option<% if question.q_type=="text" %> selected<% end %>>Text</option>
     </select>
     <%= form.check_box :active, id: :question_active %><label class="small" for="question_active">active</label>
   </div>
