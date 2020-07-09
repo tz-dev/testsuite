@@ -65,7 +65,17 @@ h1, h2 {
 h3 {
 	text-align: center;
 	margin-top: 10px;
+	margin-bottom: 15px;
 	font-size: 1.4em;
+}
+
+p {
+	padding: 0 10px;
+}
+
+ul li label span {
+	font-family: verdana;
+	font-variant: normal;
 }
 
 h1 {
