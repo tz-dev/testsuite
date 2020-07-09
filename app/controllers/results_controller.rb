@@ -34,11 +34,7 @@ class ResultsController < ApplicationController
   # GET /results/1.json
   def show
     if current_user.role == "admin" || current_user.id == @result.user_id
-      if current_user.role == "admin"
         @nav = "results"
-      else
-        @nav = "users"
-      end
     else
       redirect_to root_url
     end

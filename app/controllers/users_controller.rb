@@ -43,6 +43,9 @@ class UsersController < ApplicationController
   def show
     if current_user && (current_user.id == @user.id || current_user.role == "admin")
       @nav = "users"
+      if current_user.role == "student"
+        @nav = "user"
+      end
     else
       redirect_to root_url
     end
@@ -53,7 +56,7 @@ class UsersController < ApplicationController
   def new
     if current_user == nil || current_user.role == "admin"
       @user = User.new
-      @nav = "users"
+      @nav = "sign up"
     else
       redirect_to root_url
     end
