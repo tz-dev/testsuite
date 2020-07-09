@@ -21,6 +21,18 @@ class UsersController < ApplicationController
       if params[:sort_by] == "date"
         @users = User.all.sort_by { |user| user.created_at }
       end
+      if params[:sort_by] == "name_rev"
+        @users = User.all.sort_by { |user| user.name }.reverse!
+      end
+      if params[:sort_by] == "email_rev"
+        @users = User.all.sort_by { |user| user.email }.reverse!
+      end
+      if params[:sort_by] == "role_rev"
+        @users = User.all.sort_by { |user| user.role }.reverse!
+      end
+      if params[:sort_by] == "date_rev"
+        @users = User.all.sort_by { |user| user.created_at }.reverse!
+      end
     else
       redirect_to root_url
     end

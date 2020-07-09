@@ -16,6 +16,15 @@ class ResultsController < ApplicationController
       if params[:sort_by] == "date"
         @results = Result.all.sort_by { |result| result.created_at }
       end
+      if params[:sort_by] == "user_id"
+        @results = Result.all.sort_by { |result| result.user_id }.reverse!
+      end
+      if params[:sort_by] == "exam_id"
+        @results = Result.all.sort_by { |result| result.exam_id }.reverse!
+      end
+      if params[:sort_by] == "date"
+        @results = Result.all.sort_by { |result| result.created_at }.reverse!
+      end
     else
       redirect_to root_url
     end

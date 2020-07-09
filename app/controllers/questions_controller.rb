@@ -21,6 +21,21 @@ class QuestionsController < ApplicationController
       if params[:sort_by] == "text"
         @questions = Question.all.sort_by { |question| question.q_text }
       end
+      if params[:sort_by] == "ID_rev"
+        @questions = Question.all.sort_by { |question| question.id }.reverse!
+      end
+      if params[:sort_by] == "exam_rev"
+        @questions = Question.all.sort_by { |question| question.exam }.reverse!
+      end
+      if params[:sort_by] == "active_rev"
+        @questions = Question.all.sort_by { |question| question.active }.reverse!
+      end
+      if params[:sort_by] == "type_rev"
+        @questions = Question.all.sort_by { |question| question.q_type }.reverse!
+      end
+      if params[:sort_by] == "text_rev"
+        @questions = Question.all.sort_by { |question| question.q_text }.reverse!
+      end
       @nav = "questions"
     else
       redirect_to root_url
