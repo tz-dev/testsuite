@@ -95,7 +95,7 @@ class ResultsController < ApplicationController
   # DELETE /results/1
   # DELETE /results/1.json
   def destroy
-    if current_user && current_user.role == "admin"
+    if (current_user && current_user.id == @result.user_id) || current_user && current_user.role == "admin"
       @result.destroy
       respond_to do |format|
         format.html { redirect_to results_url, notice: 'Result was successfully destroyed.' }
