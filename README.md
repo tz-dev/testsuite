@@ -1,5 +1,4 @@
 # README
-
 This has been created after finding that there is no easy-to-use tool for creating simple tests.
 
 With TestSuite, exams including their questions and results can be created, configured and eventually stored in a database.
