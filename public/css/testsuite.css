@@ -447,3 +447,16 @@ h1, h2, nav a, footer, th, button, label, input[type="submit"], strong.caps {
 button, a.button, input[type="submit"] {
 	font-weight: bold;
 }
+
+span#cpr {
+	float: left;
+}
+
+span#cpr_year {
+	font-size: 0.8em;
+	font-weight: bold;
+}
+
+.invisible {
+	display: none;
+}
