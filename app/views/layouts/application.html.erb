@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Testsuite</title>
+    <title>TestSuite</title>
     <%= csrf_meta_tags %>
     <link rel="stylesheet" href="/css/testsuite.css" />
     <%# stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,7 +9,7 @@
   </head>
   <body<% if @nav == "form" %> style="width: 1550px"<% end %>>
     <section id="head"<% if @nav == "form" %> style="width: 1550px"<% end %>>
-    <h1>Testsuite</h1>
+    <h1>TestSuite</h1>
     <%= render 'layouts/navigation' %>
     <br style="clear: both;" />
     <%= yield %>

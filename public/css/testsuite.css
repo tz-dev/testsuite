@@ -126,6 +126,17 @@ label {
 	text-align: right;
 	margin-right: 10px;
 	font-weight: bold;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+h1, h2, th, .field strong, footer {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 input, textarea, select {
@@ -418,4 +429,21 @@ nav ul ul ul li {
 	margin: 5px auto;
 	padding-top: 7px;
 	padding-bottom: 7px;
+}
+
+ ul.features {
+ 	list-style-type: square;
+ 	line-height: 1.4em;
+ }
+
+ ul.features ul {
+ 	list-style-type: disc;
+ 	line-height: 1.4em;
+ }
+
+h1, h2, nav a, footer, th, button, label, input[type="submit"]  {
+	font-variant: small-caps;
+}
+button, a.button, input[type="submit"] {
+	font-weight: bold;
 }

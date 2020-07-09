@@ -7,18 +7,6 @@ class PicturesController < ApplicationController
     if current_user && current_user.role == "admin"
       @nav = "pictures"
       @pictures = Picture.all
-      if params[:sort_by] == "image"
-        @pictures = Picture.all.sort_by { |picture| picture.image.to_s }
-      end
-      if params[:sort_by] == "exam"
-        @pictures = Picture.all.sort_by { |picture| picture.exam }
-      end
-      if params[:sort_by] == "image_rev"
-        @pictures = Picture.all.sort_by { |picture| picture.image.to_s }.reverse!
-      end
-      if params[:sort_by] == "exam_rev"
-        @pictures = Picture.all.sort_by { |picture| picture.exam }.reverse!
-      end
     else
       redirect_to root_url
     end
