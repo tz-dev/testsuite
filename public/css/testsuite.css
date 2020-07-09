@@ -431,9 +431,16 @@ nav ul ul ul li {
 	padding-bottom: 7px;
 }
 
+p.feature_header {
+	border-bottom: 1px solid #000;
+	width: 60%;
+ 	margin-left: 35px;
+}
+
  ul.features {
  	list-style-type: square;
  	line-height: 1.4em;
+ 	margin-left: 35px;
  }
 
  ul.features ul {
