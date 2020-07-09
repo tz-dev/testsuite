@@ -179,6 +179,12 @@ div.tox-editor-container {
 	min-width: 738px !important;
 }
 
+div.image {
+	max-width: 900px;
+	max-height: 900px;
+	overflow: hidden;
+}
+
 textarea {
 	min-width: 525px;
 	min-height: 220px;
