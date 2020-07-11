@@ -50,4 +50,8 @@
     </ul>
   </div>
 </fieldset>
-<a class="center" href="javascript:history.back()"><button>Back</button></a>
+<% if current_user.role == "admin" %>
+<a class="center" href="<%= results_path %>"><button>Back</button></a>
+<% else %>
+<a class="center" href="<%= user_path(current_user) %>"><button>Back</button></a>
+<% end %>

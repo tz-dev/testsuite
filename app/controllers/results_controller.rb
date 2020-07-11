@@ -10,19 +10,19 @@ class ResultsController < ApplicationController
       if params[:sort_by] == "user_id"
         @results = Result.all.sort_by { |result| result.user_id }
       end
-      if params[:sort_by] == "user_id_rev"
-        @results = Result.all.sort_by { |result| result.user_id }.reverse!
-      end
       if params[:sort_by] == "exam_id"
         @results = Result.all.sort_by { |result| result.exam_id }
-      end
-      if params[:sort_by] == "exam_id_rev"
-        @results = Result.all.sort_by { |result| result.exam_id }.reverse!
       end
       if params[:sort_by] == "date"
         @results = Result.all.sort_by { |result| result.created_at }
       end
-      if params[:sort_by] == "date_rev"
+      if params[:sort_by] == "user_id"
+        @results = Result.all.sort_by { |result| result.user_id }.reverse!
+      end
+      if params[:sort_by] == "exam_id"
+        @results = Result.all.sort_by { |result| result.exam_id }.reverse!
+      end
+      if params[:sort_by] == "date"
         @results = Result.all.sort_by { |result| result.created_at }.reverse!
       end
     else
@@ -34,7 +34,11 @@ class ResultsController < ApplicationController
   # GET /results/1.json
   def show
     if current_user.role == "admin" || current_user.id == @result.user_id
+      if current_user.role == "admin"
         @nav = "results"
+      else
+        @nav = "users"
+      end
     else
       redirect_to root_url
     end

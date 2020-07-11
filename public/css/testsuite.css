@@ -65,17 +65,7 @@ h1, h2 {
 h3 {
 	text-align: center;
 	margin-top: 10px;
-	margin-bottom: 15px;
 	font-size: 1.4em;
-}
-
-p {
-	padding: 0 10px;
-}
-
-ul li label span {
-	font-family: verdana;
-	font-variant: normal;
 }
 
 h1 {
@@ -177,12 +167,6 @@ input[type="password"] {
 
 div.tox-editor-container {
 	min-width: 738px !important;
-}
-
-div.image {
-	max-width: 900px;
-	max-height: 900px;
-	overflow: hidden;
 }
 
 textarea {
@@ -447,16 +431,9 @@ nav ul ul ul li {
 	padding-bottom: 7px;
 }
 
-p.feature_header {
-	border-bottom: 1px solid #000;
-	width: 60%;
- 	margin-left: 35px;
-}
-
  ul.features {
  	list-style-type: square;
  	line-height: 1.4em;
- 	margin-left: 35px;
  }
 
  ul.features ul {

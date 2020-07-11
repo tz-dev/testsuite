@@ -59,7 +59,7 @@
     <thead>
       <tr>
         <th><a href="?sort_by=ID<% if params[:sort_by] == "ID" %>_rev<% end %>" style="color: #fff">ID</a></th>
-        <th>active</th>
+        <th><a href="?sort_by=active<% if params[:sort_by] == "active" %>_rev<% end %>" style="color: #fff">active</a></th>
         <th><a href="?sort_by=type<% if params[:sort_by] == "type" %>_rev<% end %>" style="color: #fff">Type</a></th>
         <th><a href="?sort_by=text<% if params[:sort_by] == "text" %>_rev<% end %>" style="color: #fff">Question</a></th>
         <th colspan="3" width="1%"></th>
@@ -73,6 +73,12 @@
       end
       if params[:sort_by] == "ID_rev"
         questions = questions.sort_by { |question| question.id }.reverse!
+      end
+      if params[:sort_by] == "active"
+        questions = questions.sort_by { |question| question.active }
+      end
+      if params[:sort_by] == "active_rev"
+        questions = questions.sort_by { |question| question.active }.reverse!
       end
       if params[:sort_by] == "type"
         questions = questions.sort_by { |question| question.q_type }

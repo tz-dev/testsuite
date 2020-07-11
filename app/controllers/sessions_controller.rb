@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   def new
-    @nav = "log in"
   end
 
   def create

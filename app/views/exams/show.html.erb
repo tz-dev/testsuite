@@ -242,7 +242,7 @@
                                         <strong>#<%= index + 1 %></strong>
                                     </td>
                                     <td align="left">
-                                        <a onclick="document.getElementsByClassName('carousel__navigation')[0].classList.toggle('invisible'); toggleActive('navbutton_<%= index + 1%>')" href="#carousel__slide<%= index + 1 %>"><%= strip_tags(question.q_text.html_safe.truncate(70)) %></a>
+                                        <a onclick="document.getElementsByClassName('carousel__navigation')[0].classList.toggle('invisible');" href="#carousel__slide<%= index + 1 %>"><%= strip_tags(question.q_text.html_safe.truncate(70)) %></a>
                                     </td>
                                     <td class="result<%= index + 1 %>" align="center"></td>
                                 </tr>
