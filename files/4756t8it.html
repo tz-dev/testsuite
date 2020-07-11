@@ -1,0 +1,239 @@
+<!DOCTYPE html><html lang="en"><head><title>Testsuite - 4756t8it</title><link rel="stylesheet" href="exam.css" /></head><body><section id="wrapper">        <h2>4756t8it</h2>
+        <br style="clear: both;">
+        <section class="carousel" aria-label="Gallery">
+            <ol class="carousel__viewport">
+                <li id="carousel__slide0" tabindex="0" class="carousel__slide">
+                    <div class="carousel__snapper">
+                        <section class="question">
+                            <h3 class="h3">czghkigcguo</h3>
+                            <table align="center" id="overview">
+                                <tr>
+                                    <td><strong>Questions</strong></td><td align="center"><strong>1 / 1</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Shuffle Questions</strong></td><td align="center"><img src="icon_correct.png" height="30" /></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Shuffle Answers</strong></td><td align="center"><img src="icon_correct.png" height="30" /></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Hints</strong></td><td align="center"><img src="icon_correct.png" height="30" /></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Checks</strong></td><td align="center"><img src="icon_correct.png" height="30" /></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Timer</strong></td><td align="center"><img src="icon_correct.png" height="30" /></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Navigation</strong></td><td align="center"><img src="icon_correct.png" height="30" /></td>
+                                </tr>
+                            </table>
+                            <br style="clear: both;" />
+                            <a id="toggle" class="center pushdown margindown begin" href="#carousel__slide1">Begin Exam</a>
+                            <br style="clear: both;" />
+                            <br style="clear: both;" />
+                        </section>
+                    </div>
+                </li>
+                <li id="carousel__slide1" tabindex="0" class="carousel__slide">
+                    <div class="carousel__snapper">
+                        
+                        
+                        <br style="clear: both;" />
+						<section class="question">
+                            <form>
+                                <fieldset>
+                                    <legend>Question 1 / 1</legend>
+                                    <span class="q_text">
+                                    	<p>23235346</p>
+                                    </span> 
+                                    <ul class="options">
+                                        <li>
+                                            <input type="Text" id="001" name="question1" />
+                                        </li>
+                                    </ul>
+                                </fieldset>
+                                <a href="#" class="button" onclick="checkQuestion1()"><img style="float:left;" height="30" src="icon_check.png" title="check" /><span class="buttontext">CHECK</span></a>
+                                <span id="Q1_info"></span>
+                                <a href="#" class="button right pushright" id="hintbutton_1" onclick="hintQuestion1()"><span class="buttontext">HINT</span><img id="hint_icon1" style="float:right;" height="30" src="icon_hint_inactive.png" title="hint" /></a>
+                                <a id="finish_button" class="center pushdown margindown finish" onclick="stopTimer();finish_exam();" href="#carousel__slide1000">FINISH</a>
+                                    <br style="clear: both;" />
+                            </form>
+                            <script>
+                             function checkQuestion1() {
+                             	if (document.getElementsByName("question1")[0].value == "345346"){
+	                                    Q1_info.innerHTML = '<img style="float:left;" height="30" src="icon_correct.png" /><span class="buttontext">CORRECT!</span>';
+	                                    Q1_info.className = "correct";
+                                        Q1_result = "correct"
+                                  } else {
+	                                    Q1_info.innerHTML = '<img style="float:left;" height="30" src="icon_incorrect.png" /><span class="buttontext">FALSE!</span>';
+	                                    Q1_info.className = "false";
+                                        Q1_result = "false"
+                                  }
+                             }
+                             function hintQuestion1() {
+                             	document.getElementsByName("question1")[0].value = "345346"
+                             }
+                            </script>
+                        </section>
+                    </div>
+                </li>
+                <li id="carousel__slide1000" tabindex="0" class="carousel__slide">
+                    <div class="carousel__snapper">
+                        <section class="question">
+                            <h3 class="h3">Result: <span id="percent">0</span>% in <span id="resulttime"></span></h3>
+                            <table align="center">
+                                <tr>
+                                    <th align="center">#</th>
+                                    <th align="center">Question</th>
+                                    <th>Result</th>
+                                </tr>
+                                <tr class="even" valign="center">
+                                    <td align="center">
+                                        <strong>#1</strong>
+                                    </td>
+                                    <td align="left">
+                                        <a onclick="document.getElementsByClassName('carousel__navigation')[0].classList.toggle('invisible');toggleActive('navbutton_1')" href="#carousel__slide1">23235346</a>
+                                    </td>
+                                    <td class="result1" align="center"></td>
+                                </tr>
+                            </table><br />
+                            
+                        </section>
+                    </div>
+                </li>
+            </ol>
+            <aside class="carousel__navigation invisible">
+                <div id="q_nav">
+                    <ol class="carousel__navigation-list">
+                        <li class="carousel__navigation-item">
+                            <a onclick="toggleActive('navbutton_1')" id="navbutton_1" class="nav_button active" href="#carousel__slide1">Q1</a>
+                        </li>
+                    </ol>
+                </div>
+                <div id="time_container" class="invisible">
+                <fieldset>
+                    <legend>Timer</legend>
+                    <h5><time>00:00:00</time></h5>
+                </fieldset>
+                </div>
+                <a class="button" id="showresults" href="#carousel__slide1000" onclick="finish_exam();stopTimer()">RESULTS</a>
+            </aside>
+        </section>
+        <script>
+            function toggleActive(toggle_id) {
+                var nav_buttons = document.getElementsByClassName("nav_button");
+                for (var i = 0; i < nav_buttons.length; i++) {
+                    nav_buttons[i].classList.remove("active");
+                }
+                var toggle_active = document.getElementById(toggle_id);
+                toggle_active.classList.toggle("active");
+            }
+        </script>
+        <script>
+            if (document.fullscreenEnabled) {
+                var btn = document.getElementById("toggle");
+                var nav = document.getElementsByClassName("invisible")[0];
+                btn.addEventListener("click", function (event) {
+                    nav.classList.toggle("invisible");
+                    if (!document.fullscreenElement) {
+                        document.documentElement.requestFullscreen();
+                    } else {
+                        document.exitFullscreen();
+                    }
+                }, false);
+                document.addEventListener("fullscreenchange", function (event) {
+                    console.log(event);
+                });
+                document.addEventListener("fullscreenerror", function (event) {
+                    console.log(event);
+                });
+            }
+
+            finished = "false";
+
+            function finish_exam() {
+                correct = 0;
+                incorrect = 0;
+                percent = 0;
+                icon_correct = '<img src="icon_correct.png" height="30" />';
+                icon_incorrect = '<img src="icon_incorrect.png" height="30" />';
+                icon = '';
+
+                checkQuestion1();
+                hintQuestion1();
+
+                var cell1 = document.getElementsByClassName("result1")[0];
+
+                if (Q1_result == "correct") {correct+=1; icon = icon_correct}
+                if (Q1_result == "false") {incorrect+=1; icon = icon_incorrect}
+
+                if (finished == "false") {
+                    cell1.innerHTML = icon;
+                }
+
+                if (finished == "false") {
+                    percent = ((correct / (correct + incorrect)) * 100).toFixed(2);
+                    finished = "true";
+                }
+
+                if (finished == "true" && percent != 0) {
+                    var result = document.getElementById("percent");
+                    result.innerHTML = percent;
+                }
+
+                var nav = document.getElementsByClassName("carousel__navigation")[0];
+                nav.classList.toggle("invisible");
+                document.getElementById("finish_button").classList.add("invisible");
+                var user_id = 1;
+                var exam_id = 2;
+                var exam_settings = 'QAHCTN';
+                var exam_questions = 1;
+                var exam_result = percent;
+                var result_path = '/results/new' + '?user_id=' + user_id + '&exam_id=' + exam_id + '&exam_settings=' + exam_settings + '&exam_questions=' + exam_questions + '&exam_result=' + exam_result + '&exam_time=' + exam_time;
+                
+            }
+        </script>
+        <script>
+            var h5 = document.getElementsByTagName('h5')[0],
+                stop = document.getElementById('stop'),
+                clear = document.getElementById('toggle'),
+                seconds = 0, minutes = 0, hours = 0,
+                t;
+            function add() {
+                seconds++;
+                if (seconds >= 60) {
+                    seconds = 0;
+                    minutes++;
+                    if (minutes >= 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                }
+                h5.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+                exam_time = h5.textContent;
+                timer();
+            }
+            function timer() {
+                t = setTimeout(add, 1000);
+            }
+            timer();
+            /* Start button */
+            /* Stop button */
+            function stopTimer() {
+                clearTimeout(t);
+                resulttime = document.getElementById('resulttime');
+                resulttime.innerHTML = h5.textContent;
+            }
+            /* Clear button */
+            clear.onclick = function() {
+                time_container = document.getElementById('time_container');
+                q_nav = document.getElementById('q_nav');
+                time_container.classList.remove("invisible");
+                q_nav.classList.remove("invisible");
+                h5.textContent = "00:00:00";
+                seconds = 0; minutes = 0; hours = 0;
+            }
+        </script>
+</section><script>document.addEventListener("contextmenu", event => event.preventDefault());window.addEventListener("keydown", function(e) {if([9, 17, 18, 27, 33, 34, 35, 36, 37, 38, 39, 40, 46, 91, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123].indexOf(e.keyCode) > -1) {e.preventDefault();}}, false);</script></body></html>

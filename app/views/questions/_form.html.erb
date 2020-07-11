@@ -15,7 +15,7 @@
 <section class="f_left">
   <div class="field">
     <strong class="caps">Exam:</strong>
-    <%= select("question", "exam", Exam.all.collect {|p| [ p.name, p.id ] }, {}, :onChange=>"reloadIframe()") %>
+    <%= select("question", "exam", Exam.all.collect {|p| [ p.name, p.id ] }, :selected => params[:exam_id], :onChange=>"reloadIframe()") %>
     <strong class="caps">Type:</strong>
     <select id="question_q_type" name="question[q_type]" style="margin-right: 25px">
       <option<% if question.q_type=="checkbox" %> selected<% end %>>Checkbox</option>

@@ -9,7 +9,7 @@
                             <h3 class="h3"><%= @exam.description %></h3>
                             <table align="center" id="overview">
                                 <tr>
-                                    <td><strong>Questions</strong></td><td align="center"><strong><%= @exam.questions %> / <%= Question.where(:active => true).size %></strong></td>
+                                    <td><strong>Questions</strong></td><td align="center"><strong><%= @exam.questions %> / <%= Question.where(:exam => @exam.id).where(:active => true).size %></strong></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Shuffle Questions</strong></td><td align="center"><% if @exam.shuffle_questions %><img src="../img/icon_correct.png" height="30" /><% else %><img src="../img/icon_incorrect.png" height="30" /><% end %></td>
@@ -136,7 +136,7 @@
                                         <% if option != nil %>
                                         <li>
                                             <input type="<%= question.q_type %>" id="00<%= x + index %>" name="question<%= x %>" />
-                                            <% if question.q_type != "text" %>
+                                            <% if question.q_type != "Text" && question.q_type != "text" %>
                                             <label for="00<%= x + index %>">
                                             	<span class="text"<% if options[index] == correct[index] %> id="hint_0<%= x + index %>"<% end %>>
                                             		<%= option %>
