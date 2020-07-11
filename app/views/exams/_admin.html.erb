@@ -94,7 +94,7 @@
           <td><%= question.q_type %></td>
           <td><%= link_to strip_tags(question.q_text).truncate(100), question %></td>
           <td align="center"><a href="/questions/<%= question.id %>"><img src="../img/icon_show.png" height="30" title="Show" /></a></td>
-          <td align="center"><a href="/questions/<%= question.id %>/edit"><img src="../img/icon_edit.png" height="30" title="Edit" /></a></td>
+          <td align="center"><a href="/questions/<%= question.id %>/edit?exam_id=<%= @exam.id %>"><img src="../img/icon_edit.png" height="30" title="Edit" /></a></td>
           <td align="center"><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/questions/<%= question.id %>?exam_id=<%= @exam.id %>"><img src="../img/icon_error.png" height="30" title="Delete" /></a></td>
         </tr>
       <% end %>
