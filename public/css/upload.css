@@ -19,6 +19,7 @@ input, textarea, select {
 input {
 	margin-bottom: 5px;
 	margin-left: 15px;
+	background: #fff;
 }
 
 a button, input[type="submit"] {

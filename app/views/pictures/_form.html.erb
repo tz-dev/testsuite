@@ -1,6 +1,6 @@
 <%= form_with(model: picture, local: true) do |form| %>
   <div class="field"<% if @select_exam != true %> style="display: none;"<% end %>>
-    <%= form.label :exam %>
+    <label for="exam" style="color: #fff">Exam</label>
   <% if @select_exam != true %>
     <%= form.text_field :exam, id: :picture_exam, value: params[:exam_id] %>
   <% end %>

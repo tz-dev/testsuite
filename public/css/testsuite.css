@@ -1,6 +1,5 @@
 html {
 	font-family: verdana;
-	background: #000;
 }
 
 * {
@@ -22,7 +21,6 @@ body {
 section#head {
 	position: fixed;
 	width: 1203px;
-	background: #000;
 }
 
 section#main {
@@ -30,7 +28,6 @@ section#main {
 	margin: 80px 0 25px 0;
 	padding: 85px 10px 0 10px;
 	width: 98.45%;
-	background: #ddd;
 }
 
 section.f_left, section.f_right {
@@ -43,21 +40,17 @@ nav * {z-index: 99999}
 fieldset {
 	margin-top: 2px;
 	margin-bottom: 12px;
-	background: #fff;
 	padding-top: 10px;
-	border: 1px solid #000;
 }
 
 hr {
-	margin: 5px 0 15px 0;
-	width: 99.85%;
+	margin: 5px 0 15px 3px;
+	width: 99.4%;
 	float: left;
-	color: #666;
 }
 
 h1, h2 {
 	text-align: center;
-	color: #fff;
 	padding: 5px 0;
 	margin-top: 0;
 	margin-bottom: 0;
@@ -71,12 +64,10 @@ h3 {
 
 h1 {
 	font-size:2em;
-	border-bottom: 2px solid #fff;
 }
 
 h2 {
 	font-size:1.5em;
-	border-top: 2px solid #fff;
 	margin-top: 1px;
 }
 
@@ -89,19 +80,8 @@ nav a {
 	text-decoration: none;
 	margin: 0;
 	padding: 11px;
-	background: #333;
-	color: #fff;
 	position: relative;
 	top: 10px;
-	border: 1px solid #fff;
-}
-
-nav a:hover, nav a.active {
-	background: #666;
-}
-
-nav a:hover {
-	border-color: #6f6;
 }
 
 div.field, div.error_explanation {
@@ -112,12 +92,10 @@ div.field, div.error_explanation {
 }
 
 div.field_with_errors {
-	border-color: #c00 !important;
 	float: left;
 }
 
 div.field_with_errors input, div.field_with_errors textarea, div.field_with_errors label.small {
-	border-color: #c00 !important;
 	float: left !important;
 }
 
@@ -141,7 +119,6 @@ h1, h2, th, .field strong, footer {
 }
 
 input, textarea, select {
-	border: 2px solid #666;
 	font-size: 1em;
 	cursor: pointer;
 }
@@ -150,9 +127,6 @@ input[type="text"] {
 	min-width: 525px;
 }
 
-input:focus, select:focus, textarea:focus, button:hover, input:hover, input[type="submit"]:hover {
-  border-color: #090;
-}
 
 #main a:hover, #main a button:hover {
 	text-decoration: none !important;
@@ -179,22 +153,17 @@ textarea {
 table {
 	width: 100%;
 	margin: 0 auto 12px auto;
-	border: 1px solid black;
-	background: #fff;
+}
+
+table th {
+	padding: 3px;
 }
 
 table td {
 	padding: 5px 2px;
 }
 
-table th {
-	background: #000;
-	color: #fff;
-	padding: 5px;
-}
-
 section#main a, section#main a:visited {
-	color: #000;
 	text-decoration: none;
 }
 
@@ -202,16 +171,13 @@ section#main a:hover {
 	text-decoration: underline;
 }
 
-
 section#main table a:hover {
 	text-decoration: underline !important;
 }
 
-
 a button, input[type="submit"] {
 	min-width: 155px;
 	font-size: 1em;
-	border: 2px solid #666;
 	cursor: pointer;
 	margin-bottom: 10px;
 	padding: 1px 0;
@@ -225,6 +191,10 @@ iframe {
 	border: none;
 	width: 100%;
 	height: 275px;
+	z-index: 0 !important;
+}
+
+input#user_email {
 	z-index: 0 !important;
 }
 
@@ -245,7 +215,6 @@ ul.options {
 ul.options li {
   display: block;
   clear: left;
-  border-top: 2px dotted #111;
   line-height: 2.7em;
   padding-top: 5px;
 }
@@ -273,25 +242,16 @@ section.question code {
 }
 
 section.question fieldset {
-  border: 3px solid #111;
   padding: 10px 20px !important;
   border-radius: 10px;
-  background: #ccc;
 }
 
 section.question legend {
-  border: 3px solid #111;
   padding: 10px !important;
   border-radius: 10px;
   font-weight: bold;
-  background: #bbb;
   font-size: 1.5em;
   margin: 0 auto;
-}
-
-.hint {
-	color: #4c4;
-	text-shadow: 1px 1px #000;
 }
 
 section.question label {
@@ -325,20 +285,10 @@ a.center button {
 	height: 35px;
 }
 
-tr.odd {
-  background: #ddd;
-}
-
-tr.even {
-  background: #ccc;
-}
-
 footer {
-	border-top: 2px solid #fff;
 	width: 100%;
 	min-height: 35px;
 	float: left;
-	color: #fff;
 	padding: 15px 0;
 	margin: 0;
 	text-align: right;
@@ -346,7 +296,6 @@ footer {
 }
 
 footer a {
-	color: #fff;
 	font-weight: bold;
 	text-decoration: none;
 }
@@ -379,7 +328,6 @@ nav ul li {
 nav a {
 	display:block;
 	padding:0 10px;	
-	color:#FFF;
 	line-height: 40px;
 	text-decoration:none;
 }
@@ -465,4 +413,156 @@ span#cpr_year {
 
 .tox, .tox-tinymce, .tox *, .tox-tinymce * {
 	z-index: 0 !important;
+}
+
+fieldset.feature {
+	padding: 0 !important;
+}
+
+fieldset.feature legend {
+	margin-left: 25px;
+	font-weight: bold;
+	padding: 5px;
+}
+
+/* COLORS **************************************** */
+
+html {
+	background: #041D37;
+}
+
+section#head {
+	background: #2B4B6F;
+}
+
+section#main {
+	background: #4B698B;
+}
+
+hr {
+	color: #fff;
+}
+
+h1, h2 {
+	color: #fff;
+}
+
+h1 {
+	border-bottom: 2px solid #fff;
+}
+
+nav a {
+	background: #133253;
+	color: #fff;
+	border: 1px solid #fff;
+}
+
+nav a:hover, nav a.active {
+	background: #738CA6;
+}
+
+nav a:hover {
+	border-color: #041D37;
+}
+
+h2 {
+	border-top: 2px solid #fff;
+	border-bottom: 1px solid #041D37;
+}
+
+.static p {
+	color: #fff;
+}
+
+.static h3 {
+	color: #fff;
+}
+
+fieldset, fieldset legend {
+	border: 1px solid #041D37;
+	background: #fff;
+}
+
+div.field_with_errors {
+	border-color: #c00 !important;
+}
+
+div.field_with_errors input, div.field_with_errors textarea, div.field_with_errors label.small {
+	border-color: #c00 !important;
+}
+
+table {
+	background: #fff;
+	border: 1px solid #041D37;
+}
+
+table th {
+	background: #133253;
+	color: #fff;
+}
+
+fieldset label, fieldset legend, #overview label {
+	color: #133253 !important;
+}
+
+.f_left .field label, .f_right .field label, strong.caps, h3 {
+	color: #fff;
+}
+
+input, textarea, select {
+	border: 2px solid #133253;
+	color: #2B4B6F;
+}
+
+input:focus, select:focus, textarea:focus, button:hover, input:hover, input[type="submit"]:hover {
+	border-color: #738CA6;
+}
+
+section#main a, section#main a:visited {
+	color: #2B4B6F;
+}
+
+a button, input[type="submit"] {
+	border: 2px solid #133253;
+	color: #2B4B6F;
+}
+
+ul.options li {
+	border-top: 2px dotted #111;
+}
+
+section.question fieldset {
+	border: 3px solid #133253;
+	background: #ccc;
+}
+
+section.question legend {
+	border: 3px solid #133253;
+	background: #bbb;
+}
+
+.hint {
+	color: #4c4;
+	text-shadow: 1px 1px #000;
+}
+
+tr.odd {
+	background: #738CA6;
+}
+
+tr.even {
+	background: #4B698B;
+}
+
+td, td a {
+	color: #fff !important;
+}
+
+footer {
+	border-top: 2px solid #fff;
+	color: #fff;
+}
+
+footer a {
+	color: #fff;
 }
