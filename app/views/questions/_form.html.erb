@@ -116,19 +116,17 @@
 <br style="clear: both;" />
   <div class="actions">
   <hr style="clear: both;" />
-
-
 <% if @question.created_at %>
 <section class="f_left">
   <div class="field">
-    <label>Created at:</label><%= @question.created_at %>
+    <label>Created at:</label><span class="field white"><%= @question.created_at %></span>
   </div>
 </div>
 <% end %>
 <% if @question.updated_at %>
 <section class="f_right">
   <div class="field">
-    <label>Last Update:</label><%= @question.updated_at %>
+    <label>Last Update:</label><span class="field white"><%= @question.updated_at %></span>
   </div>
 </section>
   <hr style="clear: both;" />

@@ -145,8 +145,7 @@ div.tox-editor-container {
 }
 
 textarea {
-	min-width: 525px;
-	min-height: 220px;
+	min-height: 225px;
 	font-family: verdana;
 }
 
@@ -192,6 +191,11 @@ iframe {
 	width: 100%;
 	height: 275px;
 	z-index: 0 !important;
+}
+
+#uploader {
+	margin-top: 25px;
+	margin-left: 7px;
 }
 
 input#user_email {
@@ -427,6 +431,10 @@ fieldset.feature legend {
 
 /* COLORS **************************************** */
 
+* {
+	color: #133253;
+}
+
 html {
 	background: #041D37;
 }
@@ -492,7 +500,7 @@ div.field_with_errors input, div.field_with_errors textarea, div.field_with_erro
 }
 
 table {
-	background: #fff;
+	background: transparent;
 	border: 1px solid #041D37;
 }
 
@@ -505,8 +513,8 @@ fieldset label, fieldset legend, #overview label {
 	color: #133253 !important;
 }
 
-.f_left .field label, .f_right .field label, strong.caps, h3 {
-	color: #fff;
+.white, .f_left .field label, .f_right .field label, strong.caps, h3, #cpr, #cpr * {
+	color: #fff !important;
 }
 
 input, textarea, select {
@@ -547,11 +555,11 @@ section.question legend {
 }
 
 tr.odd {
-	background: #738CA6;
+	background: #133253;
 }
 
 tr.even {
-	background: #4B698B;
+	background: #2B4B6F;
 }
 
 td, td a {
