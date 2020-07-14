@@ -146,6 +146,7 @@ div.tox-editor-container {
 
 textarea {
 	min-height: 225px;
+	min-width: 525px;
 	font-family: verdana;
 }
 
@@ -488,6 +489,10 @@ h2 {
 
 fieldset, fieldset legend {
 	border: 1px solid #041D37;
+	background: #ddd;
+}
+
+fieldset legend {
 	background: #fff;
 }
 
@@ -517,6 +522,10 @@ fieldset label, fieldset legend, #overview label {
 	color: #fff !important;
 }
 
+fieldset.blue label, fieldset.blue .f_left .field label, fieldset.blue .f_right .field label {
+	color: #133253 !important;
+}
+
 input, textarea, select {
 	border: 2px solid #133253;
 	color: #2B4B6F;
@@ -541,12 +550,21 @@ ul.options li {
 
 section.question fieldset {
 	border: 3px solid #133253;
-	background: #ccc;
+	background: #fff;
 }
 
 section.question legend {
 	border: 3px solid #133253;
-	background: #bbb;
+	background: #ddd;
+}
+
+section.question .text {
+	cursor: pointer !important;
+}
+
+section.question ul.options input[type="text"] {
+	margin-bottom: 10px;
+	width: 99.2%;
 }
 
 .hint {

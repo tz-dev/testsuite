@@ -167,9 +167,13 @@ ol, li {
 
 /* CUSTOM ******************************************* */
 
+* {
+  color: #133253;
+}
+
 html {
   font-family: verdana;
-  background: #000;
+  background: #133253;
 }
 
 body {
@@ -181,17 +185,21 @@ section#wrapper {
   width: 99%;
   padding-top: 5px;
   padding-left: 18px;
-  background: #666;
+  background: #738CA6;
   border-radius: 10px;
+}
+
+h1, h2, h3 {
+  color: #fff;
 }
 
 h2 {
   text-align: center;
   float: left;
   width: 98.5%;
-  background: #ccc;
-  color: #000;
-  border: 3px solid #111;
+  background: #133253;
+  color: #fff;
+  border: 3px solid #133253;
   border-radius: 10px;
   font-size: 2.5em;
   padding: 15px 0;
@@ -221,7 +229,7 @@ ul.options {
 ul.options li {
   display: block;
   clear: left;
-  border-bottom: 2px dotted #111;
+  border-bottom: 2px dotted #133253;
   line-height: 3em;
 }
 
@@ -249,18 +257,18 @@ section.question code {
 }
 
 section.question fieldset {
-  border: 3px solid #111;
+  border: 3px solid #133253;
   padding: 10px 20px !important;
   border-radius: 10px;
-  background: #ccc;
+  background: #fff;
 }
 
 section.question legend {
-  border: 3px solid #111;
+  border: 3px solid #133253;
   padding: 10px !important;
   border-radius: 10px;
   font-weight: bold;
-  background: #bbb;
+  background: #ddd;
   font-size: 1.5em;
   margin: 0 auto;
 }
@@ -278,12 +286,12 @@ span.text {
 
 span.hint {
   color: #4c4;
-  text-shadow: 1px 1px #000;
+  text-shadow: 1px 1px #133253;
 }
 
 input[type="text"] {
   width: 98.25%;
-  border: 2px solid #111;
+  border: 2px solid #133253;
   border-radius: 10px;
   padding: 3px 10px;
   margin-bottom: 15px;
@@ -291,27 +299,31 @@ input[type="text"] {
 }
 
 a.button, span.correct, span.false {
-  border: 3px solid #111;
+  border: 3px solid #2B4B6F;
   padding: 5px 10px;
   margin-right: 18px;
   border-radius: 10px;
   background: #ccc;
   text-decoration: none;
   font-weight: bold;
-  color: #000;
+  color: #133253;
   margin-top: 25px;
   padding-top: 7px;
   float: left;
 }
 
-span.correct {
-  background: #0f0;
-  color: #00f;
+span.correct, span.correct * {
+  background: #0f0 !important;
+  color: #fff !important;
 }
 
-span.false {
-  background: #f00;
-  color: #fff;
+span.false, span.false * {
+  background: #f00 !important;
+  color: #fff !important;
+}
+
+#percent, #resulttime {
+  color: #fff !important;
 }
 
 a.button:hover {
@@ -344,7 +356,7 @@ a.button:hover {
 a button, input[type="button"] {
   min-width: 155px;
   font-size: 1em;
-  border: 2px solid #000;
+  border: 2px solid #133253;
   cursor: pointer;
   padding: 10px 5px 30px 5px;
 }
@@ -367,8 +379,8 @@ a.center button {
 a.finish, a.begin {
   width: 350px;
   background: #ccc;
-  color: #000;
-  border: 3px solid #000;
+  color: #133253;
+  border: 3px solid #133253;
   display: block;
   padding: 12px 50px 12px 50px;
   font-weight: bold;
@@ -379,18 +391,18 @@ a.finish, a.begin {
 
 a.finish:hover, a.begin:hover {
   background: #3f3;
-  color: #000;
+  color: #133253;
 }
 
 a, a:hover {
   text-decoration: none;
-  color: #000;
+  color: #133253;
 }
 
 table#overview {
   width: 350px;
-  background: #ccc;
-  border: 3px solid #000;
+  background: #fff;
+  border: 3px solid #133253;
   border-radius: 10px;
   padding: 5px;
 }
@@ -410,13 +422,13 @@ table#overview tr {
 }
 
 table {
-  border: 2px solid #000;
+  border: 2px solid #133253;
   background: #ccc;
 }
 
 th {
   color: #fff;
-  background: #000;
+  background: #133253;
   padding: 3px;
 }
 
@@ -452,7 +464,7 @@ div#time_container h5 {
 }
 
 div#time_container fieldset {
-  border: 3px solid #111;
+  border: 3px solid #2B4B6F;
   border-radius: 10px;
   background: #ccc;
   padding: 0px;
@@ -460,7 +472,7 @@ div#time_container fieldset {
 }
 
 div#time_container fieldset legend {
-  border: 3px solid #111;
+  border: 3px solid #2B4B6F;
   border-radius: 10px;
   background: #aaa;
   text-align: center;
@@ -476,9 +488,9 @@ div#time_container fieldset legend {
   height: 90px;
   overflow-y: scroll;
   float: left;
-  border: 3px solid #000;
+  border: 3px solid #133253;
   border-radius: 10px;
-  background: #999;
+  background: #4B698B;
 }
 
 #q_nav li {
@@ -487,15 +499,17 @@ div#time_container fieldset legend {
 }
 
 a.nav_button {
-  background-color: #ccc;
+  background-color: #fff;
   padding: 5px;
-  border: 3px solid #000;
+  border: 3px solid #133253;
   border-radius: 5px;
   font-weight: bold;
 }
 
 a.nav_button:hover, a.active {
-  background-color: #6f6 !important;
+  background-color: #738CA6 !important;
+  color: #fff !important;
+  border-color: #fff !important;
 }
 
 #q_nav {
@@ -513,7 +527,7 @@ a.nav_button:hover, a.active {
 
 #q_nav::-webkit-scrollbar-thumb {
   background: #666;
-  border: 2px solid #000;
+  border: 2px solid #133253;
 }
 
 #showresults {
@@ -523,7 +537,7 @@ a.nav_button:hover, a.active {
 }
 
 aside {
-  border: 3px solid #000;
+  border: 3px solid #2B4B6F;
   border-radius: 10px;
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;
@@ -531,7 +545,7 @@ aside {
   padding-left: 10px;
   padding-right: 2px;
   width: 98.6%;
-  background: #555;
+  background: #133253;
   min-height: 114px;
 }
 
@@ -561,6 +575,18 @@ span.buttontext {
   width: 250px !important;
   text-align: center !important;
   margin: 13px auto !important;
+}
+
+a img {
+  -webkit-filter: drop-shadow(1px -1px 0px #333) drop-shadow(-1px 1px 0px #333);
+}
+
+.right img, .left img {
+  -webkit-filter: drop-shadow(0px 0px 0px #333) drop-shadow(0px 0px 0px #333);
+}
+
+.pushright img {
+  -webkit-filter: drop-shadow(1px -1px 0px #333) drop-shadow(-1px 1px 0px #333) !important;
 }
 
 /* ************************************************** */
